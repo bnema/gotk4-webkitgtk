@@ -10,9 +10,6 @@ import "C"
 // support. If this is FALSE, SOUP_TYPE_AUTH_NEGOTIATE will still be defined and
 // can still be added to a Session, but libsoup will never attempt to actually
 // use this auth type.
-//
-// The function returns the following values:
-//
 func AuthNegotiateSupported() bool {
 	var _cret C.gboolean // in
 

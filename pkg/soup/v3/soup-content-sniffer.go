@@ -87,7 +87,6 @@ func marshalContentSniffer(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - contentSniffer: new ContentSniffer.
-//
 func NewContentSniffer() *ContentSniffer {
 	var _cret *C.SoupContentSniffer // in
 
@@ -116,7 +115,6 @@ func NewContentSniffer() *ContentSniffer {
 //     "charset"), or NULL.
 //   - utf8: sniffed Content-Type of buffer; this will never be NULL, but may be
 //     application/octet-stream.
-//
 func (sniffer *ContentSniffer) Sniff(msg *Message, buffer *glib.Bytes) (map[string]string, string) {
 	var _arg0 *C.SoupContentSniffer // out
 	var _arg1 *C.SoupMessage        // out

@@ -87,7 +87,6 @@ func (editor *WebEditor) ConnectSelectionChanged(f func()) coreglib.SignalHandle
 // The function returns the following values:
 //
 //   - webPage: associated KitWebPage.
-//
 func (editor *WebEditor) Page() *WebPage {
 	var _arg0 *C.WebKitWebEditor // out
 	var _cret *C.WebKitWebPage   // in

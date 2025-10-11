@@ -31,7 +31,6 @@ import "C"
 //
 //   - hashTable: a Table of list elements, which can be freed with
 //     soup_header_free_param_list().
-//
 func HeaderParseSemiParamList(header string) map[string]string {
 	var _arg1 *C.char       // out
 	var _cret *C.GHashTable // in

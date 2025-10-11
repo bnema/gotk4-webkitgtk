@@ -82,7 +82,6 @@ type AuthOverrides struct {
 	//
 	//   - username provided by the user or client.
 	//   - password provided by the user or client.
-	//
 	Authenticate func(username, password string)
 	// CanAuthenticate tests if auth is able to authenticate by providing
 	// credentials to the soup_auth_authenticate().
@@ -90,7 +89,6 @@ type AuthOverrides struct {
 	// The function returns the following values:
 	//
 	//   - ok: TRUE if auth is able to accept credentials.
-	//
 	CanAuthenticate func() bool
 	// Authorization generates an appropriate "Authorization" header for msg.
 	// (The session will only call this if soup_auth_is_authenticated() returned
@@ -103,7 +101,6 @@ type AuthOverrides struct {
 	// The function returns the following values:
 	//
 	//   - utf8: "Authorization" header, which must be freed.
-	//
 	Authorization func(msg *Message) string
 	// ProtectionSpace returns a list of paths on the server which auth extends
 	// over. (All subdirectories of these paths are also assumed to be part of
@@ -117,14 +114,12 @@ type AuthOverrides struct {
 	//
 	//   - sList: list of paths, which can be freed with
 	//     soup_auth_free_protection_space().
-	//
 	ProtectionSpace func(sourceUri *URI) []string
 	// IsAuthenticated tests if auth has been given a username and password.
 	//
 	// The function returns the following values:
 	//
 	//   - ok: TRUE if auth has been given a username and password.
-	//
 	IsAuthenticated func() bool
 	// IsReady tests if auth is ready to make a request for msg with. For most
 	// auths, this is equivalent to soup_auth_is_authenticated(), but for some
@@ -138,7 +133,6 @@ type AuthOverrides struct {
 	// The function returns the following values:
 	//
 	//   - ok: TRUE if auth is ready to make a request with.
-	//
 	IsReady func(msg *Message) bool
 	// Update updates auth with the information from msg and auth_header,
 	// possibly un-authenticating it. As with soup_auth_new(), this is normally
@@ -154,7 +148,6 @@ type AuthOverrides struct {
 	//   - ok: TRUE if auth is still a valid (but potentially unauthenticated)
 	//     Auth. FALSE if something about auth_params could not be parsed or
 	//     incorporated into auth at all.
-	//
 	Update func(msg *Message, authHeader map[unsafe.Pointer]unsafe.Pointer) bool
 }
 
@@ -272,7 +265,6 @@ func BaseAuth(obj Auther) *Auth {
 // The function returns the following values:
 //
 //   - auth (optional): new Auth, or NULL if it could not be created.
-//
 func NewAuth(typ coreglib.Type, msg *Message, authHeader string) *Auth {
 	var _arg1 C.GType        // out
 	var _arg2 *C.SoupMessage // out
@@ -305,7 +297,6 @@ func NewAuth(typ coreglib.Type, msg *Message, authHeader string) *Auth {
 //
 //   - username provided by the user or client.
 //   - password provided by the user or client.
-//
 func (auth *Auth) Authenticate(username, password string) {
 	var _arg0 *C.SoupAuth // out
 	var _arg1 *C.char     // out
@@ -329,7 +320,6 @@ func (auth *Auth) Authenticate(username, password string) {
 // The function returns the following values:
 //
 //   - ok: TRUE if auth is able to accept credentials.
-//
 func (auth *Auth) CanAuthenticate() bool {
 	var _arg0 *C.SoupAuth // out
 	var _cret C.gboolean  // in
@@ -358,7 +348,6 @@ func (auth *Auth) CanAuthenticate() bool {
 // The function returns the following values:
 //
 //   - utf8: "Authorization" header, which must be freed.
-//
 func (auth *Auth) Authorization(msg *Message) string {
 	var _arg0 *C.SoupAuth    // out
 	var _arg1 *C.SoupMessage // out
@@ -384,7 +373,6 @@ func (auth *Auth) Authorization(msg *Message) string {
 // The function returns the following values:
 //
 //   - utf8: hostname.
-//
 func (auth *Auth) Host() string {
 	var _arg0 *C.SoupAuth // out
 	var _cret *C.char     // in
@@ -409,7 +397,6 @@ func (auth *Auth) Host() string {
 // The function returns the following values:
 //
 //   - utf8: identifier.
-//
 func (auth *Auth) Info() string {
 	var _arg0 *C.SoupAuth // out
 	var _cret *C.char     // in
@@ -439,7 +426,6 @@ func (auth *Auth) Info() string {
 //
 //   - sList: list of paths, which can be freed with
 //     soup_auth_free_protection_space().
-//
 func (auth *Auth) ProtectionSpace(sourceUri *URI) []string {
 	var _arg0 *C.SoupAuth // out
 	var _arg1 *C.SoupURI  // out
@@ -473,7 +459,6 @@ func (auth *Auth) ProtectionSpace(sourceUri *URI) []string {
 // The function returns the following values:
 //
 //   - utf8: realm name.
-//
 func (auth *Auth) Realm() string {
 	var _arg0 *C.SoupAuth // out
 	var _cret *C.char     // in
@@ -490,10 +475,6 @@ func (auth *Auth) Realm() string {
 	return _utf8
 }
 
-// The function takes the following parameters:
-//
-// The function returns the following values:
-//
 func (auth *Auth) SavedPassword(user string) string {
 	var _arg0 *C.SoupAuth // out
 	var _arg1 *C.char     // out
@@ -514,8 +495,6 @@ func (auth *Auth) SavedPassword(user string) string {
 	return _utf8
 }
 
-// The function returns the following values:
-//
 func (auth *Auth) SavedUsers() []string {
 	var _arg0 *C.SoupAuth // out
 	var _cret *C.GSList   // in
@@ -544,7 +523,6 @@ func (auth *Auth) SavedUsers() []string {
 // The function returns the following values:
 //
 //   - utf8: scheme name.
-//
 func (auth *Auth) SchemeName() string {
 	var _arg0 *C.SoupAuth // out
 	var _cret *C.char     // in
@@ -565,7 +543,6 @@ func (auth *Auth) SchemeName() string {
 //
 //   - username
 //   - password
-//
 func (auth *Auth) HasSavedPassword(username, password string) {
 	var _arg0 *C.SoupAuth // out
 	var _arg1 *C.char     // out
@@ -588,7 +565,6 @@ func (auth *Auth) HasSavedPassword(username, password string) {
 // The function returns the following values:
 //
 //   - ok: TRUE if auth has been given a username and password.
-//
 func (auth *Auth) IsAuthenticated() bool {
 	var _arg0 *C.SoupAuth // out
 	var _cret C.gboolean  // in
@@ -613,7 +589,6 @@ func (auth *Auth) IsAuthenticated() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE or FALSE.
-//
 func (auth *Auth) IsForProxy() bool {
 	var _arg0 *C.SoupAuth // out
 	var _cret C.gboolean  // in
@@ -644,7 +619,6 @@ func (auth *Auth) IsForProxy() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if auth is ready to make a request with.
-//
 func (auth *Auth) IsReady(msg *Message) bool {
 	var _arg0 *C.SoupAuth    // out
 	var _arg1 *C.SoupMessage // out
@@ -670,7 +644,6 @@ func (auth *Auth) IsReady(msg *Message) bool {
 //
 //   - username
 //   - password
-//
 func (auth *Auth) SavePassword(username, password string) {
 	var _arg0 *C.SoupAuth // out
 	var _arg1 *C.char     // out
@@ -702,7 +675,6 @@ func (auth *Auth) SavePassword(username, password string) {
 //   - ok: TRUE if auth is still a valid (but potentially unauthenticated) Auth.
 //     FALSE if something about auth_params could not be parsed or incorporated
 //     into auth at all.
-//
 func (auth *Auth) Update(msg *Message, authHeader string) bool {
 	var _arg0 *C.SoupAuth    // out
 	var _arg1 *C.SoupMessage // out
@@ -735,7 +707,6 @@ func (auth *Auth) Update(msg *Message, authHeader string) bool {
 //
 //   - username provided by the user or client.
 //   - password provided by the user or client.
-//
 func (auth *Auth) authenticate(username, password string) {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.authenticate
@@ -762,7 +733,6 @@ func (auth *Auth) authenticate(username, password string) {
 // The function returns the following values:
 //
 //   - ok: TRUE if auth is able to accept credentials.
-//
 func (auth *Auth) canAuthenticate() bool {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.can_authenticate
@@ -794,7 +764,6 @@ func (auth *Auth) canAuthenticate() bool {
 // The function returns the following values:
 //
 //   - utf8: "Authorization" header, which must be freed.
-//
 func (auth *Auth) authorization(msg *Message) string {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.get_authorization
@@ -830,7 +799,6 @@ func (auth *Auth) authorization(msg *Message) string {
 //
 //   - sList: list of paths, which can be freed with
 //     soup_auth_free_protection_space().
-//
 func (auth *Auth) protectionSpace(sourceUri *URI) []string {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.get_protection_space
@@ -865,7 +833,6 @@ func (auth *Auth) protectionSpace(sourceUri *URI) []string {
 // The function returns the following values:
 //
 //   - ok: TRUE if auth has been given a username and password.
-//
 func (auth *Auth) isAuthenticated() bool {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.is_authenticated
@@ -899,7 +866,6 @@ func (auth *Auth) isAuthenticated() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if auth is ready to make a request with.
-//
 func (auth *Auth) isReady(msg *Message) bool {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.is_ready
@@ -938,7 +904,6 @@ func (auth *Auth) isReady(msg *Message) bool {
 //   - ok: TRUE if auth is still a valid (but potentially unauthenticated) Auth.
 //     FALSE if something about auth_params could not be parsed or incorporated
 //     into auth at all.
-//
 func (auth *Auth) update(msg *Message, authHeader map[unsafe.Pointer]unsafe.Pointer) bool {
 	gclass := (*C.SoupAuthClass)(coreglib.PeekParentClass(auth))
 	fnarg := gclass.update
@@ -952,10 +917,10 @@ func (auth *Auth) update(msg *Message, authHeader map[unsafe.Pointer]unsafe.Poin
 	_arg1 = (*C.SoupMessage)(unsafe.Pointer(coreglib.InternObject(msg).Native()))
 	_arg2 = C.g_hash_table_new_full(nil, nil, (*[0]byte)(C.free), (*[0]byte)(C.free))
 	for ksrc, vsrc := range authHeader {
-		var kdst *C.gpointer // out
-		var vdst *C.gpointer // out
-		kdst = (*C.gpointer)(unsafe.Pointer(ksrc))
-		vdst = (*C.gpointer)(unsafe.Pointer(vsrc))
+		var kdst C.gpointer // out
+		var vdst C.gpointer // out
+		kdst = (C.gpointer)(unsafe.Pointer(ksrc))
+		vdst = (C.gpointer)(unsafe.Pointer(vsrc))
 		C.g_hash_table_insert(_arg2, C.gpointer(unsafe.Pointer(kdst)), C.gpointer(unsafe.Pointer(vdst)))
 	}
 	defer C.g_hash_table_unref(_arg2)

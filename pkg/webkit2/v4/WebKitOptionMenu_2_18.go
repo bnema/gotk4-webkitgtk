@@ -93,7 +93,6 @@ func (menu *OptionMenu) ConnectClose(f func()) coreglib.SignalHandle {
 // The function takes the following parameters:
 //
 //   - index of the item.
-//
 func (menu *OptionMenu) ActivateItem(index uint) {
 	var _arg0 *C.WebKitOptionMenu // out
 	var _arg1 C.guint             // out
@@ -128,7 +127,6 @@ func (menu *OptionMenu) Close() {
 // The function returns the following values:
 //
 //   - event: menu event or NULL.
-//
 func (menu *OptionMenu) Event() *gdk.Event {
 	var _arg0 *C.WebKitOptionMenu // out
 	var _cret *C.GdkEvent         // in
@@ -158,7 +156,6 @@ func (menu *OptionMenu) Event() *gdk.Event {
 // The function returns the following values:
 //
 //   - optionMenuItem of menu.
-//
 func (menu *OptionMenu) Item(index uint) *OptionMenuItem {
 	var _arg0 *C.WebKitOptionMenu     // out
 	var _arg1 C.guint                 // out
@@ -183,7 +180,6 @@ func (menu *OptionMenu) Item(index uint) *OptionMenuItem {
 // The function returns the following values:
 //
 //   - guint: number of KitOptionMenuItem<!-- -->s in menu.
-//
 func (menu *OptionMenu) NItems() uint {
 	var _arg0 *C.WebKitOptionMenu // out
 	var _cret C.guint             // in
@@ -211,7 +207,6 @@ func (menu *OptionMenu) NItems() uint {
 // The function takes the following parameters:
 //
 //   - index of the item.
-//
 func (menu *OptionMenu) SelectItem(index uint) {
 	var _arg0 *C.WebKitOptionMenu // out
 	var _arg1 C.guint             // out

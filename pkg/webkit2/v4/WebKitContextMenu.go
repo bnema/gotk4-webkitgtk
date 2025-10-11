@@ -95,7 +95,6 @@ func marshalContextMenu(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - contextMenu: newly created KitContextMenu object.
-//
 func NewContextMenu() *ContextMenu {
 	var _cret *C.WebKitContextMenu // in
 
@@ -122,7 +121,6 @@ func NewContextMenu() *ContextMenu {
 // The function returns the following values:
 //
 //   - contextMenu: newly created KitContextMenu object.
-//
 func NewContextMenuWithItems(items []*ContextMenuItem) *ContextMenu {
 	var _arg1 *C.GList             // out
 	var _cret *C.WebKitContextMenu // in
@@ -150,7 +148,6 @@ func NewContextMenuWithItems(items []*ContextMenuItem) *ContextMenu {
 // The function takes the following parameters:
 //
 //   - item to add.
-//
 func (menu *ContextMenu) Append(item *ContextMenuItem) {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _arg1 *C.WebKitContextMenuItem // out
@@ -169,7 +166,6 @@ func (menu *ContextMenu) Append(item *ContextMenuItem) {
 //
 //   - contextMenuItem: first KitContextMenuItem of menu, or NULL if the
 //     KitContextMenu is empty.
-//
 func (menu *ContextMenu) First() *ContextMenuItem {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _cret *C.WebKitContextMenuItem // in
@@ -201,7 +197,6 @@ func (menu *ContextMenu) First() *ContextMenuItem {
 // The function returns the following values:
 //
 //   - event: menu event or NULL.
-//
 func (menu *ContextMenu) Event() *gdk.Event {
 	var _arg0 *C.WebKitContextMenu // out
 	var _cret *C.GdkEvent          // in
@@ -232,7 +227,6 @@ func (menu *ContextMenu) Event() *gdk.Event {
 //
 //   - contextMenuItem at position position in menu, or NULL if the position is
 //     off the end of the menu.
-//
 func (menu *ContextMenu) ItemAtPosition(position uint) *ContextMenuItem {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _arg1 C.guint                  // out
@@ -257,7 +251,6 @@ func (menu *ContextMenu) ItemAtPosition(position uint) *ContextMenuItem {
 // The function returns the following values:
 //
 //   - list of KitContextMenuItem<!-- -->s.
-//
 func (menu *ContextMenu) Items() []*ContextMenuItem {
 	var _arg0 *C.WebKitContextMenu // out
 	var _cret *C.GList             // in
@@ -285,7 +278,6 @@ func (menu *ContextMenu) Items() []*ContextMenuItem {
 // The function returns the following values:
 //
 //   - guint: number of KitContextMenuItem<!-- -->s in menu.
-//
 func (menu *ContextMenu) NItems() uint {
 	var _arg0 *C.WebKitContextMenu // out
 	var _cret C.guint              // in
@@ -310,7 +302,6 @@ func (menu *ContextMenu) NItems() uint {
 // The function returns the following values:
 //
 //   - variant: user data of menu, or NULL if menu doesn't have user data.
-//
 func (menu *ContextMenu) UserData() *glib.Variant {
 	var _arg0 *C.WebKitContextMenu // out
 	var _cret *C.GVariant          // in
@@ -344,7 +335,6 @@ func (menu *ContextMenu) UserData() *glib.Variant {
 //
 //   - item to add.
 //   - position to insert the item.
-//
 func (menu *ContextMenu) Insert(item *ContextMenuItem, position int) {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _arg1 *C.WebKitContextMenuItem // out
@@ -366,7 +356,6 @@ func (menu *ContextMenu) Insert(item *ContextMenuItem, position int) {
 //
 //   - contextMenuItem: last KitContextMenuItem of menu, or NULL if the
 //     KitContextMenu is empty.
-//
 func (menu *ContextMenu) Last() *ContextMenuItem {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _cret *C.WebKitContextMenuItem // in
@@ -393,7 +382,6 @@ func (menu *ContextMenu) Last() *ContextMenuItem {
 //
 //   - item to add.
 //   - position: new position to move the item.
-//
 func (menu *ContextMenu) MoveItem(item *ContextMenuItem, position int) {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _arg1 *C.WebKitContextMenuItem // out
@@ -414,7 +402,6 @@ func (menu *ContextMenu) MoveItem(item *ContextMenuItem, position int) {
 // The function takes the following parameters:
 //
 //   - item to add.
-//
 func (menu *ContextMenu) Prepend(item *ContextMenuItem) {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _arg1 *C.WebKitContextMenuItem // out
@@ -434,7 +421,6 @@ func (menu *ContextMenu) Prepend(item *ContextMenuItem) {
 // The function takes the following parameters:
 //
 //   - item to remove.
-//
 func (menu *ContextMenu) Remove(item *ContextMenuItem) {
 	var _arg0 *C.WebKitContextMenu     // out
 	var _arg1 *C.WebKitContextMenuItem // out
@@ -467,7 +453,6 @@ func (menu *ContextMenu) RemoveAll() {
 // The function takes the following parameters:
 //
 //   - userData: #GVariant.
-//
 func (menu *ContextMenu) SetUserData(userData *glib.Variant) {
 	var _arg0 *C.WebKitContextMenu // out
 	var _arg1 *C.GVariant          // out

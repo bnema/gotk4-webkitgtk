@@ -79,7 +79,6 @@ func marshalSessionSync(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - sessionSync: new session.
-//
 func NewSessionSync() *SessionSync {
 	var _cret *C.SoupSession // in
 

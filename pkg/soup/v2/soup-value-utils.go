@@ -25,8 +25,7 @@ import "C"
 //   - hash: value hash.
 //   - key: key.
 //   - value: value.
-//
-func ValueHashInsertValue(hash map[string]coreglib.Value, key string, value *coreglib.Value) {
+func ValueHashInsertValue(hash map[string]*coreglib.Value, key string, value *coreglib.Value) {
 	var _arg1 *C.GHashTable // out
 	var _arg2 *C.char       // out
 	var _arg3 *C.GValue     // out
@@ -37,7 +36,7 @@ func ValueHashInsertValue(hash map[string]coreglib.Value, key string, value *cor
 		var vdst *C.GValue // out
 		kdst = (*C.gchar)(unsafe.Pointer(C.CString(ksrc)))
 		defer C.free(unsafe.Pointer(kdst))
-		vdst = (*C.GValue)(unsafe.Pointer((&vsrc).Native()))
+		vdst = (*C.GValue)(unsafe.Pointer(vsrc.Native()))
 		C.g_hash_table_insert(_arg1, C.gpointer(unsafe.Pointer(kdst)), C.gpointer(unsafe.Pointer(vdst)))
 	}
 	defer C.g_hash_table_unref(_arg1)
@@ -59,23 +58,22 @@ func ValueHashInsertValue(hash map[string]coreglib.Value, key string, value *cor
 // The function returns the following values:
 //
 //   - hashTable: new empty Table.
-//
-func NewValueHash() map[string]coreglib.Value {
+func NewValueHash() map[string]*coreglib.Value {
 	var _cret *C.GHashTable // in
 
 	_cret = C.soup_value_hash_new()
 
-	var _hashTable map[string]coreglib.Value // out
+	var _hashTable map[string]*coreglib.Value // out
 
-	_hashTable = make(map[string]coreglib.Value, gextras.HashTableSize(unsafe.Pointer(_cret)))
+	_hashTable = make(map[string]*coreglib.Value, gextras.HashTableSize(unsafe.Pointer(_cret)))
 	gextras.MoveHashTable(unsafe.Pointer(_cret), true, func(k, v unsafe.Pointer) {
 		ksrc := *(**C.gchar)(k)
 		vsrc := *(**C.GValue)(v)
-		var kdst string         // out
-		var vdst coreglib.Value // out
+		var kdst string          // out
+		var vdst *coreglib.Value // out
 		kdst = C.GoString((*C.gchar)(unsafe.Pointer(ksrc)))
 		defer C.free(unsafe.Pointer(ksrc))
-		vdst = *coreglib.ValueFromNative(unsafe.Pointer(vsrc))
+		vdst = coreglib.ValueFromNative(unsafe.Pointer(vsrc))
 		runtime.SetFinalizer(vdst, func(v *coreglib.Value) {
 			C.g_value_unset((*C.GValue)(unsafe.Pointer(v.Native())))
 		})

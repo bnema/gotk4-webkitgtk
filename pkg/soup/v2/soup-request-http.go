@@ -80,7 +80,6 @@ func marshalRequestHTTP(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - message: new reference to the Message.
-//
 func (http *RequestHTTP) Message() *Message {
 	var _arg0 *C.SoupRequestHTTP // out
 	var _cret *C.SoupMessage     // in

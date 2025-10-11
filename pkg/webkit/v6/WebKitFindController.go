@@ -187,7 +187,6 @@ func (findController *FindController) ConnectFoundText(f func(matchCount uint)) 
 //   - searchText: text to look for.
 //   - findOptions: bitmask with the KitFindOptions used in the search.
 //   - maxMatchCount: maximum number of matches allowed in the search.
-//
 func (findController *FindController) CountMatches(searchText string, findOptions uint32, maxMatchCount uint) {
 	var _arg0 *C.WebKitFindController // out
 	var _arg1 *C.gchar                // out
@@ -216,7 +215,6 @@ func (findController *FindController) CountMatches(searchText string, findOption
 // The function returns the following values:
 //
 //   - guint: maximum number of matches to report.
-//
 func (findController *FindController) MaxMatchCount() uint {
 	var _arg0 *C.WebKitFindController // out
 	var _cret C.guint                 // in
@@ -242,7 +240,6 @@ func (findController *FindController) MaxMatchCount() uint {
 //
 //   - guint32: bitmask containing the KitFindOptions associated with the
 //     current search.
-//
 func (findController *FindController) Options() uint32 {
 	var _arg0 *C.WebKitFindController // out
 	var _cret C.guint32               // in
@@ -268,7 +265,6 @@ func (findController *FindController) Options() uint32 {
 // The function returns the following values:
 //
 //   - utf8: text to look for in the KitWebView.
-//
 func (findController *FindController) SearchText() string {
 	var _arg0 *C.WebKitFindController // out
 	var _cret *C.gchar                // in
@@ -293,7 +289,6 @@ func (findController *FindController) SearchText() string {
 // The function returns the following values:
 //
 //   - webView: KitWebView.
-//
 func (findController *FindController) WebView() *WebView {
 	var _arg0 *C.WebKitFindController // out
 	var _cret *C.WebKitWebView        // in
@@ -336,7 +331,6 @@ func (findController *FindController) WebView() *WebView {
 //   - searchText: text to look for.
 //   - findOptions: bitmask with the KitFindOptions used in the search.
 //   - maxMatchCount: maximum number of matches allowed in the search.
-//
 func (findController *FindController) Search(searchText string, findOptions uint32, maxMatchCount uint) {
 	var _arg0 *C.WebKitFindController // out
 	var _arg1 *C.gchar                // out

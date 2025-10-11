@@ -38,7 +38,6 @@ type AuthManagerOverrides struct {
 	//   - msg
 	//   - auth
 	//   - retrying
-	//
 	Authenticate func(msg *Message, auth Auther, retrying bool)
 }
 
@@ -126,7 +125,6 @@ func (manager *AuthManager) ClearCachedCredentials() {
 //
 //   - uri under which auth is to be used.
 //   - auth to use.
-//
 func (manager *AuthManager) UseAuth(uri *URI, auth Auther) {
 	var _arg0 *C.SoupAuthManager // out
 	var _arg1 *C.SoupURI         // out
@@ -147,7 +145,6 @@ func (manager *AuthManager) UseAuth(uri *URI, auth Auther) {
 //   - msg
 //   - auth
 //   - retrying
-//
 func (manager *AuthManager) authenticate(msg *Message, auth Auther, retrying bool) {
 	gclass := (*C.SoupAuthManagerClass)(coreglib.PeekParentClass(manager))
 	fnarg := gclass.authenticate

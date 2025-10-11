@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"unsafe"
 
+	"github.com/diamondburned/gotk4/pkg/core/gbox"
 	"github.com/diamondburned/gotk4/pkg/core/gcancel"
 	"github.com/diamondburned/gotk4/pkg/core/gerror"
 	"github.com/diamondburned/gotk4/pkg/core/gextras"
@@ -17,6 +18,8 @@ import (
 // #include <stdlib.h>
 // #include <glib-object.h>
 // #include <libsoup/soup.h>
+// extern void _gotk4_soup2_AsyncReadyCallback(GObject*, GAsyncResult*, gpointer);
+// extern void _gotk4_gio2_AsyncReadyCallback(GObject*, GAsyncResult*, gpointer);
 // extern goffset _gotk4_soup2_RequestClass_get_content_length(SoupRequest*);
 // extern gboolean _gotk4_soup2_RequestClass_check_uri(SoupRequest*, SoupURI*, GError**);
 // extern char* _gotk4_soup2_RequestClass_get_content_type(SoupRequest*);
@@ -36,6 +39,9 @@ import (
 // };
 // goffset _gotk4_soup2_Request_virtual_get_content_length(void* fnptr, SoupRequest* arg0) {
 //   return ((goffset (*)(SoupRequest*))(fnptr))(arg0);
+// };
+// void _gotk4_soup2_Request_virtual_send_async(void* fnptr, SoupRequest* arg0, GCancellable* arg1, GAsyncReadyCallback arg2, gpointer arg3) {
+//   ((void (*)(SoupRequest*, GCancellable*, GAsyncReadyCallback, gpointer))(fnptr))(arg0, arg1, arg2, arg3);
 // };
 import "C"
 
@@ -58,8 +64,6 @@ const REQUEST_URI = "uri"
 
 // RequestOverrides contains methods that are overridable.
 type RequestOverrides struct {
-	// The function takes the following parameters:
-	//
 	CheckURI func(uri *URI) error
 	// ContentLength gets the length of the data represented by request.
 	// For most request types, this will not be known until after you call
@@ -69,7 +73,6 @@ type RequestOverrides struct {
 	//
 	//   - gint64: length of the data represented by request, or -1 if not
 	//     known.
-	//
 	ContentLength func() int64
 	// ContentType gets the type of the data represented by request.
 	// For most request types, this will not be known until after you call
@@ -82,7 +85,6 @@ type RequestOverrides struct {
 	//
 	//   - utf8 (optional): type of the data represented by request, or NULL if
 	//     not known.
-	//
 	ContentType func() string
 	// Send: synchronously requests the URI pointed to by request, and returns a
 	// Stream that can be used to read its contents.
@@ -98,7 +100,6 @@ type RequestOverrides struct {
 	//
 	//   - inputStream that can be used to read from the URI pointed to by
 	//     request.
-	//
 	Send func(ctx context.Context) (gio.InputStreamer, error)
 	// SendFinish gets the result of a soup_request_send_async().
 	//
@@ -110,7 +111,6 @@ type RequestOverrides struct {
 	//
 	//   - inputStream that can be used to read from the URI pointed to by
 	//     request.
-	//
 	SendFinish func(result gio.AsyncResulter) (gio.InputStreamer, error)
 }
 
@@ -194,7 +194,6 @@ func marshalRequest(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - gint64: length of the data represented by request, or -1 if not known.
-//
 func (request *Request) ContentLength() int64 {
 	var _arg0 *C.SoupRequest // out
 	var _cret C.goffset      // in
@@ -222,7 +221,6 @@ func (request *Request) ContentLength() int64 {
 //
 //   - utf8 (optional): type of the data represented by request, or NULL if not
 //     known.
-//
 func (request *Request) ContentType() string {
 	var _arg0 *C.SoupRequest // out
 	var _cret *C.char        // in
@@ -246,7 +244,6 @@ func (request *Request) ContentType() string {
 // The function returns the following values:
 //
 //   - session request's Session.
-//
 func (request *Request) Session() *Session {
 	var _arg0 *C.SoupRequest // out
 	var _cret *C.SoupSession // in
@@ -268,7 +265,6 @@ func (request *Request) Session() *Session {
 // The function returns the following values:
 //
 //   - urI request's URI.
-//
 func (request *Request) URI() *URI {
 	var _arg0 *C.SoupRequest // out
 	var _cret *C.SoupURI     // in
@@ -298,7 +294,6 @@ func (request *Request) URI() *URI {
 // The function returns the following values:
 //
 //   - inputStream that can be used to read from the URI pointed to by request.
-//
 func (request *Request) Send(ctx context.Context) (gio.InputStreamer, error) {
 	var _arg0 *C.SoupRequest  // out
 	var _arg1 *C.GCancellable // out
@@ -343,6 +338,37 @@ func (request *Request) Send(ctx context.Context) (gio.InputStreamer, error) {
 	return _inputStream, _goerr
 }
 
+// SendAsync begins an asynchronously request for the URI pointed to by request.
+//
+// Note that you cannot use this method with Requests attached to a SessionSync.
+//
+// The function takes the following parameters:
+//
+//   - ctx (optional) or NULL.
+//   - callback (optional): ReadyCallback.
+func (request *Request) SendAsync(ctx context.Context, callback gio.AsyncReadyCallback) {
+	var _arg0 *C.SoupRequest        // out
+	var _arg1 *C.GCancellable       // out
+	var _arg2 C.GAsyncReadyCallback // out
+	var _arg3 C.gpointer
+
+	_arg0 = (*C.SoupRequest)(unsafe.Pointer(coreglib.InternObject(request).Native()))
+	{
+		cancellable := gcancel.GCancellableFromContext(ctx)
+		defer runtime.KeepAlive(cancellable)
+		_arg1 = (*C.GCancellable)(unsafe.Pointer(cancellable.Native()))
+	}
+	if callback != nil {
+		_arg2 = (*[0]byte)(C._gotk4_gio2_AsyncReadyCallback)
+		_arg3 = C.gpointer(gbox.AssignOnce(callback))
+	}
+
+	C.soup_request_send_async(_arg0, _arg1, _arg2, _arg3)
+	runtime.KeepAlive(request)
+	runtime.KeepAlive(ctx)
+	runtime.KeepAlive(callback)
+}
+
 // SendFinish gets the result of a soup_request_send_async().
 //
 // The function takes the following parameters:
@@ -352,7 +378,6 @@ func (request *Request) Send(ctx context.Context) (gio.InputStreamer, error) {
 // The function returns the following values:
 //
 //   - inputStream that can be used to read from the URI pointed to by request.
-//
 func (request *Request) SendFinish(result gio.AsyncResulter) (gio.InputStreamer, error) {
 	var _arg0 *C.SoupRequest  // out
 	var _arg1 *C.GAsyncResult // out
@@ -393,8 +418,6 @@ func (request *Request) SendFinish(result gio.AsyncResulter) (gio.InputStreamer,
 	return _inputStream, _goerr
 }
 
-// The function takes the following parameters:
-//
 func (reqBase *Request) checkURI(uri *URI) error {
 	gclass := (*C.SoupRequestClass)(coreglib.PeekParentClass(reqBase))
 	fnarg := gclass.check_uri
@@ -426,7 +449,6 @@ func (reqBase *Request) checkURI(uri *URI) error {
 // The function returns the following values:
 //
 //   - gint64: length of the data represented by request, or -1 if not known.
-//
 func (request *Request) contentLength() int64 {
 	gclass := (*C.SoupRequestClass)(coreglib.PeekParentClass(request))
 	fnarg := gclass.get_content_length
@@ -457,7 +479,6 @@ func (request *Request) contentLength() int64 {
 //
 //   - utf8 (optional): type of the data represented by request, or NULL if not
 //     known.
-//
 func (request *Request) contentType() string {
 	gclass := (*C.SoupRequestClass)(coreglib.PeekParentClass(request))
 	fnarg := gclass.get_content_type
@@ -492,7 +513,6 @@ func (request *Request) contentType() string {
 // The function returns the following values:
 //
 //   - inputStream that can be used to read from the URI pointed to by request.
-//
 func (request *Request) send(ctx context.Context) (gio.InputStreamer, error) {
 	gclass := (*C.SoupRequestClass)(coreglib.PeekParentClass(request))
 	fnarg := gclass.send
@@ -540,6 +560,40 @@ func (request *Request) send(ctx context.Context) (gio.InputStreamer, error) {
 	return _inputStream, _goerr
 }
 
+// sendAsync begins an asynchronously request for the URI pointed to by request.
+//
+// Note that you cannot use this method with Requests attached to a SessionSync.
+//
+// The function takes the following parameters:
+//
+//   - ctx (optional) or NULL.
+//   - callback (optional): ReadyCallback.
+func (request *Request) sendAsync(ctx context.Context, callback gio.AsyncReadyCallback) {
+	gclass := (*C.SoupRequestClass)(coreglib.PeekParentClass(request))
+	fnarg := gclass.send_async
+
+	var _arg0 *C.SoupRequest        // out
+	var _arg1 *C.GCancellable       // out
+	var _arg2 C.GAsyncReadyCallback // out
+	var _arg3 C.gpointer
+
+	_arg0 = (*C.SoupRequest)(unsafe.Pointer(coreglib.InternObject(request).Native()))
+	{
+		cancellable := gcancel.GCancellableFromContext(ctx)
+		defer runtime.KeepAlive(cancellable)
+		_arg1 = (*C.GCancellable)(unsafe.Pointer(cancellable.Native()))
+	}
+	if callback != nil {
+		_arg2 = (*[0]byte)(C._gotk4_gio2_AsyncReadyCallback)
+		_arg3 = C.gpointer(gbox.AssignOnce(callback))
+	}
+
+	C._gotk4_soup2_Request_virtual_send_async(unsafe.Pointer(fnarg), _arg0, _arg1, _arg2, _arg3)
+	runtime.KeepAlive(request)
+	runtime.KeepAlive(ctx)
+	runtime.KeepAlive(callback)
+}
+
 // sendFinish gets the result of a soup_request_send_async().
 //
 // The function takes the following parameters:
@@ -549,7 +603,6 @@ func (request *Request) send(ctx context.Context) (gio.InputStreamer, error) {
 // The function returns the following values:
 //
 //   - inputStream that can be used to read from the URI pointed to by request.
-//
 func (request *Request) sendFinish(result gio.AsyncResulter) (gio.InputStreamer, error) {
 	gclass := (*C.SoupRequestClass)(coreglib.PeekParentClass(request))
 	fnarg := gclass.send_finish

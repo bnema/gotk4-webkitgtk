@@ -80,7 +80,6 @@ func marshalRequestFile(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - ret corresponding to file.
-//
 func (file *RequestFile) File() *gio.File {
 	var _arg0 *C.SoupRequestFile // out
 	var _cret *C.GFile           // in

@@ -130,25 +130,21 @@ type ServerOverrides struct {
 	//
 	//   - msg
 	//   - client
-	//
 	RequestAborted func(msg *Message, client *ClientContext)
 	// The function takes the following parameters:
 	//
 	//   - msg
 	//   - client
-	//
 	RequestFinished func(msg *Message, client *ClientContext)
 	// The function takes the following parameters:
 	//
 	//   - msg
 	//   - client
-	//
 	RequestRead func(msg *Message, client *ClientContext)
 	// The function takes the following parameters:
 	//
 	//   - msg
 	//   - client
-	//
 	RequestStarted func(msg *Message, client *ClientContext)
 }
 
@@ -263,7 +259,6 @@ func (server *Server) ConnectRequestStarted(f func(message *Message, client *Cli
 //   - stream: OStream.
 //   - localAddr (optional): local Address associated with the stream.
 //   - remoteAddr (optional): remote Address associated with the stream.
-//
 func (server *Server) AcceptIostream(stream gio.IOStreamer, localAddr, remoteAddr gio.SocketAddresser) error {
 	var _arg0 *C.SoupServer     // out
 	var _arg1 *C.GIOStream      // out
@@ -308,7 +303,6 @@ func (server *Server) AcceptIostream(stream gio.IOStreamer, localAddr, remoteAdd
 // The function takes the following parameters:
 //
 //   - authDomain: AuthDomain.
-//
 func (server *Server) AddAuthDomain(authDomain AuthDomainer) {
 	var _arg0 *C.SoupServer     // out
 	var _arg1 *C.SoupAuthDomain // out
@@ -349,7 +343,6 @@ func (server *Server) AddAuthDomain(authDomain AuthDomainer) {
 //
 //   - path (optional): toplevel path for the handler.
 //   - callback to invoke for requests under path.
-//
 func (server *Server) AddEarlyHandler(path string, callback ServerCallback) {
 	var _arg0 *C.SoupServer        // out
 	var _arg1 *C.char              // out
@@ -407,7 +400,6 @@ func (server *Server) AddEarlyHandler(path string, callback ServerCallback) {
 //
 //   - path (optional): toplevel path for the handler.
 //   - callback to invoke for requests under path.
-//
 func (server *Server) AddHandler(path string, callback ServerCallback) {
 	var _arg0 *C.SoupServer        // out
 	var _arg1 *C.char              // out
@@ -443,7 +435,6 @@ func (server *Server) AddHandler(path string, callback ServerCallback) {
 // The function takes the following parameters:
 //
 //   - extensionType: #GType.
-//
 func (server *Server) AddWebsocketExtension(extensionType coreglib.Type) {
 	var _arg0 *C.SoupServer // out
 	var _arg1 C.GType       // out
@@ -479,7 +470,6 @@ func (server *Server) AddWebsocketExtension(extensionType coreglib.Type) {
 //   - origin (optional) of the connection.
 //   - protocols (optional): protocols supported by this handler.
 //   - callback to invoke for successful WebSocket requests under path.
-//
 func (server *Server) AddWebsocketHandler(path, origin string, protocols []string, callback ServerWebsocketCallback) {
 	var _arg0 *C.SoupServer                 // out
 	var _arg1 *C.char                       // out
@@ -553,7 +543,6 @@ func (server *Server) Disconnect() {
 // The function returns the following values:
 //
 //   - mainContext (optional) server's Context, which may be NULL.
-//
 func (server *Server) AsyncContext() *glib.MainContext {
 	var _arg0 *C.SoupServer   // out
 	var _cret *C.GMainContext // in
@@ -591,7 +580,6 @@ func (server *Server) AsyncContext() *glib.MainContext {
 // The function returns the following values:
 //
 //   - socket: listening socket.
-//
 func (server *Server) Listener() *Socket {
 	var _arg0 *C.SoupServer // out
 	var _cret *C.SoupSocket // in
@@ -619,7 +607,6 @@ func (server *Server) Listener() *Socket {
 // The function returns the following values:
 //
 //   - sList: a list of listening sockets.
-//
 func (server *Server) Listeners() []*gio.Socket {
 	var _arg0 *C.SoupServer // out
 	var _cret *C.GSList     // in
@@ -662,7 +649,6 @@ func (server *Server) Listeners() []*gio.Socket {
 // The function returns the following values:
 //
 //   - guint: port server is listening on.
-//
 func (server *Server) Port() uint {
 	var _arg0 *C.SoupServer // out
 	var _cret C.guint       // in
@@ -690,7 +676,6 @@ func (server *Server) Port() uint {
 // The function returns the following values:
 //
 //   - sList: list of URIs, which you must free when you are done with it.
-//
 func (server *Server) URIs() []*URI {
 	var _arg0 *C.SoupServer // out
 	var _cret *C.GSList     // in
@@ -735,7 +720,6 @@ func (server *Server) URIs() []*URI {
 // The function returns the following values:
 //
 //   - ok: TRUE if server is configured to serve https.
-//
 func (server *Server) IsHTTPS() bool {
 	var _arg0 *C.SoupServer // out
 	var _cret C.gboolean    // in
@@ -775,7 +759,6 @@ func (server *Server) IsHTTPS() bool {
 //
 //   - address of the interface to listen on.
 //   - options: listening options for this server.
-//
 func (server *Server) Listen(address gio.SocketAddresser, options ServerListenOptions) error {
 	var _arg0 *C.SoupServer             // out
 	var _arg1 *C.GSocketAddress         // out
@@ -814,7 +797,6 @@ func (server *Server) Listen(address gio.SocketAddresser, options ServerListenOp
 //
 //   - port to listen on, or 0.
 //   - options: listening options for this server.
-//
 func (server *Server) ListenAll(port uint, options ServerListenOptions) error {
 	var _arg0 *C.SoupServer             // out
 	var _arg1 C.guint                   // out
@@ -850,7 +832,6 @@ func (server *Server) ListenAll(port uint, options ServerListenOptions) error {
 //
 //   - fd: file descriptor of a listening socket.
 //   - options: listening options for this server.
-//
 func (server *Server) ListenFd(fd int, options ServerListenOptions) error {
 	var _arg0 *C.SoupServer             // out
 	var _arg1 C.int                     // out
@@ -889,7 +870,6 @@ func (server *Server) ListenFd(fd int, options ServerListenOptions) error {
 //
 //   - port to listen on, or 0.
 //   - options: listening options for this server.
-//
 func (server *Server) ListenLocal(port uint, options ServerListenOptions) error {
 	var _arg0 *C.SoupServer             // out
 	var _arg1 C.guint                   // out
@@ -923,7 +903,6 @@ func (server *Server) ListenLocal(port uint, options ServerListenOptions) error 
 //
 //   - socket: listening #GSocket.
 //   - options: listening options for this server.
-//
 func (server *Server) ListenSocket(socket *gio.Socket, options ServerListenOptions) error {
 	var _arg0 *C.SoupServer             // out
 	var _arg1 *C.GSocket                // out
@@ -959,7 +938,6 @@ func (server *Server) ListenSocket(socket *gio.Socket, options ServerListenOptio
 // The function takes the following parameters:
 //
 //   - msg associated with server.
-//
 func (server *Server) PauseMessage(msg *Message) {
 	var _arg0 *C.SoupServer  // out
 	var _arg1 *C.SoupMessage // out
@@ -999,7 +977,6 @@ func (server *Server) Quit() {
 // The function takes the following parameters:
 //
 //   - authDomain: AuthDomain.
-//
 func (server *Server) RemoveAuthDomain(authDomain AuthDomainer) {
 	var _arg0 *C.SoupServer     // out
 	var _arg1 *C.SoupAuthDomain // out
@@ -1017,7 +994,6 @@ func (server *Server) RemoveAuthDomain(authDomain AuthDomainer) {
 // The function takes the following parameters:
 //
 //   - path: toplevel path for the handler.
-//
 func (server *Server) RemoveHandler(path string) {
 	var _arg0 *C.SoupServer // out
 	var _arg1 *C.char       // out
@@ -1039,7 +1015,6 @@ func (server *Server) RemoveHandler(path string) {
 // The function takes the following parameters:
 //
 //   - extensionType: #GType.
-//
 func (server *Server) RemoveWebsocketExtension(extensionType coreglib.Type) {
 	var _arg0 *C.SoupServer // out
 	var _arg1 C.GType       // out
@@ -1100,7 +1075,6 @@ func (server *Server) RunAsync() {
 //
 //   - sslCertFile: path to a file containing a PEM-encoded SSL/TLS certificate.
 //   - sslKeyFile: path to a file containing a PEM-encoded private key.
-//
 func (server *Server) SetSSLCertFile(sslCertFile, sslKeyFile string) error {
 	var _arg0 *C.SoupServer // out
 	var _arg1 *C.char       // out
@@ -1140,7 +1114,6 @@ func (server *Server) SetSSLCertFile(sslCertFile, sslKeyFile string) error {
 // The function takes the following parameters:
 //
 //   - msg associated with server.
-//
 func (server *Server) UnpauseMessage(msg *Message) {
 	var _arg0 *C.SoupServer  // out
 	var _arg1 *C.SoupMessage // out
@@ -1157,7 +1130,6 @@ func (server *Server) UnpauseMessage(msg *Message) {
 //
 //   - msg
 //   - client
-//
 func (server *Server) requestAborted(msg *Message, client *ClientContext) {
 	gclass := (*C.SoupServerClass)(coreglib.PeekParentClass(server))
 	fnarg := gclass.request_aborted
@@ -1180,7 +1152,6 @@ func (server *Server) requestAborted(msg *Message, client *ClientContext) {
 //
 //   - msg
 //   - client
-//
 func (server *Server) requestFinished(msg *Message, client *ClientContext) {
 	gclass := (*C.SoupServerClass)(coreglib.PeekParentClass(server))
 	fnarg := gclass.request_finished
@@ -1203,7 +1174,6 @@ func (server *Server) requestFinished(msg *Message, client *ClientContext) {
 //
 //   - msg
 //   - client
-//
 func (server *Server) requestRead(msg *Message, client *ClientContext) {
 	gclass := (*C.SoupServerClass)(coreglib.PeekParentClass(server))
 	fnarg := gclass.request_read
@@ -1226,7 +1196,6 @@ func (server *Server) requestRead(msg *Message, client *ClientContext) {
 //
 //   - msg
 //   - client
-//
 func (server *Server) requestStarted(msg *Message, client *ClientContext) {
 	gclass := (*C.SoupServerClass)(coreglib.PeekParentClass(server))
 	fnarg := gclass.request_started
@@ -1280,7 +1249,6 @@ func marshalClientContext(p uintptr) (interface{}, error) {
 //
 //   - address (optional) with the remote end of a connection, it may be NULL if
 //     you used soup_server_accept_iostream().
-//
 func (client *ClientContext) Address() *Address {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.SoupAddress       // in
@@ -1305,7 +1273,6 @@ func (client *ClientContext) Address() *Address {
 // The function returns the following values:
 //
 //   - authDomain (optional) or NULL if the request was not authenticated.
-//
 func (client *ClientContext) AuthDomain() AuthDomainer {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.SoupAuthDomain    // in
@@ -1345,7 +1312,6 @@ func (client *ClientContext) AuthDomain() AuthDomainer {
 //
 //   - utf8 (optional) authenticated-as user, or NULL if the request was not
 //     authenticated.
-//
 func (client *ClientContext) AuthUser() string {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.char              // in
@@ -1376,7 +1342,6 @@ func (client *ClientContext) AuthUser() string {
 //
 //   - socket (optional) that client is associated with, NULL if you used
 //     soup_server_accept_iostream().
-//
 func (client *ClientContext) Gsocket() *gio.Socket {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.GSocket           // in
@@ -1412,7 +1377,6 @@ func (client *ClientContext) Gsocket() *gio.Socket {
 //
 //   - utf8 (optional): IP address associated with the remote end of a
 //     connection, it may be NULL if you used soup_server_accept_iostream().
-//
 func (client *ClientContext) Host() string {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.char              // in
@@ -1438,7 +1402,6 @@ func (client *ClientContext) Host() string {
 //
 //   - socketAddress (optional) with the local end of a connection, it may be
 //     NULL if you used soup_server_accept_iostream().
-//
 func (client *ClientContext) LocalAddress() gio.SocketAddresser {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.GSocketAddress    // in
@@ -1477,7 +1440,6 @@ func (client *ClientContext) LocalAddress() gio.SocketAddresser {
 //
 //   - socketAddress (optional) with the remote end of a connection, it may be
 //     NULL if you used soup_server_accept_iostream().
-//
 func (client *ClientContext) RemoteAddress() gio.SocketAddresser {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.GSocketAddress    // in
@@ -1523,7 +1485,6 @@ func (client *ClientContext) RemoteAddress() gio.SocketAddresser {
 // The function returns the following values:
 //
 //   - socket that client is associated with.
-//
 func (client *ClientContext) Socket() *Socket {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.SoupSocket        // in
@@ -1555,7 +1516,6 @@ func (client *ClientContext) Socket() *Socket {
 //   - ioStream formerly associated with client (or NULL if client was no longer
 //     associated with a connection). No guarantees are made about what kind of
 //     OStream is returned.
-//
 func (client *ClientContext) StealConnection() gio.IOStreamer {
 	var _arg0 *C.SoupClientContext // out
 	var _cret *C.GIOStream         // in

@@ -25,14 +25,14 @@ import "C"
 //
 // The correspondence between glib types and XML-RPC types is:
 //
-//    int: #int (G_TYPE_INT)
-//    boolean: #gboolean (G_TYPE_BOOLEAN)
-//    string: #char* (G_TYPE_STRING)
-//    double: #double (G_TYPE_DOUBLE)
-//    datetime.iso8601: Date (SOUP_TYPE_DATE)
-//    base64: Array (SOUP_TYPE_BYTE_ARRAY)
-//    struct: Table (G_TYPE_HASH_TABLE)
-//    array: Array (G_TYPE_VALUE_ARRAY)
+//	int: #int (G_TYPE_INT)
+//	boolean: #gboolean (G_TYPE_BOOLEAN)
+//	string: #char* (G_TYPE_STRING)
+//	double: #double (G_TYPE_DOUBLE)
+//	datetime.iso8601: Date (SOUP_TYPE_DATE)
+//	base64: Array (SOUP_TYPE_BYTE_ARRAY)
+//	struct: Table (G_TYPE_HASH_TABLE)
+//	array: Array (G_TYPE_VALUE_ARRAY)
 //
 // For structs, use a Table that maps strings to #GValue; soup_value_hash_new()
 // and related methods can help with this.
@@ -47,7 +47,6 @@ import "C"
 // The function returns the following values:
 //
 //   - utf8 (optional): text of the methodCall, or NULL on error.
-//
 func XmlrpcBuildMethodCall(methodName string, params []coreglib.Value) string {
 	var _arg1 *C.char   // out
 	var _arg2 *C.GValue // out
@@ -96,7 +95,6 @@ func XmlrpcBuildMethodCall(methodName string, params []coreglib.Value) string {
 // The function returns the following values:
 //
 //   - utf8 (optional): text of the methodResponse, or NULL on error.
-//
 func XmlrpcBuildMethodResponse(value *coreglib.Value) string {
 	var _arg1 *C.GValue // out
 	var _cret *C.char   // in
@@ -129,25 +127,23 @@ func XmlrpcBuildMethodResponse(value *coreglib.Value) string {
 // The function takes the following parameters:
 //
 //   - methodResponse: XML-RPC methodResponse string.
-//   - length of method_response, or -1 if it is NUL-terminated.
 //
 // The function returns the following values:
 //
 //   - value: on return, the return value from method_call.
-//
-func XmlrpcParseMethodResponse(methodResponse string, length int) (coreglib.Value, error) {
-	var _arg1 *C.char   // out
-	var _arg2 C.int     // out
+func XmlrpcParseMethodResponse(methodResponse string) (coreglib.Value, error) {
+	var _arg1 *C.char // out
+	var _arg2 C.int
 	var _arg3 C.GValue  // in
 	var _cerr *C.GError // in
 
-	_arg1 = (*C.char)(unsafe.Pointer(C.CString(methodResponse)))
+	_arg2 = (C.int)(len(methodResponse))
+	_arg1 = (*C.char)(C.calloc(C.size_t((len(methodResponse) + 1)), C.size_t(C.sizeof_char)))
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(_arg1)), len(methodResponse)), methodResponse)
 	defer C.free(unsafe.Pointer(_arg1))
-	_arg2 = C.int(length)
 
 	C.soup_xmlrpc_parse_method_response(_arg1, _arg2, &_arg3, &_cerr)
 	runtime.KeepAlive(methodResponse)
-	runtime.KeepAlive(length)
 
 	var _value coreglib.Value // out
 	var _goerr error          // out

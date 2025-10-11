@@ -59,7 +59,6 @@ const FORM_MIME_TYPE_URLENCODED = "application/x-www-form-urlencoded"
 //   - hashTable (optional): a hash table containing the name/value pairs
 //     (other than file_control_name) from msg, which you can free with
 //     g_hash_table_destroy(). On error, it will return NULL.
-//
 func FormDecodeMultipart(msg *Message, fileControlName string) (filename, contentType string, file *Buffer, hashTable map[string]string) {
 	var _arg1 *C.SoupMessage // out
 	var _arg2 *C.char        // out
@@ -136,7 +135,6 @@ func FormDecodeMultipart(msg *Message, fileControlName string) (filename, conten
 // The function returns the following values:
 //
 //   - message: new SoupMessage.
-//
 func FormRequestNewFromMultipart(uri string, multipart *Multipart) *Message {
 	var _arg1 *C.char          // out
 	var _arg2 *C.SoupMultipart // out

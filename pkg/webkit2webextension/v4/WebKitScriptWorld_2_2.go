@@ -20,7 +20,6 @@ import "C"
 // The function returns the following values:
 //
 //   - scriptWorld: default KitScriptWorld.
-//
 func ScriptWorldGetDefault() *ScriptWorld {
 	var _cret *C.WebKitScriptWorld // in
 

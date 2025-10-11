@@ -17,12 +17,13 @@ import "C"
 
 // GType values.
 var (
-	GTypeDownloadError   = coreglib.Type(C.webkit_download_error_get_type())
-	GTypeJavascriptError = coreglib.Type(C.webkit_javascript_error_get_type())
-	GTypeNetworkError    = coreglib.Type(C.webkit_network_error_get_type())
-	GTypePolicyError     = coreglib.Type(C.webkit_policy_error_get_type())
-	GTypePrintError      = coreglib.Type(C.webkit_print_error_get_type())
-	GTypeSnapshotError   = coreglib.Type(C.webkit_snapshot_error_get_type())
+	GTypeDownloadError                 = coreglib.Type(C.webkit_download_error_get_type())
+	GTypeJavascriptError               = coreglib.Type(C.webkit_javascript_error_get_type())
+	GTypeNetworkError                  = coreglib.Type(C.webkit_network_error_get_type())
+	GTypePolicyError                   = coreglib.Type(C.webkit_policy_error_get_type())
+	GTypePrintError                    = coreglib.Type(C.webkit_print_error_get_type())
+	GTypeSnapshotError                 = coreglib.Type(C.webkit_snapshot_error_get_type())
+	GTypeWebExtensionMatchPatternError = coreglib.Type(C.webkit_web_extension_match_pattern_error_get_type())
 )
 
 func init() {
@@ -33,6 +34,7 @@ func init() {
 		coreglib.TypeMarshaler{T: GTypePolicyError, F: marshalPolicyError},
 		coreglib.TypeMarshaler{T: GTypePrintError, F: marshalPrintError},
 		coreglib.TypeMarshaler{T: GTypeSnapshotError, F: marshalSnapshotError},
+		coreglib.TypeMarshaler{T: GTypeWebExtensionMatchPatternError, F: marshalWebExtensionMatchPatternError},
 	})
 }
 
@@ -71,7 +73,6 @@ func (d DownloadError) String() string {
 // The function returns the following values:
 //
 //   - quark: download error domain.
-//
 func DownloadErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -79,9 +80,7 @@ func DownloadErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -125,7 +124,6 @@ func (j JavascriptError) String() string {
 // The function returns the following values:
 //
 //   - quark: javaScript error domain.
-//
 func JavascriptErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -133,9 +131,7 @@ func JavascriptErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -183,7 +179,6 @@ func (n NetworkError) String() string {
 // The function returns the following values:
 //
 //   - quark: network error domain.
-//
 func NetworkErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -191,9 +186,7 @@ func NetworkErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -242,7 +235,6 @@ func (p PolicyError) String() string {
 // The function returns the following values:
 //
 //   - quark: policy error domain.
-//
 func PolicyErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -250,9 +242,7 @@ func PolicyErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -292,7 +282,6 @@ func (p PrintError) String() string {
 // The function returns the following values:
 //
 //   - quark: print error domain.
-//
 func PrintErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -300,9 +289,7 @@ func PrintErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -336,7 +323,6 @@ func (s SnapshotError) String() string {
 // The function returns the following values:
 //
 //   - quark: snapshot error domain.
-//
 func SnapshotErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -344,9 +330,7 @@ func SnapshotErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -357,7 +341,6 @@ func SnapshotErrorQuark() glib.Quark {
 // The function returns the following values:
 //
 //   - quark: user content filter error domain.
-//
 func UserContentFilterErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -365,9 +348,60 @@ func UserContentFilterErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
+
+	return _quark
+}
+
+// WebExtensionMatchPatternError: enum values used to denote errors happening
+// when creating a KitWebExtensionMatchPattern.
+type WebExtensionMatchPatternError C.gint
+
+const (
+	// WebExtensionMatchPatternErrorUnknown: unknown error occured.
+	WebExtensionMatchPatternErrorUnknown WebExtensionMatchPatternError = 899
+	// WebExtensionMatchPatternErrorInvalidScheme: scheme component was invalid.
+	WebExtensionMatchPatternErrorInvalidScheme WebExtensionMatchPatternError = 808
+	// WebExtensionMatchPatternErrorInvalidHost: host component was invalid.
+	WebExtensionMatchPatternErrorInvalidHost WebExtensionMatchPatternError = 809
+	// WebExtensionMatchPatternErrorInvalidPath: path component was invalid.
+	WebExtensionMatchPatternErrorInvalidPath WebExtensionMatchPatternError = 810
+)
+
+func marshalWebExtensionMatchPatternError(p uintptr) (interface{}, error) {
+	return WebExtensionMatchPatternError(coreglib.ValueFromNative(unsafe.Pointer(p)).Enum()), nil
+}
+
+// String returns the name in string for WebExtensionMatchPatternError.
+func (w WebExtensionMatchPatternError) String() string {
+	switch w {
+	case WebExtensionMatchPatternErrorUnknown:
+		return "Unknown"
+	case WebExtensionMatchPatternErrorInvalidScheme:
+		return "InvalidScheme"
+	case WebExtensionMatchPatternErrorInvalidHost:
+		return "InvalidHost"
+	case WebExtensionMatchPatternErrorInvalidPath:
+		return "InvalidPath"
+	default:
+		return fmt.Sprintf("WebExtensionMatchPatternError(%d)", w)
+	}
+}
+
+// WebExtensionMatchPatternErrorQuark gets the quark for the domain of Web
+// Extension Match Pattern errors.
+//
+// The function returns the following values:
+//
+//   - quark: web extension match pattern error domain.
+func WebExtensionMatchPatternErrorQuark() glib.Quark {
+	var _cret C.GQuark // in
+
+	_cret = C.webkit_web_extension_match_pattern_error_quark()
+
+	var _quark glib.Quark // out
+
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }

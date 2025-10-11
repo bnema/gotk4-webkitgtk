@@ -254,7 +254,6 @@ func (w WebsocketState) String() string {
 //   - msg: Message.
 //   - origin (optional): "Origin" header to set.
 //   - protocols (optional): list of protocols to offer.
-//
 func WebsocketClientPrepareHandshake(msg *Message, origin string, protocols []string) {
 	var _arg1 *C.SoupMessage // out
 	var _arg2 *C.char        // out
@@ -301,7 +300,6 @@ func WebsocketClientPrepareHandshake(msg *Message, origin string, protocols []st
 // The function takes the following parameters:
 //
 //   - msg containing both client and server sides of a WebSocket handshake.
-//
 func WebsocketClientVerifyHandshake(msg *Message) error {
 	var _arg1 *C.SoupMessage // out
 	var _cerr *C.GError      // in
@@ -344,7 +342,6 @@ func WebsocketClientVerifyHandshake(msg *Message) error {
 //   - msg containing the client side of a WebSocket handshake.
 //   - origin (optional): expected Origin header.
 //   - protocols (optional): allowed WebSocket protocols.
-//
 func WebsocketServerCheckHandshake(msg *Message, origin string, protocols []string) error {
 	var _arg1 *C.SoupMessage // out
 	var _arg2 *C.char        // out
@@ -411,7 +408,6 @@ func WebsocketServerCheckHandshake(msg *Message, origin string, protocols []stri
 //
 //   - ok: TRUE if msg contained a valid WebSocket handshake request and was
 //     updated to contain a handshake response. FALSE if not.
-//
 func WebsocketServerProcessHandshake(msg *Message, expectedOrigin string, protocols []string) bool {
 	var _arg1 *C.SoupMessage // out
 	var _arg2 *C.char        // out

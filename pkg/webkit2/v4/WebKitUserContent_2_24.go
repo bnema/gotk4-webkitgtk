@@ -52,7 +52,6 @@ func marshalUserContentFilter(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: identifier for the filter.
-//
 func (userContentFilter *UserContentFilter) Identifier() string {
 	var _arg0 *C.WebKitUserContentFilter // out
 	var _cret *C.char                    // in

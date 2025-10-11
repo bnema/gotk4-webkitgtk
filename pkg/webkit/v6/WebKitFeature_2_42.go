@@ -158,7 +158,6 @@ func marshalFeature(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: feature category.
-//
 func (feature *Feature) Category() string {
 	var _arg0 *C.WebKitFeature // out
 	var _cret *C.char          // in
@@ -185,7 +184,6 @@ func (feature *Feature) Category() string {
 // The function returns the following values:
 //
 //   - ok: whether the feature is enabled by default.
-//
 func (feature *Feature) DefaultValue() bool {
 	var _arg0 *C.WebKitFeature // out
 	var _cret C.gboolean       // in
@@ -218,7 +216,6 @@ func (feature *Feature) DefaultValue() bool {
 // The function returns the following values:
 //
 //   - utf8 (optional): feature description.
-//
 func (feature *Feature) Details() string {
 	var _arg0 *C.WebKitFeature // out
 	var _cret *C.char          // in
@@ -242,7 +239,6 @@ func (feature *Feature) Details() string {
 // The function returns the following values:
 //
 //   - utf8: identifier string for the feature.
-//
 func (feature *Feature) Identifier() string {
 	var _arg0 *C.WebKitFeature // out
 	var _cret *C.char          // in
@@ -270,7 +266,6 @@ func (feature *Feature) Identifier() string {
 // The function returns the following values:
 //
 //   - utf8 (optional): short feature name.
-//
 func (feature *Feature) Name() string {
 	var _arg0 *C.WebKitFeature // out
 	var _cret *C.char          // in
@@ -294,7 +289,6 @@ func (feature *Feature) Name() string {
 // The function returns the following values:
 //
 //   - featureStatus: feature status.
-//
 func (feature *Feature) Status() FeatureStatus {
 	var _arg0 *C.WebKitFeature      // out
 	var _cret C.WebKitFeatureStatus // in
@@ -316,11 +310,11 @@ func (feature *Feature) Status() FeatureStatus {
 // The list supports passing around a set of feature objects and iterating over
 // them:
 //
-//    g_autoptr(WebKitFeatureList) list = webkit_settings_get_experimental_features();
-//    for (gsize i = 0; i < webkit_feature_list_get_length(list): i++) {
-//        WebKitFeature *feature = webkit_feature_list_get(list, i);
-//        // Do something with "feature".
-//    }
+//	g_autoptr(WebKitFeatureList) list = webkit_settings_get_experimental_features();
+//	for (gsize i = 0; i < webkit_feature_list_get_length(list): i++) {
+//	    WebKitFeature *feature = webkit_feature_list_get(list, i);
+//	    // Do something with "feature".
+//	}
 //
 // Lists of features can be obtained with settings.GetExperimentalFeatures(),
 // settings.GetDevelopmentFeatures(), and settings.GetAllFeatures().
@@ -349,7 +343,6 @@ func marshalFeatureList(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - feature at index.
-//
 func (featureList *FeatureList) Get(index uint) *Feature {
 	var _arg0 *C.WebKitFeatureList // out
 	var _arg1 C.gsize              // out
@@ -383,7 +376,6 @@ func (featureList *FeatureList) Get(index uint) *Feature {
 //   - gsize: number of elements.
 //
 //     Since 2.42.
-//
 func (featureList *FeatureList) Length() uint {
 	var _arg0 *C.WebKitFeatureList // out
 	var _cret C.gsize              // in

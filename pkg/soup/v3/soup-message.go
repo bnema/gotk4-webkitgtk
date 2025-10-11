@@ -404,7 +404,6 @@ func (msg *Message) ConnectWroteHeaders(f func()) coreglib.SignalHandle {
 // The function returns the following values:
 //
 //   - message (optional): new Message (or NULL if uri could not be parsed).
-//
 func NewMessage(method, uriString string) *Message {
 	var _arg1 *C.char        // out
 	var _arg2 *C.char        // out
@@ -447,7 +446,6 @@ func NewMessage(method, uriString string) *Message {
 //
 //   - message (optional): new Message, or NULL if uri_string could not be
 //     parsed or method is not "GET, "POST" or "PUT".
-//
 func NewMessageFromEncodedForm(method, uriString, encodedForm string) *Message {
 	var _arg1 *C.char        // out
 	var _arg2 *C.char        // out
@@ -486,7 +484,6 @@ func NewMessageFromEncodedForm(method, uriString, encodedForm string) *Message {
 //
 //   - message (optional): new Message, or NULL if uri_string could not be
 //     parsed.
-//
 func NewMessageFromMultipart(uriString string, multipart *Multipart) *Message {
 	var _arg1 *C.char          // out
 	var _arg2 *C.SoupMultipart // out
@@ -519,7 +516,6 @@ func NewMessageFromMultipart(uriString string, multipart *Multipart) *Message {
 // The function returns the following values:
 //
 //   - message: new Message.
-//
 func NewMessageFromURI(method string, uri *glib.URI) *Message {
 	var _arg1 *C.char        // out
 	var _arg2 *C.GUri        // out
@@ -550,7 +546,6 @@ func NewMessageFromURI(method string, uri *glib.URI) *Message {
 // The function returns the following values:
 //
 //   - message: new Message.
-//
 func NewMessageOptionsPing(baseUri *glib.URI) *Message {
 	var _arg1 *C.GUri        // out
 	var _cret *C.SoupMessage // in
@@ -572,7 +567,6 @@ func NewMessageOptionsPing(baseUri *glib.URI) *Message {
 // The function takes the following parameters:
 //
 //   - flags: set of MessageFlags values.
-//
 func (msg *Message) AddFlags(flags MessageFlags) {
 	var _arg0 *C.SoupMessage     // out
 	var _arg1 C.SoupMessageFlags // out
@@ -599,7 +593,6 @@ func (msg *Message) AddFlags(flags MessageFlags) {
 // The function takes the following parameters:
 //
 //   - featureType of a SessionFeature.
-//
 func (msg *Message) DisableFeature(featureType coreglib.Type) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.GType        // out
@@ -620,7 +613,6 @@ func (msg *Message) DisableFeature(featureType coreglib.Type) {
 // The function returns the following values:
 //
 //   - guint64: id or 0 if no connection.
-//
 func (msg *Message) ConnectionID() uint64 {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.guint64      // in
@@ -642,7 +634,6 @@ func (msg *Message) ConnectionID() uint64 {
 // The function returns the following values:
 //
 //   - uri msg's first party #GUri.
-//
 func (msg *Message) FirstParty() *glib.URI {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.GUri        // in
@@ -664,7 +655,6 @@ func (msg *Message) FirstParty() *glib.URI {
 // The function returns the following values:
 //
 //   - messageFlags: flags.
-//
 func (msg *Message) Flags() MessageFlags {
 	var _arg0 *C.SoupMessage     // out
 	var _cret C.SoupMessageFlags // in
@@ -687,7 +677,6 @@ func (msg *Message) Flags() MessageFlags {
 // The function returns the following values:
 //
 //   - ok: TRUE, when HTTP/1 is demanded, FALSE otherwise.
-//
 func (msg *Message) ForceHTTP1() bool {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.gboolean     // in
@@ -714,7 +703,6 @@ func (msg *Message) ForceHTTP1() bool {
 // The function returns the following values:
 //
 //   - httpVersion: HTTP version.
-//
 func (msg *Message) HTTPVersion() HTTPVersion {
 	var _arg0 *C.SoupMessage    // out
 	var _cret C.SoupHTTPVersion // in
@@ -737,7 +725,6 @@ func (msg *Message) HTTPVersion() HTTPVersion {
 // The function returns the following values:
 //
 //   - ok: TRUE if the message is options ping, or FALSE otherwise.
-//
 func (msg *Message) IsOptionsPing() bool {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.gboolean     // in
@@ -764,7 +751,6 @@ func (msg *Message) IsOptionsPing() bool {
 // The function returns the following values:
 //
 //   - ok: whether the current request is a top-level navitation.
-//
 func (msg *Message) IsTopLevelNavigation() bool {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.gboolean     // in
@@ -788,7 +774,6 @@ func (msg *Message) IsTopLevelNavigation() bool {
 // The function returns the following values:
 //
 //   - utf8: method such as SOUP_METHOD_GET.
-//
 func (msg *Message) Method() string {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.char        // in
@@ -813,7 +798,6 @@ func (msg *Message) Method() string {
 // The function returns the following values:
 //
 //   - messageMetrics (optional): MessageMetrics.
-//
 func (msg *Message) Metrics() *MessageMetrics {
 	var _arg0 *C.SoupMessage        // out
 	var _cret *C.SoupMessageMetrics // in
@@ -839,7 +823,6 @@ func (msg *Message) Metrics() *MessageMetrics {
 // The function returns the following values:
 //
 //   - messagePriority: priority of the message.
-//
 func (msg *Message) Priority() MessagePriority {
 	var _arg0 *C.SoupMessage        // out
 	var _cret C.SoupMessagePriority // in
@@ -861,7 +844,6 @@ func (msg *Message) Priority() MessagePriority {
 // The function returns the following values:
 //
 //   - utf8 (optional): phrase.
-//
 func (msg *Message) ReasonPhrase() string {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.char        // in
@@ -893,7 +875,6 @@ func (msg *Message) ReasonPhrase() string {
 //
 //   - socketAddress (optional) or NULL if the connection hasn't been
 //     established.
-//
 func (msg *Message) RemoteAddress() gio.SocketAddresser {
 	var _arg0 *C.SoupMessage    // out
 	var _cret *C.GSocketAddress // in
@@ -930,7 +911,6 @@ func (msg *Message) RemoteAddress() gio.SocketAddresser {
 // The function returns the following values:
 //
 //   - messageHeaders: MessageHeaders.
-//
 func (msg *Message) RequestHeaders() *MessageHeaders {
 	var _arg0 *C.SoupMessage        // out
 	var _cret *C.SoupMessageHeaders // in
@@ -959,7 +939,6 @@ func (msg *Message) RequestHeaders() *MessageHeaders {
 // The function returns the following values:
 //
 //   - messageHeaders: MessageHeaders.
-//
 func (msg *Message) ResponseHeaders() *MessageHeaders {
 	var _arg0 *C.SoupMessage        // out
 	var _cret *C.SoupMessageHeaders // in
@@ -988,7 +967,6 @@ func (msg *Message) ResponseHeaders() *MessageHeaders {
 // The function returns the following values:
 //
 //   - uri msg's site for cookies #GUri.
-//
 func (msg *Message) SiteForCookies() *glib.URI {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.GUri        // in
@@ -1010,7 +988,6 @@ func (msg *Message) SiteForCookies() *glib.URI {
 // The function returns the following values:
 //
 //   - status: Status.
-//
 func (msg *Message) Status() Status {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.SoupStatus   // in
@@ -1034,7 +1011,6 @@ func (msg *Message) Status() Status {
 //
 //   - utf8: name of the TLS ciphersuite, or NULL if msg's connection is not
 //     SSL.
-//
 func (msg *Message) TLSCiphersuiteName() string {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.char        // in
@@ -1061,7 +1037,6 @@ func (msg *Message) TLSCiphersuiteName() string {
 //
 //   - tlsCertificate (optional) msg's TLS peer certificate, or NULL if msg's
 //     connection is not SSL.
-//
 func (msg *Message) TLSPeerCertificate() gio.TLSCertificater {
 	var _arg0 *C.SoupMessage     // out
 	var _cret *C.GTlsCertificate // in
@@ -1100,7 +1075,6 @@ func (msg *Message) TLSPeerCertificate() gio.TLSCertificater {
 // The function returns the following values:
 //
 //   - tlsCertificateFlags with msg's TLS peer certificate errors.
-//
 func (msg *Message) TLSPeerCertificateErrors() gio.TLSCertificateFlags {
 	var _arg0 *C.SoupMessage         // out
 	var _cret C.GTlsCertificateFlags // in
@@ -1122,7 +1096,6 @@ func (msg *Message) TLSPeerCertificateErrors() gio.TLSCertificateFlags {
 // The function returns the following values:
 //
 //   - uri: URI msg is targeted for.
-//
 func (msg *Message) URI() *glib.URI {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.GUri        // in
@@ -1151,7 +1124,6 @@ func (msg *Message) URI() *glib.URI {
 // The function returns the following values:
 //
 //   - ok: TRUE if feature is disabled, or FALSE otherwise.
-//
 func (msg *Message) IsFeatureDisabled(featureType coreglib.Type) bool {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.GType        // out
@@ -1181,7 +1153,6 @@ func (msg *Message) IsFeatureDisabled(featureType coreglib.Type) bool {
 // The function returns the following values:
 //
 //   - ok: TRUE or FALSE.
-//
 func (msg *Message) IsKeepalive() bool {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.gboolean     // in
@@ -1209,7 +1180,6 @@ func (msg *Message) IsKeepalive() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if flags are enabled in msg.
-//
 func (msg *Message) QueryFlags(flags MessageFlags) bool {
 	var _arg0 *C.SoupMessage     // out
 	var _arg1 C.SoupMessageFlags // out
@@ -1236,7 +1206,6 @@ func (msg *Message) QueryFlags(flags MessageFlags) bool {
 // The function takes the following parameters:
 //
 //   - flags: set of MessageFlags values.
-//
 func (msg *Message) RemoveFlags(flags MessageFlags) {
 	var _arg0 *C.SoupMessage     // out
 	var _arg1 C.SoupMessageFlags // out
@@ -1257,7 +1226,6 @@ func (msg *Message) RemoveFlags(flags MessageFlags) {
 // The function takes the following parameters:
 //
 //   - firstParty for the msg's first party.
-//
 func (msg *Message) SetFirstParty(firstParty *glib.URI) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.GUri        // out
@@ -1275,7 +1243,6 @@ func (msg *Message) SetFirstParty(firstParty *glib.URI) {
 // The function takes the following parameters:
 //
 //   - flags: set of MessageFlags values.
-//
 func (msg *Message) SetFlags(flags MessageFlags) {
 	var _arg0 *C.SoupMessage     // out
 	var _arg1 C.SoupMessageFlags // out
@@ -1296,7 +1263,6 @@ func (msg *Message) SetFlags(flags MessageFlags) {
 // The function takes the following parameters:
 //
 //   - value to set.
-//
 func (msg *Message) SetForceHTTP1(value bool) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.gboolean     // out
@@ -1320,7 +1286,6 @@ func (msg *Message) SetForceHTTP1(value bool) {
 // The function takes the following parameters:
 //
 //   - isOptionsPing: value to set.
-//
 func (msg *Message) SetIsOptionsPing(isOptionsPing bool) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.gboolean     // out
@@ -1346,7 +1311,6 @@ func (msg *Message) SetIsOptionsPing(isOptionsPing bool) {
 //
 //   - isTopLevelNavigation: if TRUE indicate the current request is a top-level
 //     navigation.
-//
 func (msg *Message) SetIsTopLevelNavigation(isTopLevelNavigation bool) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.gboolean     // out
@@ -1366,7 +1330,6 @@ func (msg *Message) SetIsTopLevelNavigation(isTopLevelNavigation bool) {
 // The function takes the following parameters:
 //
 //   - method: value to set.
-//
 func (msg *Message) SetMethod(method string) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.char        // out
@@ -1396,7 +1359,6 @@ func (msg *Message) SetMethod(method string) {
 // The function takes the following parameters:
 //
 //   - priority: MessagePriority.
-//
 func (msg *Message) SetPriority(priority MessagePriority) {
 	var _arg0 *C.SoupMessage        // out
 	var _arg1 C.SoupMessagePriority // out
@@ -1421,7 +1383,6 @@ func (msg *Message) SetPriority(priority MessagePriority) {
 //     unknown.
 //   - stream (optional) to read the request body from.
 //   - contentLength: byte length of stream or -1 if unknown.
-//
 func (msg *Message) SetRequestBody(contentType string, stream gio.InputStreamer, contentLength int) {
 	var _arg0 *C.SoupMessage  // out
 	var _arg1 *C.char         // out
@@ -1456,7 +1417,6 @@ func (msg *Message) SetRequestBody(contentType string, stream gio.InputStreamer,
 //   - contentType (optional): MIME Content-Type of the body, or NULL if
 //     unknown.
 //   - bytes (optional) with the request body data.
-//
 func (msg *Message) SetRequestBodyFromBytes(contentType string, bytes *glib.Bytes) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.char        // out
@@ -1492,7 +1452,6 @@ func (msg *Message) SetRequestBodyFromBytes(contentType string, bytes *glib.Byte
 // The function takes the following parameters:
 //
 //   - siteForCookies (optional) for the msg's site for cookies.
-//
 func (msg *Message) SetSiteForCookies(siteForCookies *glib.URI) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.GUri        // out
@@ -1519,7 +1478,6 @@ func (msg *Message) SetSiteForCookies(siteForCookies *glib.URI) {
 // The function takes the following parameters:
 //
 //   - certificate (optional) to set, or NULL.
-//
 func (msg *Message) SetTLSClientCertificate(certificate gio.TLSCertificater) {
 	var _arg0 *C.SoupMessage     // out
 	var _arg1 *C.GTlsCertificate // out
@@ -1542,7 +1500,6 @@ func (msg *Message) SetTLSClientCertificate(certificate gio.TLSCertificater) {
 // The function takes the following parameters:
 //
 //   - uri: new #GUri.
-//
 func (msg *Message) SetURI(uri *glib.URI) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.GUri        // out

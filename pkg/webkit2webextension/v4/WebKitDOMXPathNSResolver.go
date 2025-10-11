@@ -69,7 +69,6 @@ func marshalDOMXPathNSResolver(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: #gchar.
-//
 func (resolver *DOMXPathNSResolver) LookupNamespaceURI(prefix string) string {
 	var _arg0 *C.WebKitDOMXPathNSResolver // out
 	var _arg1 *C.gchar                    // out
@@ -100,7 +99,6 @@ func (resolver *DOMXPathNSResolver) LookupNamespaceURI(prefix string) string {
 // The function returns the following values:
 //
 //   - utf8: #gchar.
-//
 func (resolver *DOMXPathNSResolver) lookupNamespaceURI(prefix string) string {
 	gclass := (*C.WebKitDOMXPathNSResolverIface)(coreglib.PeekParentClass(resolver))
 	fnarg := gclass.lookup_namespace_uri

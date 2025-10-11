@@ -92,7 +92,6 @@ func NewMemoryPressureSettings() *MemoryPressureSettings {
 // The function returns the following values:
 //
 //   - memoryPressureSettings: copy of of the passed KitMemoryPressureSettings.
-//
 func (settings *MemoryPressureSettings) Copy() *MemoryPressureSettings {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _cret *C.WebKitMemoryPressureSettings // in
@@ -120,7 +119,6 @@ func (settings *MemoryPressureSettings) Copy() *MemoryPressureSettings {
 // The function returns the following values:
 //
 //   - gdouble: value in the (0, 1) range.
-//
 func (settings *MemoryPressureSettings) ConservativeThreshold() float64 {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _cret C.gdouble                       // in
@@ -142,7 +140,6 @@ func (settings *MemoryPressureSettings) ConservativeThreshold() float64 {
 // The function returns the following values:
 //
 //   - gdouble: positive value, can be zero.
-//
 func (settings *MemoryPressureSettings) KillThreshold() float64 {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _cret C.gdouble                       // in
@@ -164,7 +161,6 @@ func (settings *MemoryPressureSettings) KillThreshold() float64 {
 // The function returns the following values:
 //
 //   - guint: current value, in megabytes.
-//
 func (settings *MemoryPressureSettings) MemoryLimit() uint {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _cret C.guint                         // in
@@ -186,7 +182,6 @@ func (settings *MemoryPressureSettings) MemoryLimit() uint {
 // The function returns the following values:
 //
 //   - gdouble: current interval value, in seconds.
-//
 func (settings *MemoryPressureSettings) PollInterval() float64 {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _cret C.gdouble                       // in
@@ -208,7 +203,6 @@ func (settings *MemoryPressureSettings) PollInterval() float64 {
 // The function returns the following values:
 //
 //   - gdouble: value in the (0, 1) range.
-//
 func (settings *MemoryPressureSettings) StrictThreshold() float64 {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _cret C.gdouble                       // in
@@ -240,7 +234,6 @@ func (settings *MemoryPressureSettings) StrictThreshold() float64 {
 //
 //   - value: fraction of the memory limit where the conservative policy starts
 //     working.
-//
 func (settings *MemoryPressureSettings) SetConservativeThreshold(value float64) {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _arg1 C.gdouble                       // out
@@ -265,7 +258,6 @@ func (settings *MemoryPressureSettings) SetConservativeThreshold(value float64) 
 //
 //   - value: fraction of the memory limit where the process will be killed
 //     because of excessive memory usage.
-//
 func (settings *MemoryPressureSettings) SetKillThreshold(value float64) {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _arg1 C.gdouble                       // out
@@ -285,7 +277,6 @@ func (settings *MemoryPressureSettings) SetKillThreshold(value float64) {
 // The function takes the following parameters:
 //
 //   - memoryLimit: amount of memory (in MB) that the process is allowed to use.
-//
 func (settings *MemoryPressureSettings) SetMemoryLimit(memoryLimit uint) {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _arg1 C.guint                         // out
@@ -306,7 +297,6 @@ func (settings *MemoryPressureSettings) SetMemoryLimit(memoryLimit uint) {
 // The function takes the following parameters:
 //
 //   - value: period (in seconds) between memory usage measurements.
-//
 func (settings *MemoryPressureSettings) SetPollInterval(value float64) {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _arg1 C.gdouble                       // out
@@ -334,7 +324,6 @@ func (settings *MemoryPressureSettings) SetPollInterval(value float64) {
 //
 //   - value: fraction of the memory limit where the strict policy starts
 //     working.
-//
 func (settings *MemoryPressureSettings) SetStrictThreshold(value float64) {
 	var _arg0 *C.WebKitMemoryPressureSettings // out
 	var _arg1 C.gdouble                       // out

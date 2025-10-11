@@ -195,33 +195,7 @@ func NewDateFromString(dateString string) *Date {
 	return _date
 }
 
-// NewDateFromTimeT constructs a struct Date.
-func NewDateFromTimeT(when int32) *Date {
-	var _arg1 C.time_t    // out
-	var _cret *C.SoupDate // in
-
-	_arg1 = C.time_t(when)
-
-	_cret = C.soup_date_new_from_time_t(_arg1)
-	runtime.KeepAlive(when)
-
-	var _date *Date // out
-
-	_date = (*Date)(gextras.NewStructNative(unsafe.Pointer(_cret)))
-	runtime.SetFinalizer(
-		gextras.StructIntern(unsafe.Pointer(_date)),
-		func(intern *struct{ C unsafe.Pointer }) {
-			C.soup_date_free((*C.SoupDate)(intern.C))
-		},
-	)
-
-	return _date
-}
-
 // Copy copies date.
-//
-// The function returns the following values:
-//
 func (date *Date) Copy() *Date {
 	var _arg0 *C.SoupDate // out
 	var _cret *C.SoupDate // in
@@ -249,7 +223,6 @@ func (date *Date) Copy() *Date {
 // The function returns the following values:
 //
 //   - gint date's day.
-//
 func (date *Date) Day() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -271,7 +244,6 @@ func (date *Date) Day() int {
 // The function returns the following values:
 //
 //   - gint date's hour.
-//
 func (date *Date) Hour() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -293,7 +265,6 @@ func (date *Date) Hour() int {
 // The function returns the following values:
 //
 //   - gint date's minute.
-//
 func (date *Date) Minute() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -315,7 +286,6 @@ func (date *Date) Minute() int {
 // The function returns the following values:
 //
 //   - gint date's month.
-//
 func (date *Date) Month() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -339,7 +309,6 @@ func (date *Date) Month() int {
 //   - gint date's offset from UTC. If soup_date_get_utc() returns FALSE but
 //     soup_date_get_offset() returns 0, that means the date is a "floating"
 //     time with no associated offset information.
-//
 func (date *Date) Offset() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -361,7 +330,6 @@ func (date *Date) Offset() int {
 // The function returns the following values:
 //
 //   - gint date's second.
-//
 func (date *Date) Second() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -383,7 +351,6 @@ func (date *Date) Second() int {
 // The function returns the following values:
 //
 //   - gint: TRUE if date is UTC.
-//
 func (date *Date) UTC() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -405,7 +372,6 @@ func (date *Date) UTC() int {
 // The function returns the following values:
 //
 //   - gint date's year.
-//
 func (date *Date) Year() int {
 	var _arg0 *C.SoupDate // out
 	var _cret C.int       // in
@@ -427,7 +393,6 @@ func (date *Date) Year() int {
 // The function returns the following values:
 //
 //   - ok: TRUE if date is in the past.
-//
 func (date *Date) IsPast() bool {
 	var _arg0 *C.SoupDate // out
 	var _cret C.gboolean  // in
@@ -455,7 +420,6 @@ func (date *Date) IsPast() bool {
 // The function returns the following values:
 //
 //   - utf8: date as a string.
-//
 func (date *Date) String(format DateFormat) string {
 	var _arg0 *C.SoupDate      // out
 	var _arg1 C.SoupDateFormat // out
@@ -476,32 +440,6 @@ func (date *Date) String(format DateFormat) string {
 	return _utf8
 }
 
-// ToTimeT converts date to a <type>time_t</type>, assumming it to be in UTC.
-//
-// If date is not representable as a <type>time_t</type>, it will be clamped
-// into range. (In particular, some HTTP cookies have expiration dates after
-// "Y2.038k" (2038-01-19T03:14:07Z).).
-//
-// The function returns the following values:
-//
-//   - glong: date as a <type>time_t</type>.
-//
-func (date *Date) ToTimeT() int32 {
-	var _arg0 *C.SoupDate // out
-	var _cret C.time_t    // in
-
-	_arg0 = (*C.SoupDate)(gextras.StructNative(unsafe.Pointer(date)))
-
-	_cret = C.soup_date_to_time_t(_arg0)
-	runtime.KeepAlive(date)
-
-	var _glong int32 // out
-
-	_glong = int32(_cret)
-
-	return _glong
-}
-
 // ToTimeval converts date to a Val.
 //
 // Deprecated: Do not use Val, as it's not Y2038-safe.
@@ -509,7 +447,6 @@ func (date *Date) ToTimeT() int32 {
 // The function returns the following values:
 //
 //   - time structure in which to store the converted time.
-//
 func (date *Date) ToTimeval() *glib.TimeVal {
 	var _arg0 *C.SoupDate // out
 	var _arg1 C.GTimeVal  // in

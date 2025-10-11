@@ -89,7 +89,6 @@ func marshalURISchemeRequest(p uintptr) (interface{}, error) {
 //   - stream to read the contents of the request.
 //   - streamLength: length of the stream or -1 if not known.
 //   - contentType (optional): content type of the stream or NULL if not known.
-//
 func (request *URISchemeRequest) Finish(stream gio.InputStreamer, streamLength int64, contentType string) {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _arg1 *C.GInputStream           // out
@@ -116,7 +115,6 @@ func (request *URISchemeRequest) Finish(stream gio.InputStreamer, streamLength i
 // The function takes the following parameters:
 //
 //   - err that will be passed to the KitWebView.
-//
 func (request *URISchemeRequest) FinishError(err error) {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _arg1 *C.GError                 // out
@@ -137,7 +135,6 @@ func (request *URISchemeRequest) FinishError(err error) {
 // The function takes the following parameters:
 //
 //   - response: KitURISchemeResponse.
-//
 func (request *URISchemeRequest) FinishWithResponse(response *URISchemeResponse) {
 	var _arg0 *C.WebKitURISchemeRequest  // out
 	var _arg1 *C.WebKitURISchemeResponse // out
@@ -155,7 +152,6 @@ func (request *URISchemeRequest) FinishWithResponse(response *URISchemeResponse)
 // The function returns the following values:
 //
 //   - inputStream: (nullable): the body of the request.
-//
 func (request *URISchemeRequest) HTTPBody() gio.InputStreamer {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.GInputStream           // in
@@ -193,7 +189,6 @@ func (request *URISchemeRequest) HTTPBody() gio.InputStreamer {
 // The function returns the following values:
 //
 //   - messageHeaders of the request.
-//
 func (request *URISchemeRequest) HTTPHeaders() *soup.MessageHeaders {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.SoupMessageHeaders     // in
@@ -222,7 +217,6 @@ func (request *URISchemeRequest) HTTPHeaders() *soup.MessageHeaders {
 // The function returns the following values:
 //
 //   - utf8: HTTP method of the request.
-//
 func (request *URISchemeRequest) HTTPMethod() string {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.gchar                  // in
@@ -244,7 +238,6 @@ func (request *URISchemeRequest) HTTPMethod() string {
 // The function returns the following values:
 //
 //   - utf8: URI path of request.
-//
 func (request *URISchemeRequest) Path() string {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.gchar                  // in
@@ -266,7 +259,6 @@ func (request *URISchemeRequest) Path() string {
 // The function returns the following values:
 //
 //   - utf8: URI scheme of request.
-//
 func (request *URISchemeRequest) Scheme() string {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.gchar                  // in
@@ -288,7 +280,6 @@ func (request *URISchemeRequest) Scheme() string {
 // The function returns the following values:
 //
 //   - utf8: full URI of request.
-//
 func (request *URISchemeRequest) URI() string {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.gchar                  // in
@@ -310,7 +301,6 @@ func (request *URISchemeRequest) URI() string {
 // The function returns the following values:
 //
 //   - webView that initiated request.
-//
 func (request *URISchemeRequest) WebView() *WebView {
 	var _arg0 *C.WebKitURISchemeRequest // out
 	var _cret *C.WebKitWebView          // in

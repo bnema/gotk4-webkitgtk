@@ -11,8 +11,6 @@ import (
 // #include <libsoup/soup-gnome.h>
 import "C"
 
-// The function returns the following values:
-//
 func GnomeFeatures226_GetType() coreglib.Type {
 	var _cret C.GType // in
 

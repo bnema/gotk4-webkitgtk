@@ -50,7 +50,6 @@ func marshalMIMEInfo(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8 (optional): description, as a string.
-//
 func (info *MIMEInfo) Description() string {
 	var _arg0 *C.WebKitMimeInfo // out
 	var _cret *C.gchar          // in
@@ -76,7 +75,6 @@ func (info *MIMEInfo) Description() string {
 // The function returns the following values:
 //
 //   - utf8s: a NULL-terminated array of strings.
-//
 func (info *MIMEInfo) Extensions() []string {
 	var _arg0 *C.WebKitMimeInfo // out
 	var _cret **C.gchar         // in
@@ -112,7 +110,6 @@ func (info *MIMEInfo) Extensions() []string {
 // The function returns the following values:
 //
 //   - utf8: MIME type, as a string.
-//
 func (info *MIMEInfo) MIMEType() string {
 	var _arg0 *C.WebKitMimeInfo // out
 	var _cret *C.gchar          // in

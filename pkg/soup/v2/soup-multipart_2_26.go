@@ -114,7 +114,6 @@ func NewMultipartFromMessage(headers *MessageHeaders, body *MessageBody) *Multip
 //   - filename: name of the file, or NULL if not known.
 //   - contentType: MIME type of the file, or NULL if not known.
 //   - body: file data.
-//
 func (multipart *Multipart) AppendFormFile(controlName string, filename string, contentType string, body *Buffer) {
 	var _arg0 *C.SoupMultipart // out
 	var _arg1 *C.char          // out
@@ -147,7 +146,6 @@ func (multipart *Multipart) AppendFormFile(controlName string, filename string, 
 //
 //   - controlName: name of the control associated with data.
 //   - data: body data.
-//
 func (multipart *Multipart) AppendFormString(controlName string, data string) {
 	var _arg0 *C.SoupMultipart // out
 	var _arg1 *C.char          // out
@@ -173,7 +171,6 @@ func (multipart *Multipart) AppendFormString(controlName string, data string) {
 //
 //   - headers: MIME part headers.
 //   - body: MIME part body.
-//
 func (multipart *Multipart) AppendPart(headers *MessageHeaders, body *Buffer) {
 	var _arg0 *C.SoupMultipart      // out
 	var _arg1 *C.SoupMessageHeaders // out
@@ -194,7 +191,6 @@ func (multipart *Multipart) AppendPart(headers *MessageHeaders, body *Buffer) {
 // The function returns the following values:
 //
 //   - gint: number of body parts in multipart.
-//
 func (multipart *Multipart) Length() int {
 	var _arg0 *C.SoupMultipart // out
 	var _cret C.int            // in
@@ -223,7 +219,6 @@ func (multipart *Multipart) Length() int {
 //   - body: return location for the MIME part body.
 //   - ok: TRUE on success, FALSE if part is out of range (in which case headers
 //     and body won't be set).
-//
 func (multipart *Multipart) Part(part int) (*MessageHeaders, *Buffer, bool) {
 	var _arg0 *C.SoupMultipart      // out
 	var _arg1 C.int                 // out
@@ -257,7 +252,6 @@ func (multipart *Multipart) Part(part int) (*MessageHeaders, *Buffer, bool) {
 //
 //   - destHeaders headers of the HTTP message to serialize multipart to.
 //   - destBody: body of the HTTP message to serialize multipart to.
-//
 func (multipart *Multipart) ToMessage(destHeaders *MessageHeaders, destBody *MessageBody) {
 	var _arg0 *C.SoupMultipart      // out
 	var _arg1 *C.SoupMessageHeaders // out

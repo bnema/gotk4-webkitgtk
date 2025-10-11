@@ -50,16 +50,16 @@ func defaultWebInspectorOverrides(v *WebInspector) WebInspectorOverrides {
 // the KitSettings:enable-developer-extras to true, otherwise no inspector is
 // available.
 //
-//    // Enable the developer extras
-//    WebKitSettings *settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW(my_webview));
-//    g_object_set (G_OBJECT(settings), "enable-developer-extras", TRUE, NULL);
+//	// Enable the developer extras
+//	WebKitSettings *settings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW(my_webview));
+//	g_object_set (G_OBJECT(settings), "enable-developer-extras", TRUE, NULL);
 //
-//    // Load some data or reload to be able to inspect the page
-//    webkit_web_view_load_uri (WEBKIT_WEB_VIEW(my_webview), "http://www.gnome.org");
+//	// Load some data or reload to be able to inspect the page
+//	webkit_web_view_load_uri (WEBKIT_WEB_VIEW(my_webview), "http://www.gnome.org");
 //
-//    // Show the inspector
-//    WebKitWebInspector *inspector = webkit_web_view_get_inspector (WEBKIT_WEB_VIEW(my_webview));
-//    webkit_web_inspector_show (WEBKIT_WEB_INSPECTOR(inspector));.
+//	// Show the inspector
+//	WebKitWebInspector *inspector = webkit_web_view_get_inspector (WEBKIT_WEB_VIEW(my_webview));
+//	webkit_web_inspector_show (WEBKIT_WEB_INSPECTOR(inspector));.
 type WebInspector struct {
 	_ [0]func() // equal guard
 	*coreglib.Object
@@ -196,7 +196,6 @@ func (inspector *WebInspector) Detach() {
 // The function returns the following values:
 //
 //   - guint: height of the inspector view when attached.
-//
 func (inspector *WebInspector) AttachedHeight() uint {
 	var _arg0 *C.WebKitWebInspector // out
 	var _cret C.guint               // in
@@ -220,7 +219,6 @@ func (inspector *WebInspector) AttachedHeight() uint {
 //
 //   - ok: TRUE if there is enough room for the inspector view inside the window
 //     that contains the inspected view, or FALSE otherwise.
-//
 func (inspector *WebInspector) CanAttach() bool {
 	var _arg0 *C.WebKitWebInspector // out
 	var _cret C.gboolean            // in
@@ -248,7 +246,6 @@ func (inspector *WebInspector) CanAttach() bool {
 // The function returns the following values:
 //
 //   - utf8: URI that is currently being inspected or NULL.
-//
 func (inspector *WebInspector) InspectedURI() string {
 	var _arg0 *C.WebKitWebInspector // out
 	var _cret *C.char               // in
@@ -273,7 +270,6 @@ func (inspector *WebInspector) InspectedURI() string {
 // The function returns the following values:
 //
 //   - webViewBase used to display the inspector or NULL.
-//
 func (inspector *WebInspector) WebView() *WebViewBase {
 	var _arg0 *C.WebKitWebInspector // out
 	var _cret *C.WebKitWebViewBase  // in
@@ -296,7 +292,6 @@ func (inspector *WebInspector) WebView() *WebViewBase {
 // The function returns the following values:
 //
 //   - ok: TRUE if inspector is currently attached or FALSE otherwise.
-//
 func (inspector *WebInspector) IsAttached() bool {
 	var _arg0 *C.WebKitWebInspector // out
 	var _cret C.gboolean            // in

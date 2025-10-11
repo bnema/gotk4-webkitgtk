@@ -85,7 +85,7 @@ type LoggerFilter func(logger *Logger, msg *Message) (loggerLogLevel LoggerLogLe
 //
 // To get the effect of the default printer, you would do:
 //
-//    printf ("c s\n", direction, data);.
+//	printf ("c s\n", direction, data);.
 type LoggerPrinter func(logger *Logger, level LoggerLogLevel, direction byte, data string)
 
 // LoggerOverrides contains methods that are overridable.
@@ -110,18 +110,18 @@ func defaultLoggerOverrides(v *Logger) LoggerOverrides {
 //
 // By default, the debugging output is sent to stdout, and looks something like:
 //
-//    > POST /unauth HTTP/1.1
-//    > Soup-Debug-Timestamp: 1200171744
-//    > Soup-Debug: SoupSession 1 (0x612190), SoupMessage 1 (0x617000), GSocket 1 (0x612220)
-//    > Host: localhost
-//    > Content-Type: text/plain
-//    > Connection: close
+//	> POST /unauth HTTP/1.1
+//	> Soup-Debug-Timestamp: 1200171744
+//	> Soup-Debug: SoupSession 1 (0x612190), SoupMessage 1 (0x617000), GSocket 1 (0x612220)
+//	> Host: localhost
+//	> Content-Type: text/plain
+//	> Connection: close
 //
-//    &lt; HTTP/1.1 201 Created
-//    &lt; Soup-Debug-Timestamp: 1200171744
-//    &lt; Soup-Debug: SoupMessage 1 (0x617000)
-//    &lt; Date: Sun, 12 Jan 2008 21:02:24 GMT
-//    &lt; Content-Length: 0
+//	&lt; HTTP/1.1 201 Created
+//	&lt; Soup-Debug-Timestamp: 1200171744
+//	&lt; Soup-Debug: SoupMessage 1 (0x617000)
+//	&lt; Date: Sun, 12 Jan 2008 21:02:24 GMT
+//	&lt; Content-Length: 0
 //
 // The Soup-Debug-Timestamp line gives the time (as a time_t) when the request
 // was sent, or the response fully received.
@@ -199,7 +199,6 @@ func marshalLogger(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - logger: new Logger.
-//
 func NewLogger(level LoggerLogLevel) *Logger {
 	var _arg1 C.SoupLoggerLogLevel // out
 	var _cret *C.SoupLogger        // in
@@ -221,7 +220,6 @@ func NewLogger(level LoggerLogLevel) *Logger {
 // The function returns the following values:
 //
 //   - gint: maximum body size, or -1 if unlimited.
-//
 func (logger *Logger) MaxBodySize() int {
 	var _arg0 *C.SoupLogger // out
 	var _cret C.int         // in
@@ -243,7 +241,6 @@ func (logger *Logger) MaxBodySize() int {
 // The function takes the following parameters:
 //
 //   - maxBodySize: maximum body size to log.
-//
 func (logger *Logger) SetMaxBodySize(maxBodySize int) {
 	var _arg0 *C.SoupLogger // out
 	var _arg1 C.int         // out
@@ -262,7 +259,6 @@ func (logger *Logger) SetMaxBodySize(maxBodySize int) {
 // The function takes the following parameters:
 //
 //   - printer: callback for printing logging output.
-//
 func (logger *Logger) SetPrinter(printer LoggerPrinter) {
 	var _arg0 *C.SoupLogger       // out
 	var _arg1 C.SoupLoggerPrinter // out
@@ -289,7 +285,6 @@ func (logger *Logger) SetPrinter(printer LoggerPrinter) {
 // The function takes the following parameters:
 //
 //   - requestFilter: callback for request debugging.
-//
 func (logger *Logger) SetRequestFilter(requestFilter LoggerFilter) {
 	var _arg0 *C.SoupLogger      // out
 	var _arg1 C.SoupLoggerFilter // out
@@ -316,7 +311,6 @@ func (logger *Logger) SetRequestFilter(requestFilter LoggerFilter) {
 // The function takes the following parameters:
 //
 //   - responseFilter: callback for response debugging.
-//
 func (logger *Logger) SetResponseFilter(responseFilter LoggerFilter) {
 	var _arg0 *C.SoupLogger      // out
 	var _arg1 C.SoupLoggerFilter // out

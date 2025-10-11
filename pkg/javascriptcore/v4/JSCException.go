@@ -80,7 +80,6 @@ func marshalException(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - exception: new CException.
-//
 func NewException(context *Context, message string) *Exception {
 	var _arg1 *C.JSCContext   // out
 	var _arg2 *C.char         // out
@@ -113,7 +112,6 @@ func NewException(context *Context, message string) *Exception {
 // The function returns the following values:
 //
 //   - exception: new CException.
-//
 func NewExceptionWithName(context *Context, name, message string) *Exception {
 	var _arg1 *C.JSCContext   // out
 	var _arg2 *C.char         // out
@@ -143,7 +141,6 @@ func NewExceptionWithName(context *Context, name, message string) *Exception {
 // The function returns the following values:
 //
 //   - utf8 (optional): exception backtrace string or NULL.
-//
 func (exception *Exception) BacktraceString() string {
 	var _arg0 *C.JSCException // out
 	var _cret *C.char         // in
@@ -167,7 +164,6 @@ func (exception *Exception) BacktraceString() string {
 // The function returns the following values:
 //
 //   - guint: column number of exception.
-//
 func (exception *Exception) ColumnNumber() uint {
 	var _arg0 *C.JSCException // out
 	var _cret C.guint         // in
@@ -189,7 +185,6 @@ func (exception *Exception) ColumnNumber() uint {
 // The function returns the following values:
 //
 //   - guint: line number of exception.
-//
 func (exception *Exception) LineNumber() uint {
 	var _arg0 *C.JSCException // out
 	var _cret C.guint         // in
@@ -211,7 +206,6 @@ func (exception *Exception) LineNumber() uint {
 // The function returns the following values:
 //
 //   - utf8: exception error message.
-//
 func (exception *Exception) Message() string {
 	var _arg0 *C.JSCException // out
 	var _cret *C.char         // in
@@ -233,7 +227,6 @@ func (exception *Exception) Message() string {
 // The function returns the following values:
 //
 //   - utf8: exception error name.
-//
 func (exception *Exception) Name() string {
 	var _arg0 *C.JSCException // out
 	var _cret *C.char         // in
@@ -255,7 +248,6 @@ func (exception *Exception) Name() string {
 // The function returns the following values:
 //
 //   - utf8 (optional): the source URI of exception, or NULL.
-//
 func (exception *Exception) SourceURI() string {
 	var _arg0 *C.JSCException // out
 	var _cret *C.char         // in
@@ -281,7 +273,6 @@ func (exception *Exception) SourceURI() string {
 // The function returns the following values:
 //
 //   - utf8: new string with the exception report.
-//
 func (exception *Exception) Report() string {
 	var _arg0 *C.JSCException // out
 	var _cret *C.char         // in
@@ -304,7 +295,6 @@ func (exception *Exception) Report() string {
 // The function returns the following values:
 //
 //   - utf8: string representation of exception.
-//
 func (exception *Exception) String() string {
 	var _arg0 *C.JSCException // out
 	var _cret *C.char         // in

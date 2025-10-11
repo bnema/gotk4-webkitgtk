@@ -69,7 +69,6 @@ func marshalWebsiteData(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: website name of website_data.
-//
 func (websiteData *WebsiteData) Name() string {
 	var _arg0 *C.WebKitWebsiteData // out
 	var _cret *C.char              // in
@@ -99,7 +98,6 @@ func (websiteData *WebsiteData) Name() string {
 // The function returns the following values:
 //
 //   - guint64: size of website_data for the given types.
-//
 func (websiteData *WebsiteData) Size(types WebsiteDataTypes) uint64 {
 	var _arg0 *C.WebKitWebsiteData     // out
 	var _arg1 C.WebKitWebsiteDataTypes // out
@@ -127,7 +125,6 @@ func (websiteData *WebsiteData) Size(types WebsiteDataTypes) uint64 {
 // The function returns the following values:
 //
 //   - websiteDataTypes: bitmask of KitWebsiteDataTypes in website_data.
-//
 func (websiteData *WebsiteData) Types() WebsiteDataTypes {
 	var _arg0 *C.WebKitWebsiteData     // out
 	var _cret C.WebKitWebsiteDataTypes // in

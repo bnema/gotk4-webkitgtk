@@ -23,27 +23,25 @@ import "C"
 //
 //   - str: header string (including the Request-Line or Status-Line, but not
 //     the trailing blank line).
-//   - len: length of str.
 //   - dest to store the header values in.
 //
 // The function returns the following values:
 //
 //   - ok success or failure.
-//
-func HeadersParse(str string, len int, dest *MessageHeaders) bool {
-	var _arg1 *C.char               // out
-	var _arg2 C.int                 // out
+func HeadersParse(str string, dest *MessageHeaders) bool {
+	var _arg1 *C.char // out
+	var _arg2 C.int
 	var _arg3 *C.SoupMessageHeaders // out
 	var _cret C.gboolean            // in
 
-	_arg1 = (*C.char)(unsafe.Pointer(C.CString(str)))
+	_arg2 = (C.int)(len(str))
+	_arg1 = (*C.char)(C.calloc(C.size_t((len(str) + 1)), C.size_t(C.sizeof_char)))
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(_arg1)), len(str)), str)
 	defer C.free(unsafe.Pointer(_arg1))
-	_arg2 = C.int(len)
 	_arg3 = (*C.SoupMessageHeaders)(gextras.StructNative(unsafe.Pointer(dest)))
 
 	_cret = C.soup_headers_parse(_arg1, _arg2, _arg3)
 	runtime.KeepAlive(str)
-	runtime.KeepAlive(len)
 	runtime.KeepAlive(dest)
 
 	var _ok bool // out

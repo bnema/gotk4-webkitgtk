@@ -91,8 +91,6 @@ func (x XMLRPCFault) String() string {
 	}
 }
 
-// The function returns the following values:
-//
 func XMLRPCFaultQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -100,9 +98,7 @@ func XMLRPCFaultQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }

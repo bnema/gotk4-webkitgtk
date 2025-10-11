@@ -32,10 +32,6 @@ func init() {
 
 // CacheOverrides contains methods that are overridable.
 type CacheOverrides struct {
-	// The function takes the following parameters:
-	//
-	// The function returns the following values:
-	//
 	Cacheability func(msg *Message) Cacheability
 }
 
@@ -104,7 +100,6 @@ func marshalCache(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - cache: new Cache.
-//
 func NewCache(cacheDir string, cacheType CacheType) *Cache {
 	var _arg1 *C.char         // out
 	var _arg2 C.SoupCacheType // out
@@ -171,7 +166,6 @@ func (cache *Cache) Flush() {
 // The function returns the following values:
 //
 //   - guint: maximum size of the cache, in bytes.
-//
 func (cache *Cache) MaxSize() uint {
 	var _arg0 *C.SoupCache // out
 	var _cret C.guint      // in
@@ -203,7 +197,6 @@ func (cache *Cache) Load() {
 // The function takes the following parameters:
 //
 //   - maxSize: maximum size of the cache, in bytes.
-//
 func (cache *Cache) SetMaxSize(maxSize uint) {
 	var _arg0 *C.SoupCache // out
 	var _arg1 C.guint      // out
@@ -216,10 +209,6 @@ func (cache *Cache) SetMaxSize(maxSize uint) {
 	runtime.KeepAlive(maxSize)
 }
 
-// The function takes the following parameters:
-//
-// The function returns the following values:
-//
 func (cache *Cache) cacheability(msg *Message) Cacheability {
 	gclass := (*C.SoupCacheClass)(coreglib.PeekParentClass(cache))
 	fnarg := gclass.get_cacheability

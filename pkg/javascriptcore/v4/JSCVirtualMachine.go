@@ -79,7 +79,6 @@ func marshalVirtualMachine(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - virtualMachine: newly created CVirtualMachine.
-//
 func NewVirtualMachine() *VirtualMachine {
 	var _cret *C.JSCVirtualMachine // in
 

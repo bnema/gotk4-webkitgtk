@@ -70,9 +70,6 @@ type AuthDomainOverrides struct {
 	//
 	//   - msg
 	//   - header
-	//
-	// The function returns the following values:
-	//
 	Accepts func(msg *ServerMessage, header string) string
 	// Challenge adds a "WWW-Authenticate" or "Proxy-Authenticate" header to
 	// msg.
@@ -86,9 +83,6 @@ type AuthDomainOverrides struct {
 	// The function takes the following parameters:
 	//
 	//   - msg: ServerMessage.
-	//
-	// The function returns the following values:
-	//
 	Challenge func(msg *ServerMessage) string
 	// CheckPassword checks if msg authenticates to domain via username and
 	// password.
@@ -104,7 +98,6 @@ type AuthDomainOverrides struct {
 	// The function returns the following values:
 	//
 	//   - ok: whether or not the message is authenticated.
-	//
 	CheckPassword func(msg *ServerMessage, username, password string) bool
 }
 
@@ -217,7 +210,6 @@ func BaseAuthDomain(obj AuthDomainer) *AuthDomain {
 //
 //   - utf8 (optional): username that msg has authenticated as, if in fact it
 //     has authenticated. NULL otherwise.
-//
 func (domain *AuthDomain) Accepts(msg *ServerMessage) string {
 	var _arg0 *C.SoupAuthDomain    // out
 	var _arg1 *C.SoupServerMessage // out
@@ -248,7 +240,6 @@ func (domain *AuthDomain) Accepts(msg *ServerMessage) string {
 // The function takes the following parameters:
 //
 //   - path to add to domain.
-//
 func (domain *AuthDomain) AddPath(path string) {
 	var _arg0 *C.SoupAuthDomain // out
 	var _arg1 *C.char           // out
@@ -271,7 +262,6 @@ func (domain *AuthDomain) AddPath(path string) {
 // The function takes the following parameters:
 //
 //   - msg: ServerMessage.
-//
 func (domain *AuthDomain) Challenge(msg *ServerMessage) {
 	var _arg0 *C.SoupAuthDomain    // out
 	var _arg1 *C.SoupServerMessage // out
@@ -298,7 +288,6 @@ func (domain *AuthDomain) Challenge(msg *ServerMessage) {
 // The function returns the following values:
 //
 //   - ok: whether or not the message is authenticated.
-//
 func (domain *AuthDomain) CheckPassword(msg *ServerMessage, username, password string) bool {
 	var _arg0 *C.SoupAuthDomain    // out
 	var _arg1 *C.SoupServerMessage // out
@@ -343,7 +332,6 @@ func (domain *AuthDomain) CheckPassword(msg *ServerMessage, username, password s
 // The function returns the following values:
 //
 //   - ok: TRUE if domain requires msg to be authenticated.
-//
 func (domain *AuthDomain) Covers(msg *ServerMessage) bool {
 	var _arg0 *C.SoupAuthDomain    // out
 	var _arg1 *C.SoupServerMessage // out
@@ -370,7 +358,6 @@ func (domain *AuthDomain) Covers(msg *ServerMessage) bool {
 // The function returns the following values:
 //
 //   - utf8 domain's realm.
-//
 func (domain *AuthDomain) Realm() string {
 	var _arg0 *C.SoupAuthDomain // out
 	var _cret *C.char           // in
@@ -401,7 +388,6 @@ func (domain *AuthDomain) Realm() string {
 // The function takes the following parameters:
 //
 //   - path to remove from domain.
-//
 func (domain *AuthDomain) RemovePath(path string) {
 	var _arg0 *C.SoupAuthDomain // out
 	var _arg1 *C.char           // out
@@ -442,7 +428,6 @@ func (domain *AuthDomain) RemovePath(path string) {
 // The function takes the following parameters:
 //
 //   - filter: auth filter for domain.
-//
 func (domain *AuthDomain) SetFilter(filter AuthDomainFilter) {
 	var _arg0 *C.SoupAuthDomain      // out
 	var _arg1 C.SoupAuthDomainFilter // out
@@ -470,7 +455,6 @@ func (domain *AuthDomain) SetFilter(filter AuthDomainFilter) {
 // The function takes the following parameters:
 //
 //   - authCallback: auth callback.
-//
 func (domain *AuthDomain) SetGenericAuthCallback(authCallback AuthDomainGenericAuthCallback) {
 	var _arg0 *C.SoupAuthDomain                   // out
 	var _arg1 C.SoupAuthDomainGenericAuthCallback // out
@@ -491,9 +475,6 @@ func (domain *AuthDomain) SetGenericAuthCallback(authCallback AuthDomainGenericA
 //
 //   - msg
 //   - header
-//
-// The function returns the following values:
-//
 func (domain *AuthDomain) accepts(msg *ServerMessage, header string) string {
 	gclass := (*C.SoupAuthDomainClass)(coreglib.PeekParentClass(domain))
 	fnarg := gclass.accepts
@@ -530,9 +511,6 @@ func (domain *AuthDomain) accepts(msg *ServerMessage, header string) string {
 // The function takes the following parameters:
 //
 //   - msg: ServerMessage.
-//
-// The function returns the following values:
-//
 func (domain *AuthDomain) challenge(msg *ServerMessage) string {
 	gclass := (*C.SoupAuthDomainClass)(coreglib.PeekParentClass(domain))
 	fnarg := gclass.challenge
@@ -570,7 +548,6 @@ func (domain *AuthDomain) challenge(msg *ServerMessage) string {
 // The function returns the following values:
 //
 //   - ok: whether or not the message is authenticated.
-//
 func (domain *AuthDomain) checkPassword(msg *ServerMessage, username, password string) bool {
 	gclass := (*C.SoupAuthDomainClass)(coreglib.PeekParentClass(domain))
 	fnarg := gclass.check_password

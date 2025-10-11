@@ -152,7 +152,6 @@ func (self *WebsocketConnection) ConnectPong(f func(message *glib.Bytes)) coregl
 // The function returns the following values:
 //
 //   - websocketConnection: new WebsocketConnection.
-//
 func NewWebsocketConnection(stream gio.IOStreamer, uri *glib.URI, typ WebsocketConnectionType, origin, protocol string, extensions []WebsocketExtensioner) *WebsocketConnection {
 	var _arg1 *C.GIOStream                  // out
 	var _arg2 *C.GUri                       // out
@@ -210,7 +209,6 @@ func NewWebsocketConnection(stream gio.IOStreamer, uri *glib.URI, typ WebsocketC
 //
 //   - code: close code.
 //   - data (optional): close data.
-//
 func (self *WebsocketConnection) Close(code uint16, data string) {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _arg1 C.gushort                  // out
@@ -239,7 +237,6 @@ func (self *WebsocketConnection) Close(code uint16, data string) {
 // The function returns the following values:
 //
 //   - gushort: close code or zero.
-//
 func (self *WebsocketConnection) CloseCode() uint16 {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret C.gushort                  // in
@@ -265,7 +262,6 @@ func (self *WebsocketConnection) CloseCode() uint16 {
 // The function returns the following values:
 //
 //   - utf8: close data or NULL.
-//
 func (self *WebsocketConnection) CloseData() string {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret *C.char                    // in
@@ -287,7 +283,6 @@ func (self *WebsocketConnection) CloseData() string {
 // The function returns the following values:
 //
 //   - websocketConnectionType: connection type.
-//
 func (self *WebsocketConnection) ConnectionType() WebsocketConnectionType {
 	var _arg0 *C.SoupWebsocketConnection    // out
 	var _cret C.SoupWebsocketConnectionType // in
@@ -309,7 +304,6 @@ func (self *WebsocketConnection) ConnectionType() WebsocketConnectionType {
 // The function returns the following values:
 //
 //   - list of WebsocketExtension objects.
-//
 func (self *WebsocketConnection) Extensions() []WebsocketExtensioner {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret *C.GList                   // in
@@ -353,7 +347,6 @@ func (self *WebsocketConnection) Extensions() []WebsocketExtensioner {
 // The function returns the following values:
 //
 //   - ioStream webSocket's I/O stream.
-//
 func (self *WebsocketConnection) IOStream() gio.IOStreamer {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret *C.GIOStream               // in
@@ -391,7 +384,6 @@ func (self *WebsocketConnection) IOStream() gio.IOStreamer {
 // The function returns the following values:
 //
 //   - guint: keepalive interval.
-//
 func (self *WebsocketConnection) KeepaliveInterval() uint {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret C.guint                    // in
@@ -408,13 +400,34 @@ func (self *WebsocketConnection) KeepaliveInterval() uint {
 	return _guint
 }
 
+// KeepalivePongTimeout gets the keepalive pong timeout in seconds or 0 if
+// disabled.
+//
+// The function returns the following values:
+//
+//   - guint: keepalive pong timeout.
+func (self *WebsocketConnection) KeepalivePongTimeout() uint {
+	var _arg0 *C.SoupWebsocketConnection // out
+	var _cret C.guint                    // in
+
+	_arg0 = (*C.SoupWebsocketConnection)(unsafe.Pointer(coreglib.InternObject(self).Native()))
+
+	_cret = C.soup_websocket_connection_get_keepalive_pong_timeout(_arg0)
+	runtime.KeepAlive(self)
+
+	var _guint uint // out
+
+	_guint = uint(_cret)
+
+	return _guint
+}
+
 // MaxIncomingPayloadSize gets the maximum payload size allowed for incoming
 // packets.
 //
 // The function returns the following values:
 //
 //   - guint64: maximum payload size.
-//
 func (self *WebsocketConnection) MaxIncomingPayloadSize() uint64 {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret C.guint64                  // in
@@ -436,7 +449,6 @@ func (self *WebsocketConnection) MaxIncomingPayloadSize() uint64 {
 // The function returns the following values:
 //
 //   - utf8 (optional): origin.
-//
 func (self *WebsocketConnection) Origin() string {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret *C.char                    // in
@@ -460,7 +472,6 @@ func (self *WebsocketConnection) Origin() string {
 // The function returns the following values:
 //
 //   - utf8 (optional): chosen protocol.
-//
 func (self *WebsocketConnection) Protocol() string {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret *C.char                    // in
@@ -484,7 +495,6 @@ func (self *WebsocketConnection) Protocol() string {
 // The function returns the following values:
 //
 //   - websocketState: state.
-//
 func (self *WebsocketConnection) State() WebsocketState {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret C.SoupWebsocketState       // in
@@ -509,7 +519,6 @@ func (self *WebsocketConnection) State() WebsocketState {
 // The function returns the following values:
 //
 //   - uri: URI.
-//
 func (self *WebsocketConnection) URI() *glib.URI {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _cret *C.GUri                    // in
@@ -535,7 +544,6 @@ func (self *WebsocketConnection) URI() *glib.URI {
 // The function takes the following parameters:
 //
 //   - data (optional): message contents.
-//
 func (self *WebsocketConnection) SendBinary(data []byte) {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _arg1 C.gconstpointer            // out
@@ -561,7 +569,6 @@ func (self *WebsocketConnection) SendBinary(data []byte) {
 //
 //   - typ: type of message contents.
 //   - message data as #GBytes.
-//
 func (self *WebsocketConnection) SendMessage(typ WebsocketDataType, message *glib.Bytes) {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _arg1 C.SoupWebsocketDataType    // out
@@ -587,7 +594,6 @@ func (self *WebsocketConnection) SendMessage(typ WebsocketDataType, message *gli
 // The function takes the following parameters:
 //
 //   - text: message contents.
-//
 func (self *WebsocketConnection) SendText(text string) {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _arg1 *C.char                    // out
@@ -609,7 +615,6 @@ func (self *WebsocketConnection) SendText(text string) {
 // The function takes the following parameters:
 //
 //   - interval to send a ping message or 0 to disable it.
-//
 func (self *WebsocketConnection) SetKeepaliveInterval(interval uint) {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _arg1 C.guint                    // out
@@ -622,6 +627,26 @@ func (self *WebsocketConnection) SetKeepaliveInterval(interval uint) {
 	runtime.KeepAlive(interval)
 }
 
+// SetKeepalivePongTimeout: set the timeout in seconds for when the absence of a
+// pong from a keepalive ping is assumed to be caused by a faulty connection.
+//
+// If set to 0 then the absence of pongs from keepalive pings is ignored.
+//
+// The function takes the following parameters:
+//
+//   - pongTimeout: timeout in seconds.
+func (self *WebsocketConnection) SetKeepalivePongTimeout(pongTimeout uint) {
+	var _arg0 *C.SoupWebsocketConnection // out
+	var _arg1 C.guint                    // out
+
+	_arg0 = (*C.SoupWebsocketConnection)(unsafe.Pointer(coreglib.InternObject(self).Native()))
+	_arg1 = C.guint(pongTimeout)
+
+	C.soup_websocket_connection_set_keepalive_pong_timeout(_arg0, _arg1)
+	runtime.KeepAlive(self)
+	runtime.KeepAlive(pongTimeout)
+}
+
 // SetMaxIncomingPayloadSize sets the maximum payload size allowed for incoming
 // packets.
 //
@@ -630,7 +655,6 @@ func (self *WebsocketConnection) SetKeepaliveInterval(interval uint) {
 // The function takes the following parameters:
 //
 //   - maxIncomingPayloadSize: maximum payload size.
-//
 func (self *WebsocketConnection) SetMaxIncomingPayloadSize(maxIncomingPayloadSize uint64) {
 	var _arg0 *C.SoupWebsocketConnection // out
 	var _arg1 C.guint64                  // out
