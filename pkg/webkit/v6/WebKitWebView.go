@@ -651,7 +651,9 @@ func initWebViewClass(gclass unsafe.Pointer, overrides WebViewOverrides, classIn
 	}
 }
 
-func wrapWebView(obj *coreglib.Object) *WebView {
+// WrapWebView wraps a GObject into a WebView.
+// This is exported to allow custom WebView construction for advanced use cases.
+func WrapWebView(obj *coreglib.Object) *WebView {
 	return &WebView{
 		WebViewBase: WebViewBase{
 			Widget: gtk.Widget{
@@ -674,7 +676,7 @@ func wrapWebView(obj *coreglib.Object) *WebView {
 }
 
 func marshalWebView(p uintptr) (interface{}, error) {
-	return wrapWebView(coreglib.ValueFromNative(unsafe.Pointer(p)).Object()), nil
+	return WrapWebView(coreglib.ValueFromNative(unsafe.Pointer(p)).Object()), nil
 }
 
 // ConnectAuthenticate: this signal is emitted when the user is challenged
@@ -1137,7 +1139,7 @@ func NewWebView() *WebView {
 
 	var _webView *WebView // out
 
-	_webView = wrapWebView(coreglib.Take(unsafe.Pointer(_cret)))
+	_webView = WrapWebView(coreglib.Take(unsafe.Pointer(_cret)))
 
 	return _webView
 }
