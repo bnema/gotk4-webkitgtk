@@ -30,12 +30,11 @@ func ValueHashInsertValue(hash map[string]*coreglib.Value, key string, value *co
 	var _arg2 *C.char       // out
 	var _arg3 *C.GValue     // out
 
-	_arg1 = C.g_hash_table_new_full(nil, nil, (*[0]byte)(C.free), (*[0]byte)(C.free))
+	_arg1 = C.g_hash_table_new_full(nil, nil, (*[0]byte)(C.free), (*[0]byte)(C.g_value_unset))
 	for ksrc, vsrc := range hash {
 		var kdst *C.gchar  // out
 		var vdst *C.GValue // out
 		kdst = (*C.gchar)(unsafe.Pointer(C.CString(ksrc)))
-		defer C.free(unsafe.Pointer(kdst))
 		vdst = (*C.GValue)(unsafe.Pointer(vsrc.Native()))
 		C.g_hash_table_insert(_arg1, C.gpointer(unsafe.Pointer(kdst)), C.gpointer(unsafe.Pointer(vdst)))
 	}

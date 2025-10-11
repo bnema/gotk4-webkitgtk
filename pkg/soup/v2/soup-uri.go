@@ -574,9 +574,7 @@ func (uri *URI) SetQueryFromForm(form map[string]string) {
 		var kdst *C.gchar // out
 		var vdst *C.gchar // out
 		kdst = (*C.gchar)(unsafe.Pointer(C.CString(ksrc)))
-		defer C.free(unsafe.Pointer(kdst))
 		vdst = (*C.gchar)(unsafe.Pointer(C.CString(vsrc)))
-		defer C.free(unsafe.Pointer(vdst))
 		C.g_hash_table_insert(_arg1, C.gpointer(unsafe.Pointer(kdst)), C.gpointer(unsafe.Pointer(vdst)))
 	}
 	defer C.g_hash_table_unref(_arg1)
