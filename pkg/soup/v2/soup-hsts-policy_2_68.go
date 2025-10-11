@@ -223,7 +223,6 @@ func (h *HSTSPolicy) SetIncludeSubdomains(includeSubdomains bool) {
 // The function returns the following values:
 //
 //   - hstsPolicy: copy of policy.
-//
 func (policy *HSTSPolicy) Copy() *HSTSPolicy {
 	var _arg0 *C.SoupHSTSPolicy // out
 	var _cret *C.SoupHSTSPolicy // in
@@ -255,7 +254,6 @@ func (policy *HSTSPolicy) Copy() *HSTSPolicy {
 // The function returns the following values:
 //
 //   - ok: whether the policies are equal.
-//
 func (policy1 *HSTSPolicy) Equal(policy2 *HSTSPolicy) bool {
 	var _arg0 *C.SoupHSTSPolicy // out
 	var _arg1 *C.SoupHSTSPolicy // out
@@ -282,7 +280,6 @@ func (policy1 *HSTSPolicy) Equal(policy2 *HSTSPolicy) bool {
 // The function returns the following values:
 //
 //   - utf8 policy's domain.
-//
 func (policy *HSTSPolicy) Domain() string {
 	var _arg0 *C.SoupHSTSPolicy // out
 	var _cret *C.char           // in
@@ -304,7 +301,6 @@ func (policy *HSTSPolicy) Domain() string {
 // The function returns the following values:
 //
 //   - ok: TRUE if policy includes subdomains, FALSE otherwise.
-//
 func (policy *HSTSPolicy) IncludesSubdomains() bool {
 	var _arg0 *C.SoupHSTSPolicy // out
 	var _cret C.gboolean        // in
@@ -328,7 +324,6 @@ func (policy *HSTSPolicy) IncludesSubdomains() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if policy is expired, FALSE otherwise.
-//
 func (policy *HSTSPolicy) IsExpired() bool {
 	var _arg0 *C.SoupHSTSPolicy // out
 	var _cret C.gboolean        // in
@@ -353,7 +348,6 @@ func (policy *HSTSPolicy) IsExpired() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if policy is permanent, FALSE otherwise.
-//
 func (policy *HSTSPolicy) IsSessionPolicy() bool {
 	var _arg0 *C.SoupHSTSPolicy // out
 	var _cret C.gboolean        // in

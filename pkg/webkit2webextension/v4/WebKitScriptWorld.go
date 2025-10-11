@@ -90,7 +90,6 @@ func (world *ScriptWorld) ConnectWindowObjectCleared(f func(page *WebPage, frame
 // The function returns the following values:
 //
 //   - scriptWorld: new isolated KitScriptWorld.
-//
 func NewScriptWorld() *ScriptWorld {
 	var _cret *C.WebKitScriptWorld // in
 
@@ -116,7 +115,6 @@ func NewScriptWorld() *ScriptWorld {
 // The function returns the following values:
 //
 //   - scriptWorld: new isolated KitScriptWorld.
-//
 func NewScriptWorldWithName(name string) *ScriptWorld {
 	var _arg1 *C.char              // out
 	var _cret *C.WebKitScriptWorld // in
@@ -139,7 +137,6 @@ func NewScriptWorldWithName(name string) *ScriptWorld {
 // The function returns the following values:
 //
 //   - utf8: name of world.
-//
 func (world *ScriptWorld) Name() string {
 	var _arg0 *C.WebKitScriptWorld // out
 	var _cret *C.char              // in

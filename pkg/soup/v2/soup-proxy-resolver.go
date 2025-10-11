@@ -84,7 +84,6 @@ func marshalProxyResolver(p uintptr) (interface{}, error) {
 //   - msg
 //   - asyncContext
 //   - callback
-//
 func (proxyResolver *ProxyResolver) ProxyAsync(ctx context.Context, msg *Message, asyncContext *glib.MainContext, callback ProxyResolverCallback) {
 	var _arg0 *C.SoupProxyResolver        // out
 	var _arg3 *C.GCancellable             // out
@@ -123,7 +122,6 @@ func (proxyResolver *ProxyResolver) ProxyAsync(ctx context.Context, msg *Message
 //
 //   - addr
 //   - guint
-//
 func (proxyResolver *ProxyResolver) ProxySync(ctx context.Context, msg *Message) (*Address, uint) {
 	var _arg0 *C.SoupProxyResolver // out
 	var _arg2 *C.GCancellable      // out
@@ -161,7 +159,6 @@ func (proxyResolver *ProxyResolver) ProxySync(ctx context.Context, msg *Message)
 //   - msg
 //   - asyncContext
 //   - callback
-//
 func (proxyResolver *ProxyResolver) proxyAsync(ctx context.Context, msg *Message, asyncContext *glib.MainContext, callback ProxyResolverCallback) {
 	gclass := (*C.SoupProxyResolverInterface)(coreglib.PeekParentClass(proxyResolver))
 	fnarg := gclass.get_proxy_async
@@ -203,7 +200,6 @@ func (proxyResolver *ProxyResolver) proxyAsync(ctx context.Context, msg *Message
 //
 //   - addr
 //   - guint
-//
 func (proxyResolver *ProxyResolver) proxySync(ctx context.Context, msg *Message) (*Address, uint) {
 	gclass := (*C.SoupProxyResolverInterface)(coreglib.PeekParentClass(proxyResolver))
 	fnarg := gclass.get_proxy_sync

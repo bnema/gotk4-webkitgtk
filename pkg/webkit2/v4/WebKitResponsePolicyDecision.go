@@ -88,7 +88,6 @@ func marshalResponsePolicyDecision(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - uriRequest: URI request that is associated with this policy decision.
-//
 func (decision *ResponsePolicyDecision) Request() *URIRequest {
 	var _arg0 *C.WebKitResponsePolicyDecision // out
 	var _cret *C.WebKitURIRequest             // in
@@ -110,7 +109,6 @@ func (decision *ResponsePolicyDecision) Request() *URIRequest {
 // The function returns the following values:
 //
 //   - uriResponse: URI response that is associated with this policy decision.
-//
 func (decision *ResponsePolicyDecision) Response() *URIResponse {
 	var _arg0 *C.WebKitResponsePolicyDecision // out
 	var _cret *C.WebKitURIResponse            // in
@@ -134,7 +132,6 @@ func (decision *ResponsePolicyDecision) Response() *URIResponse {
 //
 //   - ok: TRUE if the request is the main frame main resouce or FALSE
 //     otherwise.
-//
 func (decision *ResponsePolicyDecision) IsMainFrameMainResource() bool {
 	var _arg0 *C.WebKitResponsePolicyDecision // out
 	var _cret C.gboolean                      // in
@@ -164,7 +161,6 @@ func (decision *ResponsePolicyDecision) IsMainFrameMainResource() bool {
 //
 //   - ok: TRUE if the MIME type of the response is supported or FALSE
 //     otherwise.
-//
 func (decision *ResponsePolicyDecision) IsMIMETypeSupported() bool {
 	var _arg0 *C.WebKitResponsePolicyDecision // out
 	var _cret C.gboolean                      // in

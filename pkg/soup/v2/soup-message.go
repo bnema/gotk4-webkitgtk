@@ -331,10 +331,8 @@ type ChunkAllocator func(msg *Message, maxLen uint) (buffer *Buffer)
 
 // MessageOverrides contains methods that are overridable.
 type MessageOverrides struct {
-	Finished func()
-	GotBody  func()
-	// The function takes the following parameters:
-	//
+	Finished           func()
+	GotBody            func()
 	GotChunk           func(chunk *Buffer)
 	GotHeaders         func()
 	GotInformational   func()
@@ -634,7 +632,6 @@ func (msg *Message) ConnectWroteInformational(f func()) coreglib.SignalHandle {
 // The function returns the following values:
 //
 //   - message (optional): new Message (or NULL if uri could not be parsed).
-//
 func NewMessage(method, uriString string) *Message {
 	var _arg1 *C.char        // out
 	var _arg2 *C.char        // out
@@ -668,7 +665,6 @@ func NewMessage(method, uriString string) *Message {
 // The function returns the following values:
 //
 //   - message: new Message.
-//
 func NewMessageFromURI(method string, uri *URI) *Message {
 	var _arg1 *C.char        // out
 	var _arg2 *C.SoupURI     // out
@@ -693,7 +689,6 @@ func NewMessageFromURI(method string, uri *URI) *Message {
 //
 //   - contentType
 //   - params
-//
 func (msg *Message) ContentSniffed(contentType string, params map[unsafe.Pointer]unsafe.Pointer) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.char        // out
@@ -704,10 +699,10 @@ func (msg *Message) ContentSniffed(contentType string, params map[unsafe.Pointer
 	defer C.free(unsafe.Pointer(_arg1))
 	_arg2 = C.g_hash_table_new_full(nil, nil, (*[0]byte)(C.free), (*[0]byte)(C.free))
 	for ksrc, vsrc := range params {
-		var kdst *C.gpointer // out
-		var vdst *C.gpointer // out
-		kdst = (*C.gpointer)(unsafe.Pointer(ksrc))
-		vdst = (*C.gpointer)(unsafe.Pointer(vsrc))
+		var kdst C.gpointer // out
+		var vdst C.gpointer // out
+		kdst = (C.gpointer)(unsafe.Pointer(ksrc))
+		vdst = (C.gpointer)(unsafe.Pointer(vsrc))
 		C.g_hash_table_insert(_arg2, C.gpointer(unsafe.Pointer(kdst)), C.gpointer(unsafe.Pointer(vdst)))
 	}
 	defer C.g_hash_table_unref(_arg2)
@@ -731,7 +726,6 @@ func (msg *Message) ContentSniffed(contentType string, params map[unsafe.Pointer
 // The function takes the following parameters:
 //
 //   - featureType of a SessionFeature.
-//
 func (msg *Message) DisableFeature(featureType coreglib.Type) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.GType        // out
@@ -760,7 +754,6 @@ func (msg *Message) Finished() {
 // The function returns the following values:
 //
 //   - address msg's URI points to.
-//
 func (msg *Message) Address() *Address {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.SoupAddress // in
@@ -782,7 +775,6 @@ func (msg *Message) Address() *Address {
 // The function returns the following values:
 //
 //   - urI msg's first party URI.
-//
 func (msg *Message) FirstParty() *URI {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.SoupURI     // in
@@ -804,7 +796,6 @@ func (msg *Message) FirstParty() *URI {
 // The function returns the following values:
 //
 //   - messageFlags: flags.
-//
 func (msg *Message) Flags() MessageFlags {
 	var _arg0 *C.SoupMessage     // out
 	var _cret C.SoupMessageFlags // in
@@ -827,7 +818,6 @@ func (msg *Message) Flags() MessageFlags {
 // The function returns the following values:
 //
 //   - httpVersion: HTTP version.
-//
 func (msg *Message) HTTPVersion() HTTPVersion {
 	var _arg0 *C.SoupMessage    // out
 	var _cret C.SoupHTTPVersion // in
@@ -857,7 +847,6 @@ func (msg *Message) HTTPVersion() HTTPVersion {
 //   - certificate msg's TLS certificate.
 //   - errors: verification status of certificate.
 //   - ok: TRUE if msg used/attempted https, FALSE if not.
-//
 func (msg *Message) HTTPSStatus() (gio.TLSCertificater, gio.TLSCertificateFlags, bool) {
 	var _arg0 *C.SoupMessage         // out
 	var _arg1 *C.GTlsCertificate     // in
@@ -898,8 +887,6 @@ func (msg *Message) HTTPSStatus() (gio.TLSCertificater, gio.TLSCertificateFlags,
 	return _certificate, _errors, _ok
 }
 
-// The function returns the following values:
-//
 func (msg *Message) IsTopLevelNavigation() bool {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.gboolean     // in
@@ -924,7 +911,6 @@ func (msg *Message) IsTopLevelNavigation() bool {
 // The function returns the following values:
 //
 //   - messagePriority: priority of the message.
-//
 func (msg *Message) Priority() MessagePriority {
 	var _arg0 *C.SoupMessage        // out
 	var _cret C.SoupMessagePriority // in
@@ -946,7 +932,6 @@ func (msg *Message) Priority() MessagePriority {
 // The function returns the following values:
 //
 //   - urI msg's site for cookies URI.
-//
 func (msg *Message) SiteForCookies() *URI {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.SoupURI     // in
@@ -969,7 +954,6 @@ func (msg *Message) SiteForCookies() *URI {
 // The function returns the following values:
 //
 //   - request msg's associated Request.
-//
 func (msg *Message) SoupRequest() *Request {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.SoupRequest // in
@@ -991,7 +975,6 @@ func (msg *Message) SoupRequest() *Request {
 // The function returns the following values:
 //
 //   - urI: URI msg is targeted for.
-//
 func (msg *Message) URI() *URI {
 	var _arg0 *C.SoupMessage // out
 	var _cret *C.SoupURI     // in
@@ -1017,8 +1000,6 @@ func (msg *Message) GotBody() {
 	runtime.KeepAlive(msg)
 }
 
-// The function takes the following parameters:
-//
 func (msg *Message) GotChunk(chunk *Buffer) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.SoupBuffer  // out
@@ -1060,7 +1041,6 @@ func (msg *Message) GotInformational() {
 // The function returns the following values:
 //
 //   - ok: TRUE if feature is disabled, or FALSE otherwise.
-//
 func (msg *Message) IsFeatureDisabled(featureType coreglib.Type) bool {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.GType        // out
@@ -1089,7 +1069,6 @@ func (msg *Message) IsFeatureDisabled(featureType coreglib.Type) bool {
 // The function returns the following values:
 //
 //   - ok: TRUE or FALSE.
-//
 func (msg *Message) IsKeepalive() bool {
 	var _arg0 *C.SoupMessage // out
 	var _cret C.gboolean     // in
@@ -1147,7 +1126,6 @@ func (msg *Message) Restarted() {
 // The function takes the following parameters:
 //
 //   - allocator: chunk allocator callback.
-//
 func (msg *Message) SetChunkAllocator(allocator ChunkAllocator) {
 	var _arg0 *C.SoupMessage       // out
 	var _arg1 C.SoupChunkAllocator // out
@@ -1171,7 +1149,6 @@ func (msg *Message) SetChunkAllocator(allocator ChunkAllocator) {
 // The function takes the following parameters:
 //
 //   - firstParty for the msg's first party.
-//
 func (msg *Message) SetFirstParty(firstParty *URI) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.SoupURI     // out
@@ -1189,7 +1166,6 @@ func (msg *Message) SetFirstParty(firstParty *URI) {
 // The function takes the following parameters:
 //
 //   - flags: set of MessageFlags values.
-//
 func (msg *Message) SetFlags(flags MessageFlags) {
 	var _arg0 *C.SoupMessage     // out
 	var _arg1 C.SoupMessageFlags // out
@@ -1209,7 +1185,6 @@ func (msg *Message) SetFlags(flags MessageFlags) {
 // The function takes the following parameters:
 //
 //   - version: HTTP version.
-//
 func (msg *Message) SetHTTPVersion(version HTTPVersion) {
 	var _arg0 *C.SoupMessage    // out
 	var _arg1 C.SoupHTTPVersion // out
@@ -1230,7 +1205,6 @@ func (msg *Message) SetHTTPVersion(version HTTPVersion) {
 //
 //   - isTopLevelNavigation: if TRUE indicate the current request is a top-level
 //     navigation.
-//
 func (msg *Message) SetIsTopLevelNavigation(isTopLevelNavigation bool) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.gboolean     // out
@@ -1260,7 +1234,6 @@ func (msg *Message) SetIsTopLevelNavigation(isTopLevelNavigation bool) {
 // The function takes the following parameters:
 //
 //   - priority: MessagePriority.
-//
 func (msg *Message) SetPriority(priority MessagePriority) {
 	var _arg0 *C.SoupMessage        // out
 	var _arg1 C.SoupMessagePriority // out
@@ -1285,7 +1258,6 @@ func (msg *Message) SetPriority(priority MessagePriority) {
 //
 //   - statusCode: 3xx status code.
 //   - redirectUri: URI to redirect msg to.
-//
 func (msg *Message) SetRedirect(statusCode uint, redirectUri string) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.guint        // out
@@ -1311,7 +1283,6 @@ func (msg *Message) SetRedirect(statusCode uint, redirectUri string) {
 //   - reqUse describing how to handle req_body.
 //   - reqBody (optional): a data buffer containing the body of the message
 //     request.
-//
 func (msg *Message) SetRequest(contentType string, reqUse MemoryUse, reqBody string) {
 	var _arg0 *C.SoupMessage  // out
 	var _arg1 *C.char         // out
@@ -1346,7 +1317,6 @@ func (msg *Message) SetRequest(contentType string, reqUse MemoryUse, reqBody str
 //   - respUse describing how to handle resp_body.
 //   - respBody (optional): a data buffer containing the body of the message
 //     response.
-//
 func (msg *Message) SetResponse(contentType string, respUse MemoryUse, respBody string) {
 	var _arg0 *C.SoupMessage  // out
 	var _arg1 *C.char         // out
@@ -1387,7 +1357,6 @@ func (msg *Message) SetResponse(contentType string, respUse MemoryUse, respBody 
 // The function takes the following parameters:
 //
 //   - siteForCookies (optional) for the msg's site for cookies.
-//
 func (msg *Message) SetSiteForCookies(siteForCookies *URI) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.SoupURI     // out
@@ -1408,7 +1377,6 @@ func (msg *Message) SetSiteForCookies(siteForCookies *URI) {
 // The function takes the following parameters:
 //
 //   - statusCode: HTTP status code.
-//
 func (msg *Message) SetStatus(statusCode uint) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.guint        // out
@@ -1427,7 +1395,6 @@ func (msg *Message) SetStatus(statusCode uint) {
 //
 //   - statusCode: HTTP status code.
 //   - reasonPhrase: description of the status.
-//
 func (msg *Message) SetStatusFull(statusCode uint, reasonPhrase string) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 C.guint        // out
@@ -1450,7 +1417,6 @@ func (msg *Message) SetStatusFull(statusCode uint, reasonPhrase string) {
 // The function takes the following parameters:
 //
 //   - uri: new URI.
-//
 func (msg *Message) SetURI(uri *URI) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.SoupURI     // out
@@ -1481,8 +1447,6 @@ func (msg *Message) WroteBody() {
 	runtime.KeepAlive(msg)
 }
 
-// The function takes the following parameters:
-//
 func (msg *Message) WroteBodyData(chunk *Buffer) {
 	var _arg0 *C.SoupMessage // out
 	var _arg1 *C.SoupBuffer  // out
@@ -1546,8 +1510,6 @@ func (msg *Message) gotBody() {
 	runtime.KeepAlive(msg)
 }
 
-// The function takes the following parameters:
-//
 func (msg *Message) gotChunk(chunk *Buffer) {
 	gclass := (*C.SoupMessageClass)(coreglib.PeekParentClass(msg))
 	fnarg := gclass.got_chunk

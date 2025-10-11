@@ -158,8 +158,8 @@ func _gotk4_soup2_AuthClass_update(arg0 *C.SoupAuth, arg1 *C.SoupMessage, arg2 *
 	_msg = wrapMessage(coreglib.Take(unsafe.Pointer(arg1)))
 	_authHeader = make(map[unsafe.Pointer]unsafe.Pointer, gextras.HashTableSize(unsafe.Pointer(arg2)))
 	gextras.MoveHashTable(unsafe.Pointer(arg2), false, func(k, v unsafe.Pointer) {
-		ksrc := *(**C.gpointer)(k)
-		vsrc := *(**C.gpointer)(v)
+		ksrc := *(*C.gpointer)(k)
+		vsrc := *(*C.gpointer)(v)
 		var kdst unsafe.Pointer // out
 		var vdst unsafe.Pointer // out
 		kdst = (unsafe.Pointer)(unsafe.Pointer(ksrc))
@@ -1116,8 +1116,8 @@ func _gotk4_soup2_WebsocketExtensionClass_configure(arg0 *C.SoupWebsocketExtensi
 	if arg2 != nil {
 		_params = make(map[unsafe.Pointer]unsafe.Pointer, gextras.HashTableSize(unsafe.Pointer(arg2)))
 		gextras.MoveHashTable(unsafe.Pointer(arg2), false, func(k, v unsafe.Pointer) {
-			ksrc := *(**C.gpointer)(k)
-			vsrc := *(**C.gpointer)(v)
+			ksrc := *(*C.gpointer)(k)
+			vsrc := *(*C.gpointer)(v)
 			var kdst unsafe.Pointer // out
 			var vdst unsafe.Pointer // out
 			kdst = (unsafe.Pointer)(unsafe.Pointer(ksrc))

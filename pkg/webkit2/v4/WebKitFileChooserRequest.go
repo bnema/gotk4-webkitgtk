@@ -115,7 +115,6 @@ func (request *FileChooserRequest) Cancel() {
 //     types is defined or NULL otherwise, meaning that any MIME type should be
 //     accepted. This array and its contents are owned by WebKit and should not
 //     be modified or freed.
-//
 func (request *FileChooserRequest) MIMETypes() []string {
 	var _arg0 *C.WebKitFileChooserRequest // out
 	var _cret **C.gchar                   // in
@@ -158,7 +157,6 @@ func (request *FileChooserRequest) MIMETypes() []string {
 //
 //   - fileFilter if a list of accepted MIME types is defined or NULL otherwise.
 //     The returned object is owned by WebKit should not be modified or freed.
-//
 func (request *FileChooserRequest) MIMETypesFilter() *gtk.FileFilter {
 	var _arg0 *C.WebKitFileChooserRequest // out
 	var _cret *C.GtkFileFilter            // in
@@ -197,7 +195,6 @@ func (request *FileChooserRequest) MIMETypesFilter() *gtk.FileFilter {
 //
 //   - ok: TRUE if the file chooser should allow selecting multiple files or
 //     FALSE otherwise.
-//
 func (request *FileChooserRequest) SelectMultiple() bool {
 	var _arg0 *C.WebKitFileChooserRequest // out
 	var _cret C.gboolean                  // in
@@ -233,7 +230,6 @@ func (request *FileChooserRequest) SelectMultiple() bool {
 //   - utf8s: a NULL-terminated array of strings if there are selected files
 //     associated with the request or NULL otherwise. This array and its
 //     contents are owned by WebKit and should not be modified or freed.
-//
 func (request *FileChooserRequest) SelectedFiles() []string {
 	var _arg0 *C.WebKitFileChooserRequest // out
 	var _cret **C.gchar                   // in
@@ -269,7 +265,6 @@ func (request *FileChooserRequest) SelectedFiles() []string {
 //
 //   - files: a NULL-terminated array of strings, containing paths to local
 //     files.
-//
 func (request *FileChooserRequest) SelectFiles(files []string) {
 	var _arg0 *C.WebKitFileChooserRequest // out
 	var _arg1 **C.gchar                   // out

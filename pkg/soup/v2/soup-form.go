@@ -25,7 +25,6 @@ import "C"
 //
 //   - hashTable: hash table containing the name/value pairs from encoded_form,
 //     which you can free with g_hash_table_destroy().
-//
 func FormDecode(encodedForm string) map[string]string {
 	var _arg1 *C.char       // out
 	var _cret *C.GHashTable // in
@@ -67,7 +66,6 @@ func FormDecode(encodedForm string) map[string]string {
 // The function returns the following values:
 //
 //   - utf8: encoded form.
-//
 func FormEncodeHash(formDataSet map[string]string) string {
 	var _arg1 *C.GHashTable // out
 	var _cret *C.char       // in
@@ -107,7 +105,6 @@ func FormEncodeHash(formDataSet map[string]string) string {
 // The function returns the following values:
 //
 //   - message: new SoupMessage.
-//
 func FormRequestNewFromHash(method, uri string, formDataSet map[string]string) *Message {
 	var _arg1 *C.char        // out
 	var _arg2 *C.char        // out

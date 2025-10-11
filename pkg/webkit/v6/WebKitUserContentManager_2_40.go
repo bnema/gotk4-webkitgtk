@@ -52,7 +52,6 @@ func marshalScriptMessageReply(p uintptr) (interface{}, error) {
 //
 //   - errorMessage: error message to return as specified by the user's script
 //     message.
-//
 func (scriptMessageReply *ScriptMessageReply) ReturnErrorMessage(errorMessage string) {
 	var _arg0 *C.WebKitScriptMessageReply // out
 	var _arg1 *C.char                     // out
@@ -73,7 +72,6 @@ func (scriptMessageReply *ScriptMessageReply) ReturnErrorMessage(errorMessage st
 // The function takes the following parameters:
 //
 //   - replyValue: reply value of the provided script message.
-//
 func (scriptMessageReply *ScriptMessageReply) ReturnValue(replyValue *javascriptcore.Value) {
 	var _arg0 *C.WebKitScriptMessageReply // out
 	var _arg1 *C.JSCValue                 // out

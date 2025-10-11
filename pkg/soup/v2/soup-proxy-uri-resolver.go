@@ -87,7 +87,6 @@ func marshalProxyURIResolver(p uintptr) (interface{}, error) {
 //   - uri you want a proxy for.
 //   - asyncContext (optional) to invoke callback in.
 //   - callback to invoke with the proxy address.
-//
 func (proxyUriResolver *ProxyURIResolver) ProxyUriAsync(ctx context.Context, uri *URI, asyncContext *glib.MainContext, callback ProxyURIResolverCallback) {
 	var _arg0 *C.SoupProxyURIResolver        // out
 	var _arg3 *C.GCancellable                // out
@@ -132,7 +131,6 @@ func (proxyUriResolver *ProxyURIResolver) ProxyUriAsync(ctx context.Context, uri
 //
 //   - proxyUri: on return, will contain the proxy URI.
 //   - guint: SOUP_STATUS_OK if successful, or a transport-level error.
-//
 func (proxyUriResolver *ProxyURIResolver) ProxyUriSync(ctx context.Context, uri *URI) (*URI, uint) {
 	var _arg0 *C.SoupProxyURIResolver // out
 	var _arg2 *C.GCancellable         // out
@@ -179,7 +177,6 @@ func (proxyUriResolver *ProxyURIResolver) ProxyUriSync(ctx context.Context, uri 
 //   - uri you want a proxy for.
 //   - asyncContext (optional) to invoke callback in.
 //   - callback to invoke with the proxy address.
-//
 func (proxyUriResolver *ProxyURIResolver) proxyUriAsync(ctx context.Context, uri *URI, asyncContext *glib.MainContext, callback ProxyURIResolverCallback) {
 	gclass := (*C.SoupProxyURIResolverInterface)(coreglib.PeekParentClass(proxyUriResolver))
 	fnarg := gclass.get_proxy_uri_async
@@ -227,7 +224,6 @@ func (proxyUriResolver *ProxyURIResolver) proxyUriAsync(ctx context.Context, uri
 //
 //   - proxyUri: on return, will contain the proxy URI.
 //   - guint: SOUP_STATUS_OK if successful, or a transport-level error.
-//
 func (proxyUriResolver *ProxyURIResolver) proxyUriSync(ctx context.Context, uri *URI) (*URI, uint) {
 	gclass := (*C.SoupProxyURIResolverInterface)(coreglib.PeekParentClass(proxyUriResolver))
 	fnarg := gclass.get_proxy_uri_sync

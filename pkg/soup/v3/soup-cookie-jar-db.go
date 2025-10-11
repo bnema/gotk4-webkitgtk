@@ -97,7 +97,6 @@ func marshalCookieJarDB(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - cookieJarDB: new CookieJar.
-//
 func NewCookieJarDB(filename string, readOnly bool) *CookieJarDB {
 	var _arg1 *C.char          // out
 	var _arg2 C.gboolean       // out

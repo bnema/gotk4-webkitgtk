@@ -33,3 +33,19 @@ func _gotk4_webkit24_AutomationSession_ConnectCreateWebView(arg0 C.gpointer, arg
 
 	return cret
 }
+
+//export _gotk4_webkit24_AutomationSession_ConnectWillClose
+func _gotk4_webkit24_AutomationSession_ConnectWillClose(arg0 C.gpointer, arg1 C.guintptr) {
+	var f func()
+	{
+		closure := coreglib.ConnectedGeneratedClosure(uintptr(arg1))
+		if closure == nil {
+			panic("given unknown closure user_data")
+		}
+		defer closure.TryRepanic()
+
+		f = closure.Func.(func())
+	}
+
+	f()
+}

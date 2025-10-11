@@ -76,7 +76,7 @@ func _gotk4_soup2_Session_ConnectAuthenticate(arg0 C.gpointer, arg1 *C.SoupMessa
 }
 
 //export _gotk4_soup2_Session_ConnectConnectionCreated
-func _gotk4_soup2_Session_ConnectConnectionCreated(arg0 C.gpointer, arg1 C.GObject, arg2 C.guintptr) {
+func _gotk4_soup2_Session_ConnectConnectionCreated(arg0 C.gpointer, arg1 *C.GObject, arg2 C.guintptr) {
 	var f func(connection *coreglib.Object)
 	{
 		closure := coreglib.ConnectedGeneratedClosure(uintptr(arg2))
@@ -90,7 +90,7 @@ func _gotk4_soup2_Session_ConnectConnectionCreated(arg0 C.gpointer, arg1 C.GObje
 
 	var _connection *coreglib.Object // out
 
-	_connection = coreglib.Take(unsafe.Pointer(&arg1))
+	_connection = coreglib.Take(unsafe.Pointer(arg1))
 
 	f(_connection)
 }
@@ -158,7 +158,7 @@ func _gotk4_soup2_Session_ConnectRequestUnqueued(arg0 C.gpointer, arg1 *C.SoupMe
 }
 
 //export _gotk4_soup2_Session_ConnectTunneling
-func _gotk4_soup2_Session_ConnectTunneling(arg0 C.gpointer, arg1 C.GObject, arg2 C.guintptr) {
+func _gotk4_soup2_Session_ConnectTunneling(arg0 C.gpointer, arg1 *C.GObject, arg2 C.guintptr) {
 	var f func(connection *coreglib.Object)
 	{
 		closure := coreglib.ConnectedGeneratedClosure(uintptr(arg2))
@@ -172,7 +172,7 @@ func _gotk4_soup2_Session_ConnectTunneling(arg0 C.gpointer, arg1 C.GObject, arg2
 
 	var _connection *coreglib.Object // out
 
-	_connection = coreglib.Take(unsafe.Pointer(&arg1))
+	_connection = coreglib.Take(unsafe.Pointer(arg1))
 
 	f(_connection)
 }

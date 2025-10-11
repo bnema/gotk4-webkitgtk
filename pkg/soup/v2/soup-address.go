@@ -156,7 +156,6 @@ func marshalAddress(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - address: Address.
-//
 func NewAddress(name string, port uint) *Address {
 	var _arg1 *C.char        // out
 	var _arg2 C.guint        // out
@@ -189,7 +188,6 @@ func NewAddress(name string, port uint) *Address {
 // The function returns the following values:
 //
 //   - address (optional): new Address.
-//
 func NewAddressAny(family AddressFamily, port uint) *Address {
 	var _arg1 C.SoupAddressFamily // out
 	var _arg2 C.guint             // out
@@ -230,7 +228,6 @@ func NewAddressAny(family AddressFamily, port uint) *Address {
 // The function returns the following values:
 //
 //   - ok: whether or not addr1 and addr2 have the same IP address.
-//
 func (addr1 *Address) EqualByIP(addr2 *Address) bool {
 	var _arg0 C.gconstpointer // out
 	var _arg1 C.gconstpointer // out
@@ -280,7 +277,6 @@ func (addr1 *Address) EqualByIP(addr2 *Address) bool {
 // The function returns the following values:
 //
 //   - ok: whether or not addr1 and addr2 have the same name.
-//
 func (addr1 *Address) EqualByName(addr2 *Address) bool {
 	var _arg0 C.gconstpointer // out
 	var _arg1 C.gconstpointer // out
@@ -308,7 +304,6 @@ func (addr1 *Address) EqualByName(addr2 *Address) bool {
 // The function returns the following values:
 //
 //   - socketAddress: new Address.
-//
 func (addr *Address) Gsockaddr() gio.SocketAddresser {
 	var _arg0 *C.SoupAddress    // out
 	var _cret *C.GSocketAddress // in
@@ -351,7 +346,6 @@ func (addr *Address) Gsockaddr() gio.SocketAddresser {
 // The function returns the following values:
 //
 //   - utf8 (optional): hostname, or NULL if it is not known.
-//
 func (addr *Address) Name() string {
 	var _arg0 *C.SoupAddress // out
 	var _cret *C.char        // in
@@ -381,7 +375,6 @@ func (addr *Address) Name() string {
 // The function returns the following values:
 //
 //   - utf8 (optional): physical address, or NULL.
-//
 func (addr *Address) Physical() string {
 	var _arg0 *C.SoupAddress // out
 	var _cret *C.char        // in
@@ -405,7 +398,6 @@ func (addr *Address) Physical() string {
 // The function returns the following values:
 //
 //   - guint: port.
-//
 func (addr *Address) Port() uint {
 	var _arg0 *C.SoupAddress // out
 	var _cret C.guint        // in
@@ -428,7 +420,6 @@ func (addr *Address) Port() uint {
 // The function returns the following values:
 //
 //   - guint: IP-based hash value for addr.
-//
 func (addr *Address) HashByIP() uint {
 	var _arg0 C.gconstpointer // out
 	var _cret C.guint         // in
@@ -451,7 +442,6 @@ func (addr *Address) HashByIP() uint {
 // The function returns the following values:
 //
 //   - guint: named-based hash value for addr.
-//
 func (addr *Address) HashByName() uint {
 	var _arg0 C.gconstpointer // out
 	var _cret C.guint         // in
@@ -475,7 +465,6 @@ func (addr *Address) HashByName() uint {
 // The function returns the following values:
 //
 //   - ok: TRUE if addr has been resolved.
-//
 func (addr *Address) IsResolved() bool {
 	var _arg0 *C.SoupAddress // out
 	var _cret C.gboolean     // in
@@ -512,7 +501,6 @@ func (addr *Address) IsResolved() bool {
 //   - ctx (optional) object, or NULL.
 //   - asyncContext (optional) to call callback from.
 //   - callback to call with the result.
-//
 func (addr *Address) ResolveAsync(ctx context.Context, asyncContext *glib.MainContext, callback AddressCallback) {
 	var _arg0 *C.SoupAddress        // out
 	var _arg2 *C.GCancellable       // out
@@ -558,7 +546,6 @@ func (addr *Address) ResolveAsync(ctx context.Context, asyncContext *glib.MainCo
 //
 //   - guint: SOUP_STATUS_OK, SOUP_STATUS_CANT_RESOLVE, or
 //     SOUP_STATUS_CANCELLED.
-//
 func (addr *Address) ResolveSync(ctx context.Context) uint {
 	var _arg0 *C.SoupAddress  // out
 	var _arg1 *C.GCancellable // out

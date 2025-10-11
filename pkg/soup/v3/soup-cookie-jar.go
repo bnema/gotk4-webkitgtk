@@ -104,14 +104,12 @@ type CookieJarOverrides struct {
 	//
 	//   - oldCookie
 	//   - newCookie
-	//
 	Changed func(oldCookie, newCookie *Cookie)
 	// IsPersistent gets whether jar stores cookies persistenly.
 	//
 	// The function returns the following values:
 	//
 	//   - ok: TRUE if jar storage is persistent or FALSE otherwise.
-	//
 	IsPersistent func() bool
 	Save         func()
 }
@@ -205,7 +203,6 @@ func (jar *CookieJar) ConnectChanged(f func(oldCookie, newCookie *Cookie)) coreg
 // The function returns the following values:
 //
 //   - cookieJar: new CookieJar.
-//
 func NewCookieJar() *CookieJar {
 	var _cret *C.SoupCookieJar // in
 
@@ -229,7 +226,6 @@ func NewCookieJar() *CookieJar {
 // The function takes the following parameters:
 //
 //   - cookie: Cookie.
-//
 func (jar *CookieJar) AddCookie(cookie *Cookie) {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.SoupCookie    // out
@@ -262,7 +258,6 @@ func (jar *CookieJar) AddCookie(cookie *Cookie) {
 //   - cookie: Cookie.
 //   - uri (optional): URI setting the cookie.
 //   - firstParty (optional): URI for the main document.
-//
 func (jar *CookieJar) AddCookieFull(cookie *Cookie, uri, firstParty *glib.URI) {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.SoupCookie    // out
@@ -304,7 +299,6 @@ func (jar *CookieJar) AddCookieFull(cookie *Cookie, uri, firstParty *glib.URI) {
 //
 //   - firstParty: URI for the main document.
 //   - cookie: Cookie.
-//
 func (jar *CookieJar) AddCookieWithFirstParty(firstParty *glib.URI, cookie *Cookie) {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.GUri          // out
@@ -326,10 +320,11 @@ func (jar *CookieJar) AddCookieWithFirstParty(firstParty *glib.URI, cookie *Cook
 // The cookies in the list are a copy of the original, so you have to free them
 // when you are done with them.
 //
+// For historical reasons this list is in reverse order.
+//
 // The function returns the following values:
 //
 //   - sList: List with all the cookies in the jar.
-//
 func (jar *CookieJar) AllCookies() []*Cookie {
 	var _arg0 *C.SoupCookieJar // out
 	var _cret *C.GSList        // in
@@ -365,7 +360,6 @@ func (jar *CookieJar) AllCookies() []*Cookie {
 // The function takes the following parameters:
 //
 //   - cookie: Cookie.
-//
 func (jar *CookieJar) DeleteCookie(cookie *Cookie) {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.SoupCookie    // out
@@ -383,7 +377,6 @@ func (jar *CookieJar) DeleteCookie(cookie *Cookie) {
 // The function returns the following values:
 //
 //   - cookieJarAcceptPolicy set in the jar.
-//
 func (jar *CookieJar) AcceptPolicy() CookieJarAcceptPolicy {
 	var _arg0 *C.SoupCookieJar            // out
 	var _cret C.SoupCookieJarAcceptPolicy // in
@@ -420,7 +413,6 @@ func (jar *CookieJar) AcceptPolicy() CookieJarAcceptPolicy {
 //
 //   - sList: List with the cookies in the jar that would be sent with a request
 //     to uri.
-//
 func (jar *CookieJar) CookieList(uri *glib.URI, forHttp bool) []*Cookie {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.GUri          // out
@@ -481,7 +473,6 @@ func (jar *CookieJar) CookieList(uri *glib.URI, forHttp bool) []*Cookie {
 //
 //   - sList: List with the cookies in the jar that would be sent with a request
 //     to uri.
-//
 func (jar *CookieJar) CookieListWithSameSiteInfo(uri, topLevel, siteForCookies *glib.URI, forHttp, isSafeMethod, isTopLevelNavigation bool) []*Cookie {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.GUri          // out
@@ -558,7 +549,6 @@ func (jar *CookieJar) CookieListWithSameSiteInfo(uri, topLevel, siteForCookies *
 //
 //   - utf8 (optional): cookies, in string form, or NULL if there are no cookies
 //     for uri.
-//
 func (jar *CookieJar) Cookies(uri *glib.URI, forHttp bool) string {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.GUri          // out
@@ -591,7 +581,6 @@ func (jar *CookieJar) Cookies(uri *glib.URI, forHttp bool) string {
 // The function returns the following values:
 //
 //   - ok: TRUE if jar storage is persistent or FALSE otherwise.
-//
 func (jar *CookieJar) IsPersistent() bool {
 	var _arg0 *C.SoupCookieJar // out
 	var _cret C.gboolean       // in
@@ -615,7 +604,6 @@ func (jar *CookieJar) IsPersistent() bool {
 // The function takes the following parameters:
 //
 //   - policy: CookieJarAcceptPolicy.
-//
 func (jar *CookieJar) SetAcceptPolicy(policy CookieJarAcceptPolicy) {
 	var _arg0 *C.SoupCookieJar            // out
 	var _arg1 C.SoupCookieJarAcceptPolicy // out
@@ -641,7 +629,6 @@ func (jar *CookieJar) SetAcceptPolicy(policy CookieJarAcceptPolicy) {
 //
 //   - uri: URI setting the cookie.
 //   - cookie: stringified cookie to set.
-//
 func (jar *CookieJar) SetCookie(uri *glib.URI, cookie string) {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.GUri          // out
@@ -669,7 +656,6 @@ func (jar *CookieJar) SetCookie(uri *glib.URI, cookie string) {
 //   - uri: URI setting the cookie.
 //   - firstParty: URI for the main document.
 //   - cookie: stringified cookie to set.
-//
 func (jar *CookieJar) SetCookieWithFirstParty(uri, firstParty *glib.URI, cookie string) {
 	var _arg0 *C.SoupCookieJar // out
 	var _arg1 *C.GUri          // out
@@ -693,7 +679,6 @@ func (jar *CookieJar) SetCookieWithFirstParty(uri, firstParty *glib.URI, cookie 
 //
 //   - oldCookie
 //   - newCookie
-//
 func (jar *CookieJar) changed(oldCookie, newCookie *Cookie) {
 	gclass := (*C.SoupCookieJarClass)(coreglib.PeekParentClass(jar))
 	fnarg := gclass.changed
@@ -717,7 +702,6 @@ func (jar *CookieJar) changed(oldCookie, newCookie *Cookie) {
 // The function returns the following values:
 //
 //   - ok: TRUE if jar storage is persistent or FALSE otherwise.
-//
 func (jar *CookieJar) isPersistent() bool {
 	gclass := (*C.SoupCookieJarClass)(coreglib.PeekParentClass(jar))
 	fnarg := gclass.is_persistent

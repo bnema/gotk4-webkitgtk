@@ -52,7 +52,6 @@ const VERSION_MIN_REQUIRED = 2
 //
 //   - ok: TRUE if the version of the libsoup currently loaded is the same as or
 //     newer than the passed-in version.
-//
 func CheckVersion(major, minor, micro uint) bool {
 	var _arg1 C.guint    // out
 	var _arg2 C.guint    // out
@@ -88,7 +87,6 @@ func CheckVersion(major, minor, micro uint) bool {
 // The function returns the following values:
 //
 //   - guint: major version number of the libsoup library.
-//
 func GetMajorVersion() uint {
 	var _cret C.guint // in
 
@@ -112,7 +110,6 @@ func GetMajorVersion() uint {
 // The function returns the following values:
 //
 //   - guint: micro version number of the libsoup library.
-//
 func GetMicroVersion() uint {
 	var _cret C.guint // in
 
@@ -136,7 +133,6 @@ func GetMicroVersion() uint {
 // The function returns the following values:
 //
 //   - guint: minor version number of the libsoup library.
-//
 func GetMinorVersion() uint {
 	var _cret C.guint // in
 

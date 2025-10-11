@@ -131,9 +131,7 @@ type SocketCallback func(sock *Socket, status uint)
 
 // SocketOverrides contains methods that are overridable.
 type SocketOverrides struct {
-	Disconnected func()
-	// The function takes the following parameters:
-	//
+	Disconnected  func()
 	NewConnection func(newSock *Socket)
 	Readable      func()
 	Writable      func()
@@ -250,7 +248,6 @@ func (sock *Socket) ConnectWritable(f func()) coreglib.SignalHandle {
 //
 //   - ctx (optional) or NULL.
 //   - callback to call after connecting.
-//
 func (sock *Socket) ConnectAsync(ctx context.Context, callback SocketCallback) {
 	var _arg0 *C.SoupSocket        // out
 	var _arg1 *C.GCancellable      // out
@@ -284,7 +281,6 @@ func (sock *Socket) ConnectAsync(ctx context.Context, callback SocketCallback) {
 // The function returns the following values:
 //
 //   - guint success or failure code.
-//
 func (sock *Socket) ConnectSync(ctx context.Context) uint {
 	var _arg0 *C.SoupSocket   // out
 	var _arg1 *C.GCancellable // out
@@ -326,7 +322,6 @@ func (sock *Socket) Disconnect() {
 // The function returns the following values:
 //
 //   - gint sock's file descriptor.
-//
 func (sock *Socket) Fd() int {
 	var _arg0 *C.SoupSocket // out
 	var _cret C.int         // in
@@ -351,7 +346,6 @@ func (sock *Socket) Fd() int {
 // The function returns the following values:
 //
 //   - address: Address.
-//
 func (sock *Socket) LocalAddress() *Address {
 	var _arg0 *C.SoupSocket  // out
 	var _cret *C.SoupAddress // in
@@ -376,7 +370,6 @@ func (sock *Socket) LocalAddress() *Address {
 // The function returns the following values:
 //
 //   - address: Address.
-//
 func (sock *Socket) RemoteAddress() *Address {
 	var _arg0 *C.SoupSocket  // out
 	var _cret *C.SoupAddress // in
@@ -398,7 +391,6 @@ func (sock *Socket) RemoteAddress() *Address {
 // The function returns the following values:
 //
 //   - ok: TRUE or FALSE.
-//
 func (sock *Socket) IsConnected() bool {
 	var _arg0 *C.SoupSocket // out
 	var _cret C.gboolean    // in
@@ -422,7 +414,6 @@ func (sock *Socket) IsConnected() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if sock has SSL credentials set.
-//
 func (sock *Socket) IsSSL() bool {
 	var _arg0 *C.SoupSocket // out
 	var _cret C.gboolean    // in
@@ -447,7 +438,6 @@ func (sock *Socket) IsSSL() bool {
 // The function returns the following values:
 //
 //   - ok: whether or not sock is now listening.
-//
 func (sock *Socket) Listen() bool {
 	var _arg0 *C.SoupSocket // out
 	var _cret C.gboolean    // in
@@ -488,7 +478,6 @@ func (sock *Socket) Listen() bool {
 //   - socketIOStatus as described above (or SOUP_SOCKET_EOF if the socket is no
 //     longer connected, or SOUP_SOCKET_ERROR on any other error, in which case
 //     error will also be set).
-//
 func (sock *Socket) Read(ctx context.Context, buffer []byte) (uint, SocketIOStatus, error) {
 	var _arg0 *C.SoupSocket   // out
 	var _arg4 *C.GCancellable // out
@@ -553,7 +542,6 @@ func (sock *Socket) Read(ctx context.Context, buffer []byte) (uint, SocketIOStat
 //   - gotBoundary: on return, whether or not the data in buffer ends with the
 //     boundary string.
 //   - socketIOStatus as for soup_socket_read().
-//
 func (sock *Socket) ReadUntil(ctx context.Context, buffer []byte, boundary unsafe.Pointer, boundaryLen uint) (uint, bool, SocketIOStatus, error) {
 	var _arg0 *C.SoupSocket   // out
 	var _arg7 *C.GCancellable // out
@@ -614,7 +602,6 @@ func (sock *Socket) ReadUntil(ctx context.Context, buffer []byte, boundary unsaf
 // The function returns the following values:
 //
 //   - ok success or failure.
-//
 func (sock *Socket) StartProxySsl(ctx context.Context, sslHost string) bool {
 	var _arg0 *C.SoupSocket   // out
 	var _arg2 *C.GCancellable // out
@@ -653,7 +640,6 @@ func (sock *Socket) StartProxySsl(ctx context.Context, sslHost string) bool {
 // The function returns the following values:
 //
 //   - ok success or failure.
-//
 func (sock *Socket) StartSSL(ctx context.Context) bool {
 	var _arg0 *C.SoupSocket   // out
 	var _arg1 *C.GCancellable // out
@@ -702,7 +688,6 @@ func (sock *Socket) StartSSL(ctx context.Context) bool {
 //   - socketIOStatus as described above (or SOUP_SOCKET_EOF or
 //     SOUP_SOCKET_ERROR. error will be set if the return value is
 //     SOUP_SOCKET_ERROR.).
-//
 func (sock *Socket) Write(ctx context.Context, buffer []byte) (uint, SocketIOStatus, error) {
 	var _arg0 *C.SoupSocket   // out
 	var _arg4 *C.GCancellable // out
@@ -753,8 +738,6 @@ func (sock *Socket) disconnected() {
 	runtime.KeepAlive(sock)
 }
 
-// The function takes the following parameters:
-//
 func (listener *Socket) newConnection(newSock *Socket) {
 	gclass := (*C.SoupSocketClass)(coreglib.PeekParentClass(listener))
 	fnarg := gclass.new_connection

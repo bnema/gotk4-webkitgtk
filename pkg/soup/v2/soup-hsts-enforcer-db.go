@@ -91,7 +91,6 @@ func marshalHSTSEnforcerDB(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - hstsEnforcerDB: new HSTSEnforcer.
-//
 func NewHSTSEnforcerDB(filename string) *HSTSEnforcerDB {
 	var _arg1 *C.char             // out
 	var _cret *C.SoupHSTSEnforcer // in

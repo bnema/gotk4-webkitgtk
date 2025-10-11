@@ -42,7 +42,6 @@ type ContentSnifferOverrides struct {
 	// The function returns the following values:
 	//
 	//   - gsize: number of bytes to sniff.
-	//
 	BufferSize func() uint
 	// Sniff sniffs buffer to determine its Content-Type. The result may also be
 	// influenced by the Content-Type declared in msg's response headers.
@@ -58,7 +57,6 @@ type ContentSnifferOverrides struct {
 	//     "charset"), or NULL.
 	//   - utf8: sniffed Content-Type of buffer; this will never be NULL,
 	//     but may be "application/octet-stream".
-	//
 	Sniff func(msg *Message, buffer *Buffer) (map[string]string, string)
 }
 
@@ -124,7 +122,6 @@ func marshalContentSniffer(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - contentSniffer: new ContentSniffer.
-//
 func NewContentSniffer() *ContentSniffer {
 	var _cret *C.SoupContentSniffer // in
 
@@ -143,7 +140,6 @@ func NewContentSniffer() *ContentSniffer {
 // The function returns the following values:
 //
 //   - gsize: number of bytes to sniff.
-//
 func (sniffer *ContentSniffer) BufferSize() uint {
 	var _arg0 *C.SoupContentSniffer // out
 	var _cret C.gsize               // in
@@ -174,7 +170,6 @@ func (sniffer *ContentSniffer) BufferSize() uint {
 //     "charset"), or NULL.
 //   - utf8: sniffed Content-Type of buffer; this will never be NULL, but may be
 //     "application/octet-stream".
-//
 func (sniffer *ContentSniffer) Sniff(msg *Message, buffer *Buffer) (map[string]string, string) {
 	var _arg0 *C.SoupContentSniffer // out
 	var _arg1 *C.SoupMessage        // out
@@ -218,7 +213,6 @@ func (sniffer *ContentSniffer) Sniff(msg *Message, buffer *Buffer) (map[string]s
 // The function returns the following values:
 //
 //   - gsize: number of bytes to sniff.
-//
 func (sniffer *ContentSniffer) bufferSize() uint {
 	gclass := (*C.SoupContentSnifferClass)(coreglib.PeekParentClass(sniffer))
 	fnarg := gclass.get_buffer_size
@@ -252,7 +246,6 @@ func (sniffer *ContentSniffer) bufferSize() uint {
 //     "charset"), or NULL.
 //   - utf8: sniffed Content-Type of buffer; this will never be NULL, but may be
 //     "application/octet-stream".
-//
 func (sniffer *ContentSniffer) sniff(msg *Message, buffer *Buffer) (map[string]string, string) {
 	gclass := (*C.SoupContentSnifferClass)(coreglib.PeekParentClass(sniffer))
 	fnarg := gclass.sniff

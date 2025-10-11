@@ -152,7 +152,6 @@ func marshalLogger(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - logger: new Logger.
-//
 func NewLogger(level LoggerLogLevel, maxBodySize int) *Logger {
 	var _arg1 C.SoupLoggerLogLevel // out
 	var _arg2 C.int                // out
@@ -183,7 +182,6 @@ func NewLogger(level LoggerLogLevel, maxBodySize int) *Logger {
 // The function takes the following parameters:
 //
 //   - session: Session.
-//
 func (logger *Logger) Attach(session *Session) {
 	var _arg0 *C.SoupLogger  // out
 	var _arg1 *C.SoupSession // out
@@ -203,7 +201,6 @@ func (logger *Logger) Attach(session *Session) {
 // The function takes the following parameters:
 //
 //   - session: Session.
-//
 func (logger *Logger) Detach(session *Session) {
 	var _arg0 *C.SoupLogger  // out
 	var _arg1 *C.SoupSession // out
@@ -222,7 +219,6 @@ func (logger *Logger) Detach(session *Session) {
 // The function takes the following parameters:
 //
 //   - printer: callback for printing logging output.
-//
 func (logger *Logger) SetPrinter(printer LoggerPrinter) {
 	var _arg0 *C.SoupLogger       // out
 	var _arg1 C.SoupLoggerPrinter // out
@@ -248,7 +244,6 @@ func (logger *Logger) SetPrinter(printer LoggerPrinter) {
 // The function takes the following parameters:
 //
 //   - requestFilter: callback for request debugging.
-//
 func (logger *Logger) SetRequestFilter(requestFilter LoggerFilter) {
 	var _arg0 *C.SoupLogger      // out
 	var _arg1 C.SoupLoggerFilter // out
@@ -274,7 +269,6 @@ func (logger *Logger) SetRequestFilter(requestFilter LoggerFilter) {
 // The function takes the following parameters:
 //
 //   - responseFilter: callback for response debugging.
-//
 func (logger *Logger) SetResponseFilter(responseFilter LoggerFilter) {
 	var _arg0 *C.SoupLogger      // out
 	var _arg1 C.SoupLoggerFilter // out

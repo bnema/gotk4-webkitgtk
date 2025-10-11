@@ -186,7 +186,6 @@ func (context *WebContext) ConnectUserMessageReceived(f func(message *UserMessag
 // The function returns the following values:
 //
 //   - webContext: newly created KitWebContext.
-//
 func NewWebContext() *WebContext {
 	var _cret *C.WebKitWebContext // in
 
@@ -201,9 +200,8 @@ func NewWebContext() *WebContext {
 
 // AddPathToSandbox adds a path to be mounted in the sandbox.
 //
-// path must exist before any web process has been created; otherwise, it will
-// be silently ignored. It is a fatal error to add paths after a web process has
-// been spawned.
+// path must exist before any web process has been created. It is a fatal error
+// to add paths after a web process has been spawned.
 //
 // Paths under /sys, /proc, and /dev are invalid. Attempting to add all of / is
 // not valid. Since 2.40, adding the user's entire home directory or /home is
@@ -215,7 +213,6 @@ func NewWebContext() *WebContext {
 //
 //   - path: absolute path to mount in the sandbox.
 //   - readOnly: if TRUE the path will be read-only.
-//
 func (context *WebContext) AddPathToSandbox(path string, readOnly bool) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 *C.char             // out
@@ -242,7 +239,6 @@ func (context *WebContext) AddPathToSandbox(path string, readOnly bool) {
 // The function returns the following values:
 //
 //   - cacheModel: current KitCacheModel.
-//
 func (context *WebContext) CacheModel() CacheModel {
 	var _arg0 *C.WebKitWebContext // out
 	var _cret C.WebKitCacheModel  // in
@@ -264,7 +260,6 @@ func (context *WebContext) CacheModel() CacheModel {
 // The function returns the following values:
 //
 //   - geolocationManager of context.
-//
 func (context *WebContext) GeolocationManager() *GeolocationManager {
 	var _arg0 *C.WebKitWebContext         // out
 	var _cret *C.WebKitGeolocationManager // in
@@ -287,7 +282,6 @@ func (context *WebContext) GeolocationManager() *GeolocationManager {
 // The function returns the following values:
 //
 //   - networkSession (optional) or NULL if automation is not enabled.
-//
 func (context *WebContext) NetworkSessionForAutomation() *NetworkSession {
 	var _arg0 *C.WebKitWebContext     // out
 	var _cret *C.WebKitNetworkSession // in
@@ -311,7 +305,6 @@ func (context *WebContext) NetworkSessionForAutomation() *NetworkSession {
 // The function returns the following values:
 //
 //   - securityManager of context.
-//
 func (context *WebContext) SecurityManager() *SecurityManager {
 	var _arg0 *C.WebKitWebContext      // out
 	var _cret *C.WebKitSecurityManager // in
@@ -334,7 +327,6 @@ func (context *WebContext) SecurityManager() *SecurityManager {
 // The function returns the following values:
 //
 //   - ok: TRUE If spell checking is enabled, or FALSE otherwise.
-//
 func (context *WebContext) SpellCheckingEnabled() bool {
 	var _arg0 *C.WebKitWebContext // out
 	var _cret C.gboolean          // in
@@ -365,7 +357,6 @@ func (context *WebContext) SpellCheckingEnabled() bool {
 //
 //   - utf8s: NULL-terminated array of languages if available, or NULL
 //     otherwise.
-//
 func (context *WebContext) SpellCheckingLanguages() []string {
 	var _arg0 *C.WebKitWebContext // out
 	var _cret **C.gchar           // in
@@ -395,9 +386,6 @@ func (context *WebContext) SpellCheckingLanguages() []string {
 }
 
 // TimeZoneOverride: get the KitWebContext:time-zone-override property.
-//
-// The function returns the following values:
-//
 func (context *WebContext) TimeZoneOverride() string {
 	var _arg0 *C.WebKitWebContext // out
 	var _cret *C.gchar            // in
@@ -435,7 +423,6 @@ func (context *WebContext) TimeZoneOverride() string {
 //
 //   - allowedOrigins of security origins.
 //   - disallowedOrigins of security origins.
-//
 func (context *WebContext) InitializeNotificationPermissions(allowedOrigins, disallowedOrigins []*SecurityOrigin) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 *C.GList            // out
@@ -470,7 +457,6 @@ func (context *WebContext) InitializeNotificationPermissions(allowedOrigins, dis
 // The function returns the following values:
 //
 //   - ok: TRUE if automation is allowed or FALSE otherwise.
-//
 func (context *WebContext) IsAutomationAllowed() bool {
 	var _arg0 *C.WebKitWebContext // out
 	var _cret C.gboolean          // in
@@ -499,37 +485,36 @@ func (context *WebContext) IsAutomationAllowed() bool {
 // request is available or webkit_uri_scheme_request_finish_error() in case of
 // error.
 //
-//    static void
-//    about_uri_scheme_request_cb (WebKitURISchemeRequest *request,
-//                                 gpointer                user_data)
-//    {
-//        GInputStream *stream;
-//        gsize         stream_length;
-//        const gchar  *path = webkit_uri_scheme_request_get_path (request);
+//	static void
+//	about_uri_scheme_request_cb (WebKitURISchemeRequest *request,
+//	                             gpointer                user_data)
+//	{
+//	    GInputStream *stream;
+//	    gsize         stream_length;
+//	    const gchar  *path = webkit_uri_scheme_request_get_path (request);
 //
-//        if (!g_strcmp0 (path, "memory")) {
-//            // Create a GInputStream with the contents of memory about page, and set its length to stream_length
-//        } else if (!g_strcmp0 (path, "applications")) {
-//            // Create a GInputStream with the contents of applications about page, and set its length to stream_length
-//        } else if (!g_strcmp0 (path, "example")) {
-//            gchar *contents = g_strdup_printf ("<html><body><p>Example about page</p></body></html>");
-//            stream_length = strlen (contents);
-//            stream = g_memory_input_stream_new_from_data (contents, stream_length, g_free);
-//        } else {
-//            GError *error = g_error_new (ABOUT_HANDLER_ERROR, ABOUT_HANDLER_ERROR_INVALID, "Invalid about:s page.", path);
-//            webkit_uri_scheme_request_finish_error (request, error);
-//            g_error_free (error);
-//            return;
-//        }
-//        webkit_uri_scheme_request_finish (request, stream, stream_length, "text/html");
-//        g_object_unref (stream);
-//    }.
+//	    if (!g_strcmp0 (path, "memory")) {
+//	        // Create a GInputStream with the contents of memory about page, and set its length to stream_length
+//	    } else if (!g_strcmp0 (path, "applications")) {
+//	        // Create a GInputStream with the contents of applications about page, and set its length to stream_length
+//	    } else if (!g_strcmp0 (path, "example")) {
+//	        gchar *contents = g_strdup_printf ("<html><body><p>Example about page</p></body></html>");
+//	        stream_length = strlen (contents);
+//	        stream = g_memory_input_stream_new_from_data (contents, stream_length, g_free);
+//	    } else {
+//	        GError *error = g_error_new (ABOUT_HANDLER_ERROR, ABOUT_HANDLER_ERROR_INVALID, "Invalid about:s page.", path);
+//	        webkit_uri_scheme_request_finish_error (request, error);
+//	        g_error_free (error);
+//	        return;
+//	    }
+//	    webkit_uri_scheme_request_finish (request, stream, stream_length, "text/html");
+//	    g_object_unref (stream);
+//	}.
 //
 // The function takes the following parameters:
 //
 //   - scheme: network scheme to register.
 //   - callback: KitURISchemeRequestCallback.
-//
 func (context *WebContext) RegisterURIScheme(scheme string, callback URISchemeRequestCallback) {
 	var _arg0 *C.WebKitWebContext              // out
 	var _arg1 *C.gchar                         // out
@@ -558,7 +543,6 @@ func (context *WebContext) RegisterURIScheme(scheme string, callback URISchemeRe
 // The function takes the following parameters:
 //
 //   - message: KitUserMessage.
-//
 func (context *WebContext) SendMessageToAllExtensions(message *UserMessage) {
 	var _arg0 *C.WebKitWebContext  // out
 	var _arg1 *C.WebKitUserMessage // out
@@ -585,7 +569,6 @@ func (context *WebContext) SendMessageToAllExtensions(message *UserMessage) {
 // The function takes the following parameters:
 //
 //   - allowed: value to set.
-//
 func (context *WebContext) SetAutomationAllowed(allowed bool) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 C.gboolean          // out
@@ -623,7 +606,6 @@ func (context *WebContext) SetAutomationAllowed(allowed bool) {
 // The function takes the following parameters:
 //
 //   - cacheModel: KitCacheModel.
-//
 func (context *WebContext) SetCacheModel(cacheModel CacheModel) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 C.WebKitCacheModel  // out
@@ -652,7 +634,6 @@ func (context *WebContext) SetCacheModel(cacheModel CacheModel) {
 // The function takes the following parameters:
 //
 //   - languages (optional): NULL-terminated list of language identifiers.
-//
 func (context *WebContext) SetPreferredLanguages(languages []string) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 **C.gchar           // out
@@ -682,7 +663,6 @@ func (context *WebContext) SetPreferredLanguages(languages []string) {
 // The function takes the following parameters:
 //
 //   - enabled: value to be set.
-//
 func (context *WebContext) SetSpellCheckingEnabled(enabled bool) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 C.gboolean          // out
@@ -711,7 +691,6 @@ func (context *WebContext) SetSpellCheckingEnabled(enabled bool) {
 // The function takes the following parameters:
 //
 //   - languages: NULL-terminated list of spell checking languages.
-//
 func (context *WebContext) SetSpellCheckingLanguages(languages []string) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 **C.gchar           // out
@@ -744,10 +723,12 @@ func (context *WebContext) SetSpellCheckingLanguages(languages []string) {
 // KitWebContext::initialize-web-process-extensions to call this method before
 // anything is loaded.
 //
+// If your web process extension is installed to an unusual location, then you
+// may also need to call webkit_web_context_add_path_to_sandbox().
+//
 // The function takes the following parameters:
 //
 //   - directory to add.
-//
 func (context *WebContext) SetWebProcessExtensionsDirectory(directory string) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 *C.gchar            // out
@@ -774,7 +755,6 @@ func (context *WebContext) SetWebProcessExtensionsDirectory(directory string) {
 // The function takes the following parameters:
 //
 //   - userData: #GVariant.
-//
 func (context *WebContext) SetWebProcessExtensionsInitializationUserData(userData *glib.Variant) {
 	var _arg0 *C.WebKitWebContext // out
 	var _arg1 *C.GVariant         // out
@@ -792,7 +772,6 @@ func (context *WebContext) SetWebProcessExtensionsInitializationUserData(userDat
 // The function returns the following values:
 //
 //   - webContext: KitWebContext.
-//
 func WebContextGetDefault() *WebContext {
 	var _cret *C.WebKitWebContext // in
 

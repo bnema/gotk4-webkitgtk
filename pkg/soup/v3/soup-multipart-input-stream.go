@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"unsafe"
 
+	"github.com/diamondburned/gotk4/pkg/core/gbox"
 	"github.com/diamondburned/gotk4/pkg/core/gcancel"
 	"github.com/diamondburned/gotk4/pkg/core/gerror"
 	"github.com/diamondburned/gotk4/pkg/core/gextras"
@@ -17,6 +18,8 @@ import (
 // #include <stdlib.h>
 // #include <glib-object.h>
 // #include <libsoup/soup.h>
+// extern void _gotk4_soup3_AsyncReadyCallback(GObject*, GAsyncResult*, gpointer);
+// extern void _gotk4_gio2_AsyncReadyCallback(GObject*, GAsyncResult*, gpointer);
 import "C"
 
 // GType values.
@@ -116,7 +119,6 @@ func marshalMultipartInputStream(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - multipartInputStream: new MultipartInputStream.
-//
 func NewMultipartInputStream(msg *Message, baseStream gio.InputStreamer) *MultipartInputStream {
 	var _arg1 *C.SoupMessage              // out
 	var _arg2 *C.GInputStream             // out
@@ -150,7 +152,6 @@ func NewMultipartInputStream(msg *Message, baseStream gio.InputStreamer) *Multip
 //
 //   - messageHeaders (optional): MessageHeaders containing the headers for the
 //     part currently being processed or NULL if the headers failed to parse.
-//
 func (multipart *MultipartInputStream) Headers() *MessageHeaders {
 	var _arg0 *C.SoupMultipartInputStream // out
 	var _cret *C.SoupMessageHeaders       // in
@@ -187,6 +188,9 @@ func (multipart *MultipartInputStream) Headers() *MessageHeaders {
 // end of the part; a new call to this function should be done at that point,
 // to obtain the next part.
 //
+// error will only be set if an error happens during a read, NULL is a valid
+// return value otherwise.
+//
 // The function takes the following parameters:
 //
 //   - ctx (optional): #GCancellable.
@@ -194,7 +198,6 @@ func (multipart *MultipartInputStream) Headers() *MessageHeaders {
 // The function returns the following values:
 //
 //   - inputStream (optional): new Stream, or NULL if there are no more parts.
-//
 func (multipart *MultipartInputStream) NextPart(ctx context.Context) (gio.InputStreamer, error) {
 	var _arg0 *C.SoupMultipartInputStream // out
 	var _arg1 *C.GCancellable             // out
@@ -238,6 +241,41 @@ func (multipart *MultipartInputStream) NextPart(ctx context.Context) (gio.InputS
 	return _inputStream, _goerr
 }
 
+// NextPartAsync obtains a gio.InputStream for the next request.
+//
+// See multipartinputstream.NextPart for details on the workflow.
+//
+// The function takes the following parameters:
+//
+//   - ctx (optional): #GCancellable.
+//   - ioPriority: i/O priority for the request.
+//   - callback (optional) to call when request is satisfied.
+func (multipart *MultipartInputStream) NextPartAsync(ctx context.Context, ioPriority int, callback gio.AsyncReadyCallback) {
+	var _arg0 *C.SoupMultipartInputStream // out
+	var _arg2 *C.GCancellable             // out
+	var _arg1 C.int                       // out
+	var _arg3 C.GAsyncReadyCallback       // out
+	var _arg4 C.gpointer
+
+	_arg0 = (*C.SoupMultipartInputStream)(unsafe.Pointer(coreglib.InternObject(multipart).Native()))
+	{
+		cancellable := gcancel.GCancellableFromContext(ctx)
+		defer runtime.KeepAlive(cancellable)
+		_arg2 = (*C.GCancellable)(unsafe.Pointer(cancellable.Native()))
+	}
+	_arg1 = C.int(ioPriority)
+	if callback != nil {
+		_arg3 = (*[0]byte)(C._gotk4_gio2_AsyncReadyCallback)
+		_arg4 = C.gpointer(gbox.AssignOnce(callback))
+	}
+
+	C.soup_multipart_input_stream_next_part_async(_arg0, _arg1, _arg2, _arg3, _arg4)
+	runtime.KeepAlive(multipart)
+	runtime.KeepAlive(ctx)
+	runtime.KeepAlive(ioPriority)
+	runtime.KeepAlive(callback)
+}
+
 // NextPartFinish finishes an asynchronous request for the next part.
 //
 // The function takes the following parameters:
@@ -248,7 +286,6 @@ func (multipart *MultipartInputStream) NextPart(ctx context.Context) (gio.InputS
 //
 //   - inputStream (optional): newly created gio.InputStream for reading the
 //     next part or NULL if there are no more parts.
-//
 func (multipart *MultipartInputStream) NextPartFinish(result gio.AsyncResulter) (gio.InputStreamer, error) {
 	var _arg0 *C.SoupMultipartInputStream // out
 	var _arg1 *C.GAsyncResult             // out

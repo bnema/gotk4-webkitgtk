@@ -146,7 +146,6 @@ func (decision *PolicyDecision) Use() {
 // The function takes the following parameters:
 //
 //   - policies: KitWebsitePolicies.
-//
 func (decision *PolicyDecision) UseWithPolicies(policies *WebsitePolicies) {
 	var _arg0 *C.WebKitPolicyDecision  // out
 	var _arg1 *C.WebKitWebsitePolicies // out

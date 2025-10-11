@@ -44,7 +44,6 @@ import "C"
 // The function returns the following values:
 //
 //   - utf8: text of the methodCall, or NULL on error.
-//
 func XmlrpcBuildRequest(methodName string, params *glib.Variant) (string, error) {
 	var _arg1 *C.char     // out
 	var _arg2 *C.GVariant // out
@@ -89,7 +88,6 @@ func XmlrpcBuildRequest(methodName string, params *glib.Variant) (string, error)
 // The function returns the following values:
 //
 //   - utf8: text of the methodResponse, or NULL on error.
-//
 func XmlrpcBuildResponse(value *glib.Variant) (string, error) {
 	var _arg1 *C.GVariant // out
 	var _cret *C.char     // in
@@ -128,7 +126,6 @@ func XmlrpcBuildResponse(value *glib.Variant) (string, error) {
 // The function returns the following values:
 //
 //   - message encoding the indicated XML-RPC request, or NULL on error.
-//
 func NewXmlrpcMessage(uri, methodName string, params *glib.Variant) (*Message, error) {
 	var _arg1 *C.char        // out
 	var _arg2 *C.char        // out
@@ -170,7 +167,6 @@ func NewXmlrpcMessage(uri, methodName string, params *glib.Variant) (*Message, e
 //
 //   - msg: XML-RPC request.
 //   - value: #GVariant.
-//
 func XmlrpcMessageSetResponse(msg *Message, value *glib.Variant) error {
 	var _arg1 *C.SoupMessage // out
 	var _arg2 *C.GVariant    // out
@@ -204,23 +200,22 @@ func XmlrpcMessageSetResponse(msg *Message, value *glib.Variant) error {
 // The function takes the following parameters:
 //
 //   - methodResponse: XML-RPC methodResponse string.
-//   - length of method_response, or -1 if it is NUL-terminated.
 //   - signature (optional): valid #GVariant type string, or NULL.
 //
 // The function returns the following values:
 //
 //   - variant: new (non-floating) #GVariant, or NULL.
-//
-func XmlrpcParseResponse(methodResponse string, length int, signature string) (*glib.Variant, error) {
-	var _arg1 *C.char     // out
-	var _arg2 C.int       // out
+func XmlrpcParseResponse(methodResponse, signature string) (*glib.Variant, error) {
+	var _arg1 *C.char // out
+	var _arg2 C.int
 	var _arg3 *C.char     // out
 	var _cret *C.GVariant // in
 	var _cerr *C.GError   // in
 
-	_arg1 = (*C.char)(unsafe.Pointer(C.CString(methodResponse)))
+	_arg2 = (C.int)(len(methodResponse))
+	_arg1 = (*C.char)(C.calloc(C.size_t((len(methodResponse) + 1)), C.size_t(C.sizeof_char)))
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(_arg1)), len(methodResponse)), methodResponse)
 	defer C.free(unsafe.Pointer(_arg1))
-	_arg2 = C.int(length)
 	if signature != "" {
 		_arg3 = (*C.char)(unsafe.Pointer(C.CString(signature)))
 		defer C.free(unsafe.Pointer(_arg3))
@@ -228,7 +223,6 @@ func XmlrpcParseResponse(methodResponse string, length int, signature string) (*
 
 	_cret = C.soup_xmlrpc_parse_response(_arg1, _arg2, _arg3, &_cerr)
 	runtime.KeepAlive(methodResponse)
-	runtime.KeepAlive(length)
 	runtime.KeepAlive(signature)
 
 	var _variant *glib.Variant // out
@@ -263,7 +257,6 @@ func XmlrpcParseResponse(methodResponse string, length int, signature string) (*
 // The function returns the following values:
 //
 //   - date: new Date, or NULL on error.
-//
 func XmlrpcVariantGetDatetime(variant *glib.Variant) (*Date, error) {
 	var _arg1 *C.GVariant // out
 	var _cret *C.SoupDate // in
@@ -307,7 +300,6 @@ func XmlrpcVariantGetDatetime(variant *glib.Variant) (*Date, error) {
 // The function returns the following values:
 //
 //   - variant: floating #GVariant.
-//
 func XmlrpcVariantNewDatetime(date *Date) *glib.Variant {
 	var _arg1 *C.SoupDate // out
 	var _cret *C.GVariant // in

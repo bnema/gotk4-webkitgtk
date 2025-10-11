@@ -130,7 +130,6 @@ func (request *ColorChooserRequest) Finish() {
 // The function returns the following values:
 //
 //   - rect to fill in with the element area.
-//
 func (request *ColorChooserRequest) ElementRectangle() *gdk.Rectangle {
 	var _arg0 *C.WebKitColorChooserRequest // out
 	var _arg1 C.GdkRectangle               // in
@@ -152,7 +151,6 @@ func (request *ColorChooserRequest) ElementRectangle() *gdk.Rectangle {
 // The function returns the following values:
 //
 //   - rgba to fill in with the current color.
-//
 func (request *ColorChooserRequest) RGBA() *gdk.RGBA {
 	var _arg0 *C.WebKitColorChooserRequest // out
 	var _arg1 C.GdkRGBA                    // in
@@ -174,7 +172,6 @@ func (request *ColorChooserRequest) RGBA() *gdk.RGBA {
 // The function takes the following parameters:
 //
 //   - rgba: pointer RGBA.
-//
 func (request *ColorChooserRequest) SetRGBA(rgba *gdk.RGBA) {
 	var _arg0 *C.WebKitColorChooserRequest // out
 	var _arg1 *C.GdkRGBA                   // out

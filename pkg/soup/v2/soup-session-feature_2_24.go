@@ -101,7 +101,6 @@ func marshalSessionFeature(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - ok: TRUE if feature accepted type as a subfeature.
-//
 func (feature *SessionFeature) AddFeature(typ coreglib.Type) bool {
 	var _arg0 *C.SoupSessionFeature // out
 	var _arg1 C.GType               // out
@@ -123,8 +122,6 @@ func (feature *SessionFeature) AddFeature(typ coreglib.Type) bool {
 	return _ok
 }
 
-// The function takes the following parameters:
-//
 func (feature *SessionFeature) Attach(session *Session) {
 	var _arg0 *C.SoupSessionFeature // out
 	var _arg1 *C.SoupSession        // out
@@ -137,8 +134,6 @@ func (feature *SessionFeature) Attach(session *Session) {
 	runtime.KeepAlive(session)
 }
 
-// The function takes the following parameters:
-//
 func (feature *SessionFeature) Detach(session *Session) {
 	var _arg0 *C.SoupSessionFeature // out
 	var _arg1 *C.SoupSession        // out
@@ -161,7 +156,6 @@ func (feature *SessionFeature) Detach(session *Session) {
 // The function returns the following values:
 //
 //   - ok: TRUE if feature has a subfeature of type type.
-//
 func (feature *SessionFeature) HasFeature(typ coreglib.Type) bool {
 	var _arg0 *C.SoupSessionFeature // out
 	var _arg1 C.GType               // out
@@ -193,7 +187,6 @@ func (feature *SessionFeature) HasFeature(typ coreglib.Type) bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if type was removed from feature.
-//
 func (feature *SessionFeature) RemoveFeature(typ coreglib.Type) bool {
 	var _arg0 *C.SoupSessionFeature // out
 	var _arg1 C.GType               // out
@@ -226,7 +219,6 @@ func (feature *SessionFeature) RemoveFeature(typ coreglib.Type) bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if feature accepted type as a subfeature.
-//
 func (feature *SessionFeature) addFeature(typ coreglib.Type) bool {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.add_feature
@@ -251,8 +243,7 @@ func (feature *SessionFeature) addFeature(typ coreglib.Type) bool {
 	return _ok
 }
 
-// The function takes the following parameters:
-//
+// Attach: perform setup when a feature is added to a session.
 func (feature *SessionFeature) attach(session *Session) {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.attach
@@ -268,8 +259,7 @@ func (feature *SessionFeature) attach(session *Session) {
 	runtime.KeepAlive(session)
 }
 
-// The function takes the following parameters:
-//
+// Detach: perform cleanup when a feature is removed from a session.
 func (feature *SessionFeature) detach(session *Session) {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.detach
@@ -295,7 +285,6 @@ func (feature *SessionFeature) detach(session *Session) {
 // The function returns the following values:
 //
 //   - ok: TRUE if feature has a subfeature of type type.
-//
 func (feature *SessionFeature) hasFeature(typ coreglib.Type) bool {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.has_feature
@@ -330,7 +319,6 @@ func (feature *SessionFeature) hasFeature(typ coreglib.Type) bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if type was removed from feature.
-//
 func (feature *SessionFeature) removeFeature(typ coreglib.Type) bool {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.remove_feature
@@ -355,11 +343,12 @@ func (feature *SessionFeature) removeFeature(typ coreglib.Type) bool {
 	return _ok
 }
 
+// requestQueued proxies the session's Session::request_queued signal.
+//
 // The function takes the following parameters:
 //
 //   - session
 //   - msg
-//
 func (feature *SessionFeature) requestQueued(session *Session, msg *Message) {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.request_queued
@@ -378,12 +367,14 @@ func (feature *SessionFeature) requestQueued(session *Session, msg *Message) {
 	runtime.KeepAlive(msg)
 }
 
+// requestStarted proxies the session's Session::request_started signal.
+// Deprecated 2.50. Use Message::starting instead.
+//
 // The function takes the following parameters:
 //
 //   - session
 //   - msg
 //   - socket
-//
 func (feature *SessionFeature) requestStarted(session *Session, msg *Message, socket *Socket) {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.request_started
@@ -405,11 +396,12 @@ func (feature *SessionFeature) requestStarted(session *Session, msg *Message, so
 	runtime.KeepAlive(socket)
 }
 
+// requestUnqueued proxies the session's Session::request_unqueued signal.
+//
 // The function takes the following parameters:
 //
 //   - session
 //   - msg
-//
 func (feature *SessionFeature) requestUnqueued(session *Session, msg *Message) {
 	gclass := (*C.SoupSessionFeatureInterface)(coreglib.PeekParentClass(feature))
 	fnarg := gclass.request_unqueued

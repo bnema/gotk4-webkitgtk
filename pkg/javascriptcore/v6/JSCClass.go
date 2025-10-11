@@ -79,7 +79,6 @@ func marshalClass(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: name of jsc_class.
-//
 func (jscClass *Class) Name() string {
 	var _arg0 *C.JSCClass // out
 	var _cret *C.char     // in
@@ -101,7 +100,6 @@ func (jscClass *Class) Name() string {
 // The function returns the following values:
 //
 //   - class: parent class of jsc_class.
-//
 func (jscClass *Class) Parent() *Class {
 	var _arg0 *C.JSCClass // out
 	var _cret *C.JSCClass // in

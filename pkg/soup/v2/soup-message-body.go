@@ -147,7 +147,6 @@ func (b *Buffer) SetLength(length uint) {
 // The function returns the following values:
 //
 //   - ret: new (or newly-reffed) buffer.
-//
 func (buffer *Buffer) Copy() *Buffer {
 	var _arg0 *C.SoupBuffer // out
 	var _cret *C.SoupBuffer // in
@@ -177,7 +176,6 @@ func (buffer *Buffer) Copy() *Buffer {
 // The function returns the following values:
 //
 //   - bytes: new #GBytes which has the same content as the Buffer.
-//
 func (buffer *Buffer) AsBytes() *glib.Bytes {
 	var _arg0 *C.SoupBuffer // out
 	var _cret *C.GBytes     // in
@@ -207,7 +205,6 @@ func (buffer *Buffer) AsBytes() *glib.Bytes {
 // The function returns the following values:
 //
 //   - data: pointer to the buffer data is stored here.
-//
 func (buffer *Buffer) Data() []byte {
 	var _arg0 *C.SoupBuffer // out
 	var _arg1 *C.guint8     // in
@@ -232,7 +229,6 @@ func (buffer *Buffer) Data() []byte {
 // The function returns the following values:
 //
 //   - gpointer (optional): owner pointer.
-//
 func (buffer *Buffer) Owner() unsafe.Pointer {
 	var _arg0 *C.SoupBuffer // out
 	var _cret C.gpointer    // in
@@ -261,7 +257,6 @@ func (buffer *Buffer) Owner() unsafe.Pointer {
 // The function returns the following values:
 //
 //   - buffer: new Buffer.
-//
 func (parent *Buffer) NewSubbuffer(offset uint, length uint) *Buffer {
 	var _arg0 *C.SoupBuffer // out
 	var _arg1 C.gsize       // out
@@ -366,7 +361,6 @@ func (m *MessageBody) SetLength(length int64) {
 // The function takes the following parameters:
 //
 //   - buffer: Buffer.
-//
 func (body *MessageBody) AppendBuffer(buffer *Buffer) {
 	var _arg0 *C.SoupMessageBody // out
 	var _arg1 *C.SoupBuffer      // out
@@ -388,7 +382,6 @@ func (body *MessageBody) AppendBuffer(buffer *Buffer) {
 // The function takes the following parameters:
 //
 //   - data to append.
-//
 func (body *MessageBody) Append(data []byte) {
 	var _arg0 *C.SoupMessageBody // out
 	var _arg1 *C.guchar          // out
@@ -422,7 +415,6 @@ func (body *MessageBody) Complete() {
 //
 //   - buffer containing the same data as body. (You must free this buffer if
 //     you do not want it.).
-//
 func (body *MessageBody) Flatten() *Buffer {
 	var _arg0 *C.SoupMessageBody // out
 	var _cret *C.SoupBuffer      // in
@@ -451,7 +443,6 @@ func (body *MessageBody) Flatten() *Buffer {
 // The function returns the following values:
 //
 //   - ok: accumulate flag for body.
-//
 func (body *MessageBody) Accumulate() bool {
 	var _arg0 *C.SoupMessageBody // out
 	var _cret C.gboolean         // in
@@ -490,7 +481,6 @@ func (body *MessageBody) Accumulate() bool {
 // The function returns the following values:
 //
 //   - buffer (optional) or NULL.
-//
 func (body *MessageBody) Chunk(offset int64) *Buffer {
 	var _arg0 *C.SoupMessageBody // out
 	var _arg1 C.goffset          // out
@@ -528,7 +518,6 @@ func (body *MessageBody) Chunk(offset int64) *Buffer {
 // The function takes the following parameters:
 //
 //   - chunk received from the network.
-//
 func (body *MessageBody) GotChunk(chunk *Buffer) {
 	var _arg0 *C.SoupMessageBody // out
 	var _arg1 *C.SoupBuffer      // out
@@ -570,7 +559,6 @@ func (body *MessageBody) GotChunk(chunk *Buffer) {
 // The function takes the following parameters:
 //
 //   - accumulate: whether or not to accumulate body chunks in body.
-//
 func (body *MessageBody) SetAccumulate(accumulate bool) {
 	var _arg0 *C.SoupMessageBody // out
 	var _arg1 C.gboolean         // out
@@ -605,7 +593,6 @@ func (body *MessageBody) Truncate() {
 // The function takes the following parameters:
 //
 //   - chunk returned from soup_message_body_get_chunk().
-//
 func (body *MessageBody) WroteChunk(chunk *Buffer) {
 	var _arg0 *C.SoupMessageBody // out
 	var _arg1 *C.SoupBuffer      // out

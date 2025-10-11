@@ -27,7 +27,6 @@ const CHAR_URI_SUB_DELIMS = 4
 // The function returns the following values:
 //
 //   - ok: TRUE if they are equal (modulo case).
-//
 func StrCaseEqual(v1, v2 unsafe.Pointer) bool {
 	var _arg1 C.gconstpointer // out
 	var _arg2 C.gconstpointer // out
@@ -58,7 +57,6 @@ func StrCaseEqual(v1, v2 unsafe.Pointer) bool {
 // The function returns the following values:
 //
 //   - guint: hash code.
-//
 func StrCaseHash(key unsafe.Pointer) uint {
 	var _arg1 C.gconstpointer // out
 	var _cret C.guint         // in

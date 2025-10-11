@@ -79,7 +79,6 @@ func marshalSessionAsync(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - sessionAsync: new session.
-//
 func NewSessionAsync() *SessionAsync {
 	var _cret *C.SoupSession // in
 

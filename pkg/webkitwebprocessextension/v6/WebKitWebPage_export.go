@@ -5,12 +5,33 @@ package webkitwebprocessextension
 import (
 	"unsafe"
 
+	"github.com/diamondburned/gotk4/pkg/core/gextras"
 	coreglib "github.com/diamondburned/gotk4/pkg/core/glib"
 )
 
 // #include <stdlib.h>
 // #include <webkit/webkit-web-process-extension.h>
 import "C"
+
+//export _gotk4_webkitwebprocessextension6_WebPage_ConnectConsoleMessageSent
+func _gotk4_webkitwebprocessextension6_WebPage_ConnectConsoleMessageSent(arg0 C.gpointer, arg1 *C.WebKitConsoleMessage, arg2 C.guintptr) {
+	var f func(consoleMessage *ConsoleMessage)
+	{
+		closure := coreglib.ConnectedGeneratedClosure(uintptr(arg2))
+		if closure == nil {
+			panic("given unknown closure user_data")
+		}
+		defer closure.TryRepanic()
+
+		f = closure.Func.(func(consoleMessage *ConsoleMessage))
+	}
+
+	var _consoleMessage *ConsoleMessage // out
+
+	_consoleMessage = (*ConsoleMessage)(gextras.NewStructNative(unsafe.Pointer(arg1)))
+
+	f(_consoleMessage)
+}
 
 //export _gotk4_webkitwebprocessextension6_WebPage_ConnectContextMenu
 func _gotk4_webkitwebprocessextension6_WebPage_ConnectContextMenu(arg0 C.gpointer, arg1 *C.WebKitContextMenu, arg2 *C.WebKitWebHitTestResult, arg3 C.guintptr) (cret C.gboolean) {

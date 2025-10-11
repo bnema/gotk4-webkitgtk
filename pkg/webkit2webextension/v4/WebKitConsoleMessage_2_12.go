@@ -29,8 +29,6 @@ func init() {
 
 // ConsoleMessageLevel: enum values used to denote the various levels of console
 // messages.
-//
-// Deprecated: since version 2.40.
 type ConsoleMessageLevel C.gint
 
 const (
@@ -70,8 +68,6 @@ func (c ConsoleMessageLevel) String() string {
 
 // ConsoleMessageSource: enum values used to denote the various sources of
 // console messages.
-//
-// Deprecated: since version 2.40.
 type ConsoleMessageSource C.gint
 
 const (

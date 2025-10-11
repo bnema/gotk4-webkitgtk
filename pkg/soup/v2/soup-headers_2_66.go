@@ -27,7 +27,6 @@ import "C"
 //
 //   - hashTable (optional): a Table of list elements, which can be freed with
 //     soup_header_free_param_list() or NULL if there are duplicate elements.
-//
 func HeaderParseParamListStrict(header string) map[string]string {
 	var _arg1 *C.char       // out
 	var _cret *C.GHashTable // in
@@ -73,7 +72,6 @@ func HeaderParseParamListStrict(header string) map[string]string {
 //
 //   - hashTable (optional): a Table of list elements, which can be freed with
 //     soup_header_free_param_list() or NULL if there are duplicate elements.
-//
 func HeaderParseSemiParamListStrict(header string) map[string]string {
 	var _arg1 *C.char       // out
 	var _cret *C.GHashTable // in

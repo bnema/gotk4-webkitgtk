@@ -62,8 +62,8 @@ func (n NetworkProxyMode) String() string {
 // NetworkProxySettings configures network proxies.
 //
 // WebKitNetworkProxySettings can be used to provide a custom
-// proxy configuration to a KitWebContext. You need to call
-// webkit_web_context_set_network_proxy_settings() with
+// proxy configuration to a KitWebsiteDataManager. You need to call
+// webkit_website_data_manager_set_network_proxy_settings() with
 // WEBKIT_NETWORK_PROXY_MODE_CUSTOM and a WebKitNetworkProxySettings.
 //
 // An instance of this type is always passed by reference.
@@ -133,7 +133,6 @@ func NewNetworkProxySettings(defaultProxyUri string, ignoreHosts []string) *Netw
 //
 //   - scheme: URI scheme to add a proxy for.
 //   - proxyUri: proxy URI to use for uri_scheme.
-//
 func (proxySettings *NetworkProxySettings) AddProxyForScheme(scheme string, proxyUri string) {
 	var _arg0 *C.WebKitNetworkProxySettings // out
 	var _arg1 *C.gchar                      // out
@@ -156,7 +155,6 @@ func (proxySettings *NetworkProxySettings) AddProxyForScheme(scheme string, prox
 // The function returns the following values:
 //
 //   - networkProxySettings: copy of passed in KitNetworkProxySettings.
-//
 func (proxySettings *NetworkProxySettings) Copy() *NetworkProxySettings {
 	var _arg0 *C.WebKitNetworkProxySettings // out
 	var _cret *C.WebKitNetworkProxySettings // in

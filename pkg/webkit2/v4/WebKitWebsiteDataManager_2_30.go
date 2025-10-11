@@ -51,7 +51,6 @@ func marshalITPFirstParty(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: domain name.
-//
 func (itpFirstParty *ITPFirstParty) Domain() string {
 	var _arg0 *C.WebKitITPFirstParty // out
 	var _cret *C.char                // in
@@ -78,7 +77,6 @@ func (itpFirstParty *ITPFirstParty) Domain() string {
 // The function returns the following values:
 //
 //   - dateTime: last update time as a Time.
-//
 func (itpFirstParty *ITPFirstParty) LastUpdateTime() *glib.DateTime {
 	var _arg0 *C.WebKitITPFirstParty // out
 	var _cret *C.GDateTime           // in
@@ -112,7 +110,6 @@ func (itpFirstParty *ITPFirstParty) LastUpdateTime() *glib.DateTime {
 // The function returns the following values:
 //
 //   - ok: TRUE if website data access has been granted, or FALSE otherwise.
-//
 func (itpFirstParty *ITPFirstParty) WebsiteDataAccessAllowed() bool {
 	var _arg0 *C.WebKitITPFirstParty // out
 	var _cret C.gboolean             // in
@@ -153,7 +150,6 @@ func marshalITPThirdParty(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: domain name.
-//
 func (itpThirdParty *ITPThirdParty) Domain() string {
 	var _arg0 *C.WebKitITPThirdParty // out
 	var _cret *C.char                // in
@@ -176,7 +172,6 @@ func (itpThirdParty *ITPThirdParty) Domain() string {
 // The function returns the following values:
 //
 //   - list of KitITPFirstParty.
-//
 func (itpThirdParty *ITPThirdParty) FirstParties() []*ITPFirstParty {
 	var _arg0 *C.WebKitITPThirdParty // out
 	var _cret *C.GList               // in

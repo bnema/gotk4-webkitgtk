@@ -98,7 +98,6 @@ func marshalAuthDomainDigest(p uintptr) (interface{}, error) {
 // The function takes the following parameters:
 //
 //   - callback: callback.
-//
 func (domain *AuthDomainDigest) SetAuthCallback(callback AuthDomainDigestAuthCallback) {
 	var _arg0 *C.SoupAuthDomain                  // out
 	var _arg1 C.SoupAuthDomainDigestAuthCallback // out
@@ -138,7 +137,6 @@ func (domain *AuthDomainDigest) SetAuthCallback(callback AuthDomainDigestAuthCal
 // The function returns the following values:
 //
 //   - utf8: encoded password.
-//
 func AuthDomainDigestEncodePassword(username, realm, password string) string {
 	var _arg1 *C.char // out
 	var _arg2 *C.char // out

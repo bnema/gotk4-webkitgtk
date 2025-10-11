@@ -95,7 +95,6 @@ func (s SameSitePolicy) String() string {
 // The function returns the following values:
 //
 //   - sList of SoupCookies, which can be freed with cookie.Free.
-//
 func CookiesFromRequest(msg *Message) []*Cookie {
 	var _arg1 *C.SoupMessage // out
 	var _cret *C.GSList      // in
@@ -137,7 +136,6 @@ func CookiesFromRequest(msg *Message) []*Cookie {
 // The function returns the following values:
 //
 //   - sList of SoupCookies, which can be freed with cookie.Free.
-//
 func CookiesFromResponse(msg *Message) []*Cookie {
 	var _arg1 *C.SoupMessage // out
 	var _cret *C.GSList      // in
@@ -176,7 +174,6 @@ func CookiesFromResponse(msg *Message) []*Cookie {
 // The function returns the following values:
 //
 //   - utf8: serialization of cookies.
-//
 func CookiesToCookieHeader(cookies []*Cookie) string {
 	var _arg1 *C.GSList // out
 	var _cret *C.char   // in
@@ -211,7 +208,6 @@ func CookiesToCookieHeader(cookies []*Cookie) string {
 //
 //   - cookies of Cookie.
 //   - msg: Message.
-//
 func CookiesToRequest(cookies []*Cookie, msg *Message) {
 	var _arg1 *C.GSList      // out
 	var _arg2 *C.SoupMessage // out
@@ -239,7 +235,6 @@ func CookiesToRequest(cookies []*Cookie, msg *Message) {
 //
 //   - cookies of Cookie.
 //   - msg: Message.
-//
 func CookiesToResponse(cookies []*Cookie, msg *Message) {
 	var _arg1 *C.GSList      // out
 	var _arg2 *C.SoupMessage // out
@@ -281,7 +276,6 @@ func CookiesToResponse(cookies []*Cookie, msg *Message) {
 //   - cookie (optional): new Cookie, or NULL if it could not be parsed,
 //     or contained an illegal "domain" attribute for a cookie originating from
 //     origin.
-//
 func CookieParse(header string, origin *glib.URI) *Cookie {
 	var _arg1 *C.char       // out
 	var _arg2 *C.GUri       // out

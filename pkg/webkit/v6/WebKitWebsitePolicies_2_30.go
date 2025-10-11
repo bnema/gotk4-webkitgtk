@@ -112,7 +112,6 @@ func marshalWebsitePolicies(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - websitePolicies: newly created KitWebsitePolicies.
-//
 func NewWebsitePolicies() *WebsitePolicies {
 	var _cret *C.WebKitWebsitePolicies // in
 
@@ -130,7 +129,6 @@ func NewWebsitePolicies() *WebsitePolicies {
 // The function returns the following values:
 //
 //   - autoplayPolicy: KitAutoplayPolicy.
-//
 func (policies *WebsitePolicies) AutoplayPolicy() AutoplayPolicy {
 	var _arg0 *C.WebKitWebsitePolicies // out
 	var _cret C.WebKitAutoplayPolicy   // in

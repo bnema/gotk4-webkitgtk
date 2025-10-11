@@ -109,7 +109,6 @@ func marshalAuthDomainBasic(p uintptr) (interface{}, error) {
 // The function takes the following parameters:
 //
 //   - callback: callback.
-//
 func (domain *AuthDomainBasic) SetAuthCallback(callback AuthDomainBasicAuthCallback) {
 	var _arg0 *C.SoupAuthDomain                 // out
 	var _arg1 C.SoupAuthDomainBasicAuthCallback // out

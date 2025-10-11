@@ -83,9 +83,6 @@ func marshalCookieJarSqlite(p uintptr) (interface{}, error) {
 //
 //   - filename
 //   - readOnly
-//
-// The function returns the following values:
-//
 func NewCookieJarSqlite(filename string, readOnly bool) *CookieJarSqlite {
 	var _arg1 *C.char          // out
 	var _arg2 C.gboolean       // out

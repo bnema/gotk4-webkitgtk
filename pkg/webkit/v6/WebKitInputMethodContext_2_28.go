@@ -211,14 +211,11 @@ func (i InputHints) Has(other InputHints) bool {
 
 // InputMethodContextOverrides contains methods that are overridable.
 type InputMethodContextOverrides struct {
-	// The function takes the following parameters:
-	//
 	Committed func(text string)
 	// The function takes the following parameters:
 	//
 	//   - offset
 	//   - nChars
-	//
 	DeleteSurrounding func(offset int, nChars uint)
 	// FilterKeyEvent: allow key_event to be handled by the input method.
 	//
@@ -232,7 +229,6 @@ type InputMethodContextOverrides struct {
 	// The function returns the following values:
 	//
 	//   - ok: TRUE if the key event was handled, or FALSE otherwise.
-	//
 	FilterKeyEvent func(keyEvent gdk.Eventer) bool
 	// Preedit: get the pre-edit string and a list of
 	// WebKitInputMethodUnderline.
@@ -248,7 +244,6 @@ type InputMethodContextOverrides struct {
 	//     of KitInputMethodUnderline.
 	//   - cursorOffset (optional): location to store the position of cursor in
 	//     preedit string.
-	//
 	Preedit func() (string, []*InputMethodUnderline, uint)
 	// NotifyCursorArea: notify context that cursor area changed in input
 	// associated.
@@ -259,7 +254,6 @@ type InputMethodContextOverrides struct {
 	//   - y coordinate of cursor location.
 	//   - width of cursor area.
 	//   - height of cursor area.
-	//
 	NotifyCursorArea func(x, y, width, height int)
 	// NotifyFocusIn: notify context that input associated has gained focus.
 	NotifyFocusIn func()
@@ -273,11 +267,9 @@ type InputMethodContextOverrides struct {
 	// The function takes the following parameters:
 	//
 	//   - text surrounding the insertion point.
-	//   - length of text, or -1 if text is nul-terminated.
 	//   - cursorIndex: byte index of the insertion cursor within text.
 	//   - selectionIndex: byte index of the selection cursor within text.
-	//
-	NotifySurrounding func(text string, length, cursorIndex, selectionIndex uint)
+	NotifySurrounding func(text string, cursorIndex, selectionIndex uint)
 	PreeditChanged    func()
 	PreeditFinished   func()
 	PreeditStarted    func()
@@ -291,7 +283,6 @@ type InputMethodContextOverrides struct {
 	// The function takes the following parameters:
 	//
 	//   - enabled: whether to enable preedit.
-	//
 	SetEnablePreedit func(enabled bool)
 }
 
@@ -477,7 +468,6 @@ func (context *InputMethodContext) ConnectPreeditStarted(f func()) coreglib.Sign
 // The function returns the following values:
 //
 //   - ok: TRUE if the key event was handled, or FALSE otherwise.
-//
 func (context *InputMethodContext) FilterKeyEvent(keyEvent gdk.Eventer) bool {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 *C.GdkEvent                 // out
@@ -504,7 +494,6 @@ func (context *InputMethodContext) FilterKeyEvent(keyEvent gdk.Eventer) bool {
 // The function returns the following values:
 //
 //   - inputHints of the input associated with context.
-//
 func (context *InputMethodContext) InputHints() InputHints {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _cret C.WebKitInputHints          // in
@@ -527,7 +516,6 @@ func (context *InputMethodContext) InputHints() InputHints {
 // The function returns the following values:
 //
 //   - inputPurpose of the input associated with context.
-//
 func (context *InputMethodContext) InputPurpose() InputPurpose {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _cret C.WebKitInputPurpose        // in
@@ -557,7 +545,6 @@ func (context *InputMethodContext) InputPurpose() InputPurpose {
 //     KitInputMethodUnderline.
 //   - cursorOffset (optional): location to store the position of cursor in
 //     preedit string.
-//
 func (context *InputMethodContext) Preedit() (string, []*InputMethodUnderline, uint) {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 *C.char                     // in
@@ -600,7 +587,6 @@ func (context *InputMethodContext) Preedit() (string, []*InputMethodUnderline, u
 //   - y coordinate of cursor location.
 //   - width of cursor area.
 //   - height of cursor area.
-//
 func (context *InputMethodContext) NotifyCursorArea(x, y, width, height int) {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 C.int                       // out
@@ -650,28 +636,26 @@ func (context *InputMethodContext) NotifyFocusOut() {
 // The function takes the following parameters:
 //
 //   - text surrounding the insertion point.
-//   - length of text, or -1 if text is nul-terminated.
 //   - cursorIndex: byte index of the insertion cursor within text.
 //   - selectionIndex: byte index of the selection cursor within text.
-//
-func (context *InputMethodContext) NotifySurrounding(text string, length int, cursorIndex, selectionIndex uint) {
+func (context *InputMethodContext) NotifySurrounding(text string, cursorIndex, selectionIndex uint) {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 *C.gchar                    // out
-	var _arg2 C.int                       // out
-	var _arg3 C.guint                     // out
-	var _arg4 C.guint                     // out
+	var _arg2 C.int
+	var _arg3 C.guint // out
+	var _arg4 C.guint // out
 
 	_arg0 = (*C.WebKitInputMethodContext)(unsafe.Pointer(coreglib.InternObject(context).Native()))
-	_arg1 = (*C.gchar)(unsafe.Pointer(C.CString(text)))
+	_arg2 = (C.int)(len(text))
+	_arg1 = (*C.gchar)(C.calloc(C.size_t((len(text) + 1)), C.size_t(C.sizeof_gchar)))
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(_arg1)), len(text)), text)
 	defer C.free(unsafe.Pointer(_arg1))
-	_arg2 = C.int(length)
 	_arg3 = C.guint(cursorIndex)
 	_arg4 = C.guint(selectionIndex)
 
 	C.webkit_input_method_context_notify_surrounding(_arg0, _arg1, _arg2, _arg3, _arg4)
 	runtime.KeepAlive(context)
 	runtime.KeepAlive(text)
-	runtime.KeepAlive(length)
 	runtime.KeepAlive(cursorIndex)
 	runtime.KeepAlive(selectionIndex)
 }
@@ -694,7 +678,6 @@ func (context *InputMethodContext) Reset() {
 // The function takes the following parameters:
 //
 //   - enabled: whether to enable preedit.
-//
 func (context *InputMethodContext) SetEnablePreedit(enabled bool) {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 C.gboolean                  // out
@@ -715,7 +698,6 @@ func (context *InputMethodContext) SetEnablePreedit(enabled bool) {
 // The function takes the following parameters:
 //
 //   - hints: KitInputHints.
-//
 func (context *InputMethodContext) SetInputHints(hints InputHints) {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 C.WebKitInputHints          // out
@@ -734,7 +716,6 @@ func (context *InputMethodContext) SetInputHints(hints InputHints) {
 // The function takes the following parameters:
 //
 //   - purpose: KitInputPurpose.
-//
 func (context *InputMethodContext) SetInputPurpose(purpose InputPurpose) {
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 C.WebKitInputPurpose        // out
@@ -747,8 +728,6 @@ func (context *InputMethodContext) SetInputPurpose(purpose InputPurpose) {
 	runtime.KeepAlive(purpose)
 }
 
-// The function takes the following parameters:
-//
 func (context *InputMethodContext) committed(text string) {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.committed
@@ -769,7 +748,6 @@ func (context *InputMethodContext) committed(text string) {
 //
 //   - offset
 //   - nChars
-//
 func (context *InputMethodContext) deleteSurrounding(offset int, nChars uint) {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.delete_surrounding
@@ -800,7 +778,6 @@ func (context *InputMethodContext) deleteSurrounding(offset int, nChars uint) {
 // The function returns the following values:
 //
 //   - ok: TRUE if the key event was handled, or FALSE otherwise.
-//
 func (context *InputMethodContext) filterKeyEvent(keyEvent gdk.Eventer) bool {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.filter_key_event
@@ -838,7 +815,6 @@ func (context *InputMethodContext) filterKeyEvent(keyEvent gdk.Eventer) bool {
 //     KitInputMethodUnderline.
 //   - cursorOffset (optional): location to store the position of cursor in
 //     preedit string.
-//
 func (context *InputMethodContext) preedit() (string, []*InputMethodUnderline, uint) {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.get_preedit
@@ -884,7 +860,6 @@ func (context *InputMethodContext) preedit() (string, []*InputMethodUnderline, u
 //   - y coordinate of cursor location.
 //   - width of cursor area.
 //   - height of cursor area.
-//
 func (context *InputMethodContext) notifyCursorArea(x, y, width, height int) {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.notify_cursor_area
@@ -943,31 +918,29 @@ func (context *InputMethodContext) notifyFocusOut() {
 // The function takes the following parameters:
 //
 //   - text surrounding the insertion point.
-//   - length of text, or -1 if text is nul-terminated.
 //   - cursorIndex: byte index of the insertion cursor within text.
 //   - selectionIndex: byte index of the selection cursor within text.
-//
-func (context *InputMethodContext) notifySurrounding(text string, length, cursorIndex, selectionIndex uint) {
+func (context *InputMethodContext) notifySurrounding(text string, cursorIndex, selectionIndex uint) {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.notify_surrounding
 
 	var _arg0 *C.WebKitInputMethodContext // out
 	var _arg1 *C.gchar                    // out
-	var _arg2 C.guint                     // out
-	var _arg3 C.guint                     // out
-	var _arg4 C.guint                     // out
+	var _arg2 C.guint
+	var _arg3 C.guint // out
+	var _arg4 C.guint // out
 
 	_arg0 = (*C.WebKitInputMethodContext)(unsafe.Pointer(coreglib.InternObject(context).Native()))
-	_arg1 = (*C.gchar)(unsafe.Pointer(C.CString(text)))
+	_arg2 = (C.guint)(len(text))
+	_arg1 = (*C.gchar)(C.calloc(C.size_t((len(text) + 1)), C.size_t(C.sizeof_gchar)))
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(_arg1)), len(text)), text)
 	defer C.free(unsafe.Pointer(_arg1))
-	_arg2 = C.guint(length)
 	_arg3 = C.guint(cursorIndex)
 	_arg4 = C.guint(selectionIndex)
 
 	C._gotk4_webkit6_InputMethodContext_virtual_notify_surrounding(unsafe.Pointer(fnarg), _arg0, _arg1, _arg2, _arg3, _arg4)
 	runtime.KeepAlive(context)
 	runtime.KeepAlive(text)
-	runtime.KeepAlive(length)
 	runtime.KeepAlive(cursorIndex)
 	runtime.KeepAlive(selectionIndex)
 }
@@ -1029,7 +1002,6 @@ func (context *InputMethodContext) reset() {
 // The function takes the following parameters:
 //
 //   - enabled: whether to enable preedit.
-//
 func (context *InputMethodContext) setEnablePreedit(enabled bool) {
 	gclass := (*C.WebKitInputMethodContextClass)(coreglib.PeekParentClass(context))
 	fnarg := gclass.set_enable_preedit
@@ -1106,7 +1078,6 @@ func NewInputMethodUnderline(startOffset uint, endOffset uint) *InputMethodUnder
 // The function returns the following values:
 //
 //   - inputMethodUnderline: copy of passed in KitInputMethodUnderline.
-//
 func (underline *InputMethodUnderline) Copy() *InputMethodUnderline {
 	var _arg0 *C.WebKitInputMethodUnderline // out
 	var _cret *C.WebKitInputMethodUnderline // in
@@ -1136,7 +1107,6 @@ func (underline *InputMethodUnderline) Copy() *InputMethodUnderline {
 // The function takes the following parameters:
 //
 //   - rgba (optional) or NULL.
-//
 func (underline *InputMethodUnderline) SetColor(rgba *gdk.RGBA) {
 	var _arg0 *C.WebKitInputMethodUnderline // out
 	var _arg1 *C.GdkRGBA                    // out

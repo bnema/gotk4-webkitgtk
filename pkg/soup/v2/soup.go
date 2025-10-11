@@ -311,8 +311,6 @@ func (k KnownStatusCode) String() string {
 	}
 }
 
-// The function returns the following values:
-//
 func RequestErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -320,9 +318,7 @@ func RequestErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -381,8 +377,6 @@ func (s SameSitePolicy) String() string {
 	}
 }
 
-// The function returns the following values:
-//
 func TLDErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -390,9 +384,7 @@ func TLDErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -420,8 +412,6 @@ func (x XMLRPCError) String() string {
 	}
 }
 
-// The function returns the following values:
-//
 func XMLRPCErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -429,9 +419,7 @@ func XMLRPCErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }
@@ -486,8 +474,6 @@ func (c Cacheability) Has(other Cacheability) bool {
 	return (c & other) == other
 }
 
-// The function returns the following values:
-//
 func HTTPErrorQuark() glib.Quark {
 	var _cret C.GQuark // in
 
@@ -495,9 +481,7 @@ func HTTPErrorQuark() glib.Quark {
 
 	var _quark glib.Quark // out
 
-	_quark = uint32(_cret)
-	type _ = glib.Quark
-	type _ = uint32
+	_quark = glib.Quark(_cret)
 
 	return _quark
 }

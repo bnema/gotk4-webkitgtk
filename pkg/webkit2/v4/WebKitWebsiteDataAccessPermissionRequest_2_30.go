@@ -87,7 +87,6 @@ func marshalWebsiteDataAccessPermissionRequest(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: current domain name.
-//
 func (request *WebsiteDataAccessPermissionRequest) CurrentDomain() string {
 	var _arg0 *C.WebKitWebsiteDataAccessPermissionRequest // out
 	var _cret *C.char                                     // in
@@ -110,7 +109,6 @@ func (request *WebsiteDataAccessPermissionRequest) CurrentDomain() string {
 // The function returns the following values:
 //
 //   - utf8: requesting domain name.
-//
 func (request *WebsiteDataAccessPermissionRequest) RequestingDomain() string {
 	var _arg0 *C.WebKitWebsiteDataAccessPermissionRequest // out
 	var _cret *C.char                                     // in

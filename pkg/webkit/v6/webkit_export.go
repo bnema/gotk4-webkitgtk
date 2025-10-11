@@ -167,17 +167,16 @@ func _gotk4_webkit6_InputMethodContextClass_notify_surrounding(arg0 *C.WebKitInp
 		panic("gotk4: " + instance0.TypeFromInstance().String() + ": expected InputMethodContextOverrides.NotifySurrounding, got none")
 	}
 
-	var _text string         // out
-	var _length uint         // out
+	var _text []byte         // out
 	var _cursorIndex uint    // out
 	var _selectionIndex uint // out
 
-	_text = C.GoString((*C.gchar)(unsafe.Pointer(arg1)))
-	_length = uint(arg2)
+	_text = make([]byte, arg2)
+	copy(_text, unsafe.Slice((*byte)(unsafe.Pointer(arg1)), arg2))
 	_cursorIndex = uint(arg3)
 	_selectionIndex = uint(arg4)
 
-	overrides.NotifySurrounding(_text, _length, _cursorIndex, _selectionIndex)
+	overrides.NotifySurrounding(_text, _cursorIndex, _selectionIndex)
 }
 
 //export _gotk4_webkit6_InputMethodContextClass_preedit_changed

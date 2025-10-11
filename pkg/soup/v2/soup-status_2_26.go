@@ -22,7 +22,6 @@ import "C"
 // The function returns the following values:
 //
 //   - guint: "proxified" equivalent of status_code.
-//
 func StatusProxify(statusCode uint) uint {
 	var _arg1 C.guint // out
 	var _cret C.guint // in
