@@ -1,10 +1,10 @@
 module github.com/diamondburned/gotk4-webkitgtk
 
-go 1.24.0
+go 1.25.3
 
-require github.com/diamondburned/gotk4 v0.3.2
+require github.com/diamondburned/gotk4 v0.3.1
 
-replace github.com/diamondburned/gotk4 => github.com/bnema/gotk4 v0.3.2
+replace github.com/diamondburned/gotk4 => github.com/bnema/gotk4 v0.3.4-0.20251017144723-f765b03fd751
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

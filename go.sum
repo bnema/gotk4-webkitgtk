@@ -2,8 +2,8 @@ github.com/alecthomas/assert/v2 v2.8.1 h1:YCxnYR6jjpfnEK5AK5SysALKdUEBPGH4Y7As6t
 github.com/alecthomas/assert/v2 v2.8.1/go.mod h1:Bze95FyfUr7x34QZrjL+XP+0qgp/zg8yS+TtBj1WA3k=
 github.com/alecthomas/repr v0.4.0 h1:GhI2A8MACjfegCPVq9f1FLvIBS+DrQ2KQBFZP1iFzXc=
 github.com/alecthomas/repr v0.4.0/go.mod h1:Fr0507jx4eOXV7AlPV6AVZLYrLIuIeSOWtW57eE/O/4=
-github.com/bnema/gotk4 v0.3.2 h1:1DVb6z+B4VjmBeoITH6laPD4GHdk6iIlEDw1Mz2ZMHY=
-github.com/bnema/gotk4 v0.3.2/go.mod h1:r0WyD6Gn+gGzRL4FQqP44POoEEQWecHvdFR7KN/wV4w=
+github.com/bnema/gotk4 v0.3.4-0.20251017144723-f765b03fd751 h1:P1rK2L3fRuOKMpAPxLFP9lkrSWMFV+fTxzC1g4sgSzg=
+github.com/bnema/gotk4 v0.3.4-0.20251017144723-f765b03fd751/go.mod h1:kxHUCbWPUaN0qEZcwX3RDr5s+pparDFBRqm25aMhSH4=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fatih/color v1.10.0 h1:s36xzo75JdqLaaWoiEHk767eHiwo0598uUxyfiPkDsg=
